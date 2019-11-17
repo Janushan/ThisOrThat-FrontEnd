@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
 import Header from './Components/Header'
+import QuestionWrapper from './Components/Pages/QuestionWrapper';
 
 const theme = createMuiTheme ({
   palette: {
@@ -25,6 +26,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <StylesProvider injectFirst>
             <Header/>
+            <QuestionWrapper/>
         </StylesProvider>
       </MuiThemeProvider>
     );

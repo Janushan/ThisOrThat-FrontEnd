@@ -1,0 +1,13 @@
+.screen {
+    position:absolute;
+    display: grid;
+    grid-template-columns: 100%;
+    top: 60px; 
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+
+.partition1{
+    background-color: rebeccapurple;
+}
