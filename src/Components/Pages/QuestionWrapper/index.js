@@ -1,6 +1,9 @@
 import React  from 'react';
 import Header from '../../Header';
 import Question from '../../Question';
+import Creator from '../../Creator';
+import Join from '../../Join';
+import ToTSubmit from '../../ToTSubmit';
 import './QuestionWrapper.css';
 
 export default function QuestionWrapper() {
@@ -9,7 +12,7 @@ export default function QuestionWrapper() {
         <div>
             <Header/>
             <div className="screen">
-                <div className="partition1"><Question/></div>
+                <div className="partition1"><ToTSubmit/></div>
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import './App.css';
 import React, {Component} from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
-import Header from './Components/Header'
 import QuestionWrapper from './Components/Pages/QuestionWrapper';
 
 const theme = createMuiTheme ({
@@ -25,7 +24,6 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <StylesProvider injectFirst>
-            <Header/>
             <QuestionWrapper/>
         </StylesProvider>
       </MuiThemeProvider>
