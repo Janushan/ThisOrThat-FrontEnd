@@ -34,6 +34,7 @@ export default class Question extends Component {
             <div className='holder'>
                 <Card className="creator" raised>
                     <CardHeader title="Create a ToT" /> 
+                    <br/>
                     <TextField 
                         className="questionTitle" 
                         label="This or That" 

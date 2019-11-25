@@ -25,7 +25,8 @@ export default class Question extends Component {
         return (
             <div className='holder'>
                 <Card className="join" raised>
-                    <CardHeader title="Join a ToT" /> 
+                    <CardHeader title="Join a ToT" />
+                    <br/> 
                     <TextField 
                         className="totCode" 
                         label="Enter Code" 

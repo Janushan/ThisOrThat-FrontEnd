@@ -63,7 +63,7 @@ export default class Question extends Component {
         <div className="question" >
           
           {/* Tot with only text */}
-          <Card className="textCard" raised>
+          {/* <Card className="textCard" raised>
               <CardHeader title="What is Better for a Breakup?"  /> 
               <Button className="choices" onClick={e => this.incrementChoice1(e)}>Pizza</Button> 
               <br/>
@@ -76,9 +76,9 @@ export default class Question extends Component {
               <Typography variant="caption">
                   Number of votes: 
               </Typography>
-          </Card> 
+          </Card>  */}
           {/* {this.state.title}{this.state.option1}{this.state.option2}{this.state.votes} */}
-          {/*ToT with only images
+          {/* ToT with only images
            <Card className="imageCard" raised>
               <CardHeader title="What is Better for a Breakup?" /> 
                   <div className="row">
@@ -91,7 +91,7 @@ export default class Question extends Component {
               </Typography>
           </Card> */}
 
-          {/*Tot with Image and text
+          Tot with Image and text
            <Card className="imageAndTextCard" raised>
               <CardHeader title="What is Better for a Breakup?" /> 
                   <div className="row">
@@ -118,7 +118,7 @@ export default class Question extends Component {
               <Typography variant="caption">
                   Number of votes:
               </Typography>
-          </Card> */}
+          </Card>
           <br/><br/>
           <div className='timer'>
               <Typography variant="caption">

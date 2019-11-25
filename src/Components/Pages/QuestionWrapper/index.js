@@ -12,7 +12,7 @@ export default function QuestionWrapper() {
         <div>
             <Header/>
             <div className="screen">
-                <div className="partition1"><ToTSubmit/></div>
+                <div className="partition1"><Creator/></div>
             </div>
         </div>
     )
