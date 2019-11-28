@@ -9,5 +9,6 @@
 }
 
 .partition1{
-    background-color: rebeccapurple;
+    background: rgb(109,58,149);
+    background: linear-gradient(0deg, rgba(109,58,149,1) 0%, rgba(150,91,188,1) 100%);
 }
