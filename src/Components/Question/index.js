@@ -5,8 +5,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import SaveIconButton from '@material-ui/icons/Save';
 import ShareSharpIconButton from '@material-ui/icons/ShareSharp';
 import Grid from '@material-ui/core/Grid';
-import Pizza from '../Assets/pizza.jpg';
-import Icecream from '../Assets/ice-cream.jpg';
+import Image1 from '../Assets/pizza.jpg';
+import Image2 from '../Assets/ice-cream.jpg';
 import './question.css';
 import { Typography } from '@material-ui/core';
 
@@ -82,8 +82,8 @@ export default class Question extends Component {
            <Card className="imageCard" raised>
               <CardHeader title="What is Better for a Breakup?" /> 
                   <div className="row">
-                      <img className="image1" src={Pizza}  onClick={e => this.incrementChoice1(e)} />
-                      <img className="image2" src={Icecream}  onClick={e => this.incrementChoice2(e)} />
+                      <img className="image1" src={Image1}  onClick={e => this.incrementChoice1(e)} />
+                      <img className="image2" src={Image2}  onClick={e => this.incrementChoice2(e)} />
                   </div>
                   <br/>
               <Typography variant="caption">
@@ -91,7 +91,6 @@ export default class Question extends Component {
               </Typography>
           </Card> */}
 
-          Tot with Image and text
            <Card className="imageAndTextCard" raised>
               <CardHeader title="What is Better for a Breakup?" /> 
                   <div className="row">
@@ -100,18 +99,18 @@ export default class Question extends Component {
                   <div className='options'>
                     <Grid container direction="column" alignItems="center">
                         <Grid item>
-                        <img className="image1" src={Pizza}  onClick={e => this.incrementChoice1(e)} />                        
+                        <img className="image1" src={Image1}  onClick={e => this.incrementChoice1(e)} />                        
                         </Grid>
                         <Grid item>
-                          <Button onClick={e => this.incrementChoice1(e)}>Pizza</Button>
+                          <Button className='Button' onClick={e => this.incrementChoice1(e)}>Pizza</Button>
                         </Grid>
                     </Grid>
                     <Grid container direction="column" alignItems="center">
                         <Grid item>
-                            <img className="image2" src={Icecream}  onClick={e => this.incrementChoice2(e)} />
+                            <img className="image2" src={Image2}  onClick={e => this.incrementChoice2(e)} />
                         </Grid>
                         <Grid item>
-                          <Button onClick={e => this.incrementChoice2(e)}>Ice-cream</Button>
+                          <Button className='Button' onClick={e => this.incrementChoice2(e)}>Ice-cream</Button>
                         </Grid>
                     </Grid>
                   </div>
@@ -132,7 +131,7 @@ export default class Question extends Component {
                     <SaveIconButton onClick={e => this.save(e)}/>
                   </Grid>
                   <Grid item>
-                    <Button onClick={e => this.save(e)}>Save</Button>
+                    <Button className='Button' onClick={e => this.save(e)}>Save</Button>
                   </Grid>
               </Grid>
               <Grid container direction="column" alignItems="center">
@@ -140,7 +139,7 @@ export default class Question extends Component {
                     <ShareSharpIconButton onClick={e => this.share(e)}/>
                   </Grid>
                   <Grid item>
-                    <Button onClick={e => this.share(e)}>Share</Button>
+                    <Button className='Button' onClick={e => this.share(e)}>Share</Button>
                   </Grid>
               </Grid>
           </div>

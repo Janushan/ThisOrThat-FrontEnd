@@ -87,7 +87,7 @@ export default function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className="AppBar" position="static">
         <Toolbar>
           <IconButton
             edge="start"
@@ -107,7 +107,9 @@ export default function Header() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton>
+            <IconButton
+              color="inherit"
+            >
               <AccountCircle />
             </IconButton>
           </div>
