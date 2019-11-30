@@ -2,3 +2,13 @@
   color: rgba(0, 0, 0, 0.87);
   background-color: purple;
 }
+
+.MuiButton-containedPrimary {
+  background-color: white;
+  color: #955ABB;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #955ABB;
+  color: white;
+}
