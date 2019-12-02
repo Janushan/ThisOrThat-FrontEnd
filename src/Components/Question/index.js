@@ -102,7 +102,7 @@ export default class Question extends Component {
                         <img className="image1" src={Image1}  onClick={e => this.incrementChoice1(e)} />                        
                         </Grid>
                         <Grid item>
-                          <Button className='Button' onClick={e => this.incrementChoice1(e)}>Pizza</Button>
+                          <Button variant="contained" color="primary" onClick={e => this.incrementChoice1(e)}>Pizza</Button>
                         </Grid>
                     </Grid>
                     <Grid container direction="column" alignItems="center">
@@ -110,7 +110,7 @@ export default class Question extends Component {
                             <img className="image2" src={Image2}  onClick={e => this.incrementChoice2(e)} />
                         </Grid>
                         <Grid item>
-                          <Button className='Button' onClick={e => this.incrementChoice2(e)}>Ice-cream</Button>
+                          <Button variant="contained" color="primary" onClick={e => this.incrementChoice2(e)}>Ice-cream</Button>
                         </Grid>
                     </Grid>
                   </div>
@@ -131,7 +131,7 @@ export default class Question extends Component {
                     <SaveIconButton onClick={e => this.save(e)}/>
                   </Grid>
                   <Grid item>
-                    <Button className='Button' onClick={e => this.save(e)}>Save</Button>
+                    <Button variant="contained" color="primary" onClick={e => this.save(e)}>Save</Button>
                   </Grid>
               </Grid>
               <Grid container direction="column" alignItems="center">
@@ -139,7 +139,7 @@ export default class Question extends Component {
                     <ShareSharpIconButton onClick={e => this.share(e)}/>
                   </Grid>
                   <Grid item>
-                    <Button className='Button' onClick={e => this.share(e)}>Share</Button>
+                    <Button variant="contained" color="primary" onClick={e => this.share(e)}>Share</Button>
                   </Grid>
               </Grid>
           </div>
