@@ -5,10 +5,10 @@
 
 .MuiButton-containedPrimary {
   background-color: white;
-  color: #955ABB;
+  color: #955abb;
 }
 
 .MuiButton-containedPrimary:hover {
-  background-color: #955ABB;
+  background-color: #955abb;
   color: white;
 }

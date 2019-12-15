@@ -1,10 +1,12 @@
-import './App.css';
-import React, {Component} from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider } from '@material-ui/styles';
-import QuestionWrapper from './Components/Pages/QuestionWrapper';
+import "./App.css";
+import React, { Component } from "react";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { StylesProvider } from "@material-ui/styles";
+import QuestionWrapper from "./Components/Pages/QuestionWrapper";
 
-const theme = createMuiTheme ({
+import "./App.css";
+
+const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#1da1f2",
@@ -15,7 +17,7 @@ const theme = createMuiTheme ({
       main: "#657786",
       light: "#E8EEF8",
       dark: "#2653A6"
-    },
+    }
   }
 });
 
@@ -24,7 +26,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <StylesProvider injectFirst>
-            <QuestionWrapper/>
+          <QuestionWrapper />
         </StylesProvider>
       </MuiThemeProvider>
     );
