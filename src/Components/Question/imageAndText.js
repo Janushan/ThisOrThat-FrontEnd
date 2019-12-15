@@ -78,7 +78,7 @@ export default class ImageAndTextQuestion extends Component {
             <Grid container direction="column" alignItems="center">
               <Grid item>
                 <img
-                  className="image1"
+                  className="image image1"
                   src={Image1}
                   onClick={(e) => this.incrementChoice1(e)}
                 />{" "}
@@ -97,7 +97,7 @@ export default class ImageAndTextQuestion extends Component {
             <Grid container direction="column" alignItems="center">
               <Grid item>
                 <img
-                  className="image2"
+                  className="image"
                   src={Image2}
                   onClick={(e) => this.incrementChoice2(e)}
                 />{" "}

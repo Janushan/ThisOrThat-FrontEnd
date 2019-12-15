@@ -57,22 +57,16 @@
   flex-direction: row;
 }
 
+.image {
+  border-radius: 0.5rem;
+  width: 10rem;
+  height: 300px;
+}
 .image1 {
-  width: 10rem;
   margin-right: 5rem;
-  height: 300px;
 }
 
-.image1:hover {
-  transform: scale(1.05);
-}
-
-.image2 {
-  width: 10rem;
-  height: 300px;
-}
-
-.image2:hover {
+.image:hover {
   transform: scale(1.05);
 }
 
