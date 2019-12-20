@@ -1,3 +1,24 @@
+.screen {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 100%;
+  top: 48px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.background {
+  background: rgb(109, 58, 149);
+  background: linear-gradient(
+    0deg,
+    rgba(109, 58, 149, 1) 0%,
+    rgba(150, 91, 188, 1) 100%
+  );
+}
+
+/* Buttons */
+
 .MuiAppBar-colorPrimary {
   color: rgba(0, 0, 0, 0.87);
   background-color: purple;
@@ -5,10 +26,10 @@
 
 .MuiButton-containedPrimary {
   background-color: white;
-  color: #955ABB;
+  color: #955abb;
 }
 
 .MuiButton-containedPrimary:hover {
-  background-color: #955ABB;
+  background-color: #955abb;
   color: white;
 }
