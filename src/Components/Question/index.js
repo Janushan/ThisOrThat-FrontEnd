@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
 
 import ImageAndTextQuestion from "./imageAndText";
 // import ImageQuestion from "./image";
-import TextQuestion from "./text";
+// import TextQuestion from "./text";
 
 import "./styles.css";
 
@@ -55,8 +55,8 @@ export default class Question extends Component {
         <br /> <br />
         <div className="timer">
           <Typography variant="caption">
-            Next ToT in {this.state.seconds}
-            seconds...{/* {this.state.votes} */}{" "}
+            Next ToT in {this.state.seconds} seconds...
+            {/* {this.state.votes} */}{" "}
           </Typography>{" "}
         </div>{" "}
         <br />

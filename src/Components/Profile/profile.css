@@ -1,0 +1,10 @@
+.profilePage{
+    display: grid;
+    margin-top: 3%;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileCard{
+    background-color: #60308b;
+}

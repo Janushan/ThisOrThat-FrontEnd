@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { StylesProvider } from "@material-ui/styles";
 // import QuestionWrapper from "./Components/Pages/QuestionWrapper";
-
+import Signup from './Components/Signup';
+import Login from './Components/Login';
+import Profile from './Components/Profile';
 import {
   BrowserRouter as Router,
   Route,
@@ -45,7 +47,8 @@ class App extends Component {
                 <div className="background">
                   {" "}
                   <Switch>
-                    <Route exact path="/" render={(props) => <Question />} />
+                    {/* <Route exact path="/" render={(props) => <Question />} /> */}
+                    <Route exact path="/" render={(props) => <Signup />} />
                     {/* <Route
                       exact
                       path="/submit"
