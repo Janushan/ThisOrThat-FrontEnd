@@ -28,6 +28,18 @@
   background-color: #4b2d5e;
 }
 
+.cardContainer {
+}
+
+.cardContainerLeft {
+  margin-right: 3rem;
+}
+
+.cardContainer:hover,
+.cardContainerLeft:hover {
+  transform: scale(1.05);
+}
+
 .card {
   padding: 50px;
   padding-top: 25px;
@@ -62,12 +74,10 @@
   width: 10rem;
   height: 15rem;
 }
-.image1 {
-  margin-right: 3rem;
-}
 
-.image:hover {
-  transform: scale(1.05);
+.cardCaptionText {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .timer {

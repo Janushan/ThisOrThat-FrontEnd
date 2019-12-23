@@ -76,41 +76,23 @@ export default class ImageAndTextQuestion extends Component {
           <div className="row"> </div> <br />
           <div className="options">
             <Grid container direction="column" alignItems="center">
-              <Grid item>
+              <Grid item className="cardContainerLeft">
                 <img
-                  className="image image1"
+                  className="image"
                   src={Image1}
                   onClick={(e) => this.incrementChoice1(e)}
                 />{" "}
-              </Grid>{" "}
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => this.incrementChoice1(e)}
-                >
-                  {" "}
-                  Pizza{" "}
-                </Button>{" "}
+                <Typography className="cardCaptionText">Pizza</Typography>
               </Grid>{" "}
             </Grid>{" "}
             <Grid container direction="column" alignItems="center">
-              <Grid item>
+              <Grid item className="cardContainer">
                 <img
                   className="image"
                   src={Image2}
                   onClick={(e) => this.incrementChoice2(e)}
                 />{" "}
-              </Grid>{" "}
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => this.incrementChoice2(e)}
-                >
-                  {" "}
-                  Ice - cream{" "}
-                </Button>{" "}
+                <Typography className="cardCaptionText">Ice Cream</Typography>
               </Grid>{" "}
             </Grid>{" "}
           </div>{" "}
