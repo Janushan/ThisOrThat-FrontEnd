@@ -30,7 +30,6 @@
 
 .option2{
     padding-bottom: 15px;
-    padding-top: 15px;
 }
 .colorPanel{
     text-align: left;
@@ -39,4 +38,8 @@
 .colorChoice:hover { 
     border: 1px solid white; 
     border-collapse: collapse;
+}
+
+.fileInput {
+    display: none;
 }
