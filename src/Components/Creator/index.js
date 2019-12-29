@@ -15,8 +15,9 @@ export default class Question extends Component {
     state={
         title:"",
         text1:"",
-        text2:""
-
+        text2:"",
+        image1: null,
+        image2:null
     }
 
     onChange= e => {
@@ -61,6 +62,10 @@ export default class Question extends Component {
                             ),
                         }}
                     />
+                    <img
+                        className="image"
+                        src={this.state.image1}
+                    />
                     <br/>
                     <Typography variant="caption">
                         or
@@ -82,6 +87,10 @@ export default class Question extends Component {
                               </InputAdornment>
                             ),
                         }}
+                    />
+                    <img
+                        className="image"
+                        src={this.state.image2}
                     />
                     <br/>
                     <div className="colorPanel">

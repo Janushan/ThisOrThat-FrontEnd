@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import Header from "./Components/Header";
 import Question from "./Components/Question";
-// import Creator from "../Creator";
+import Creator from "./Components/Creator";
 // import Join from "../../Join";
 // import ToTSubmit from "../../ToTSubmit";
 
@@ -48,7 +48,7 @@ class App extends Component {
                   {" "}
                   <Switch>
                     {/* <Route exact path="/" render={(props) => <Question />} /> */}
-                    <Route exact path="/" render={(props) => <Signup />} />
+                    <Route exact path="/" render={(props) => <Creator />} />
                     {/* <Route
                       exact
                       path="/submit"

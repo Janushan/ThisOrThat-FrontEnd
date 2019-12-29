@@ -16,7 +16,8 @@ export default class Question extends Component {
     choice1: 0,
     choice2: 0,
     votes: 0,
-    seconds: 10
+    seconds: 10,
+    group:true
   };
 
   componentDidMount() {
@@ -47,52 +48,113 @@ export default class Question extends Component {
 
   render() {
     //const { title, option1, option2} = this.props;
-    return (
-      <div className="question">
-        <ImageAndTextQuestion />
-        {/* <ImageQuestion /> */}
-        {/* <TextQuestion /> */}
-        <br /> <br />
-        <div className="timer">
-          <Typography variant="caption">
-            Next ToT in {this.state.seconds} seconds...
-            {/* {this.state.votes} */}{" "}
-          </Typography>{" "}
-        </div>{" "}
-        <br />
-        <div className="options">
-          <Grid container direction="column" alignItems="center">
-            <Grid item>
-              <SaveIconButton onClick={(e) => this.save(e)} />{" "}
+    if(this.state.group==false){
+      return (
+        <div className="question">
+          <ImageAndTextQuestion />
+          {/* <ImageQuestion /> */}
+          {/* <TextQuestion /> */}
+          <br /> <br />
+          <div className="timer">
+            <Typography variant="caption">
+              Next ToT in {this.state.seconds} seconds...
+              {/* {this.state.votes} */}{" "}
+            </Typography>{" "}
+          </div>{" "}
+          <br />
+          <div className="options">
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <SaveIconButton onClick={(e) => this.save(e)} />{" "}
+              </Grid>{" "}
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => this.save(e)}
+                >
+                  {" "}
+                  Save{" "}
+                </Button>{" "}
+              </Grid>{" "}
             </Grid>{" "}
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(e) => this.save(e)}
-              >
-                {" "}
-                Save{" "}
-              </Button>{" "}
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <ShareSharpIconButton onClick={(e) => this.share(e)} />{" "}
+              </Grid>{" "}
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => this.share(e)}
+                >
+                  {" "}
+                  Share{" "}
+                </Button>{" "}
+              </Grid>{" "}
             </Grid>{" "}
-          </Grid>{" "}
-          <Grid container direction="column" alignItems="center">
-            <Grid item>
-              <ShareSharpIconButton onClick={(e) => this.share(e)} />{" "}
-            </Grid>{" "}
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(e) => this.share(e)}
-              >
-                {" "}
-                Share{" "}
-              </Button>{" "}
-            </Grid>{" "}
-          </Grid>{" "}
-        </div>{" "}
-      </div>
-    );
+          </div>{" "}
+        </div>
+      );
+    }else{
+      return (
+        <div>
+          <div className="groupButton">
+          <Button
+            variant="contained"
+            color="primary"
+          >
+            Leave Group Session
+          </Button>
+          <br/>
+          </div>
+          <div className="question">
+            <ImageAndTextQuestion />
+            {/* <ImageQuestion /> */}
+            {/* <TextQuestion /> */}
+            <br /> <br />
+            <div className="timer">
+              <Typography variant="caption">
+                Next ToT in {this.state.seconds} seconds...
+                {/* {this.state.votes} */}{" "}
+              </Typography>{" "}
+            </div>{" "}
+            <br />
+            <div className="options">
+              <Grid container direction="column" alignItems="center">
+                <Grid item>
+                  <SaveIconButton onClick={(e) => this.save(e)} />{" "}
+                </Grid>{" "}
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => this.save(e)}
+                  >
+                    {" "}
+                    Save{" "}
+                  </Button>{" "}
+                </Grid>{" "}
+              </Grid>{" "}
+              <Grid container direction="column" alignItems="center">
+                <Grid item>
+                  <ShareSharpIconButton onClick={(e) => this.share(e)} />{" "}
+                </Grid>{" "}
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => this.share(e)}
+                  >
+                    {" "}
+                    Share{" "}
+                  </Button>{" "}
+                </Grid>{" "}
+              </Grid>{" "}
+            </div>{" "}
+          </div>
+        </div>
+      );
+    }
   }
 }

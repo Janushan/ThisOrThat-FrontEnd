@@ -6,6 +6,11 @@
   color: white;
 }
 
+
+.groupButton{
+    float: right;
+}
+
 .MuiCardHeader-title {
   font-weight: 500;
 }
