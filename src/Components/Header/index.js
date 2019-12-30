@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Header() {
+  export default function Header({isLoggedIn, changeIsLoggedIn}) {
   const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -85,6 +85,41 @@ export default function Header() {
     </Menu>
   );
 
+  let fullNavBar;
+  
+  if(isLoggedIn === true) {
+    fullNavBar = 
+      <React.Fragment>
+        <Button onClick={function () {window.location.href='/question';}}>Feed</Button>
+        <Button onClick={function () {window.location.href='/join';}}>Join</Button>
+        <Button onClick={function () {window.location.href='/creator';}}>Create</Button>
+        <Button onClick={function () {window.location.href='/profile';}}>Profile</Button>
+        <div className={classes.grow} />
+        <div className={classes.sectionDesktop}>
+          <Button onClick={() => changeIsLoggedIn(false)}>Logout</Button>
+          <IconButton aria-label="show 17 new notifications" color="inherit">
+            <Badge badgeContent={17} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" onClick={function () {window.location.href='/profile';}}>
+            <AccountCircle />
+          </IconButton>
+        </div>
+        <div className={classes.sectionMobile}>
+          <IconButton
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </div>
+      </React.Fragment>      
+  }
+
   return (
     <div className={classes.grow}>
       <AppBar className="AppBar" position="static">
@@ -92,29 +127,7 @@ export default function Header() {
           <Typography className={classes.title} variant="h6" noWrap>
             This or That
           </Typography>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <Button>Create</Button>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton color="inherit">
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+          {fullNavBar}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

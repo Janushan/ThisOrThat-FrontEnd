@@ -48,7 +48,7 @@ export default class Question extends Component {
 
   render() {
     //const { title, option1, option2} = this.props;
-    if(this.state.group==false){
+    if(this.state.group===false){
       return (
         <div className="question">
           <ImageAndTextQuestion />
@@ -101,6 +101,7 @@ export default class Question extends Component {
         <div>
           <div className="groupButton">
           <Button
+            onClick={function () {window.location.href='/feed';}}
             variant="contained"
             color="primary"
           >

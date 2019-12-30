@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -40,6 +41,8 @@ export default class Login extends Component {
       //     this.setState({ password: ""});
       //   }
       // })
+      
+      this.props.changeIsLoggedIn(true);
     }
     
   };
@@ -75,10 +78,7 @@ export default class Login extends Component {
               <Typography variant="overline" className="" color="textSecondary" gutterBottom>
                   Don't have an Account?
               </Typography>
-              {/* add in navigation to signup page */}
-              <Typography variant="overline"  color="primary"  gutterBottom> 
-              &nbsp;Signup 
-              </Typography>
+              <Link to="/signup">Sign Up</Link>
             </form>
           </Card>
         </div>

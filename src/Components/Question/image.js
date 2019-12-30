@@ -69,11 +69,13 @@ export default class ImageQuestion extends Component {
               className="image1"
               src={Image1}
               onClick={(e) => this.incrementChoice1(e)}
+              alt="image1"
             />{" "}
             <img
               className="image2"
               src={Image2}
               onClick={(e) => this.incrementChoice2(e)}
+              alt="image2"
             />{" "}
           </div>{" "}
           <br />

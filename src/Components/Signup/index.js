@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -94,6 +95,10 @@ export default class Signup extends Component {
       if(this.state.usernameError===true){
         alertString+="Username is already taken!"
       }
+      else {
+        window.location.href = "/login";
+      }
+      
       alert(alertString);
     }
   };
@@ -155,10 +160,7 @@ export default class Signup extends Component {
               <Typography variant="overline" className="" color="textSecondary" gutterBottom>
                   Already have an Account?
               </Typography>
-              {/* add in navigation to login page */}
-              <Typography variant="overline"  color="primary"  gutterBottom>
-                &nbsp;Login
-              </Typography>
+              <Link to="/login">Log In</Link>
             </form>
           </Card>
         </div>
