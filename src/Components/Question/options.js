@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
+import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import ShareSharpIconButton from "@material-ui/icons/ShareSharp";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
@@ -9,8 +9,22 @@ import { Typography } from "@material-ui/core";
 import "./styles.css";
 
 export default class Options extends Component {
+  constructor() {
+    super();
+  }
+
+  state = {
+    saved: false
+  };
+
   save = (e) => {
+    this.setState({ saved: true });
     console.log("Save");
+  };
+
+  unsave = (e) => {
+    this.setState({ saved: false });
+    console.log("Unsave");
   };
 
   share = (e) => {
@@ -23,7 +37,11 @@ export default class Options extends Component {
         <Grid container direction="column" alignItems="center">
           <Grid item>
             <IconButton className="iconButton">
-              <TurnedInIcon onClick={(e) => this.save(e)} />
+              {this.state.saved ? (
+                <TurnedInIcon onClick={(e) => this.unsave(e)} />
+              ) : (
+                <TurnedInNotIcon onClick={(e) => this.save(e)} />
+              )}
             </IconButton>
           </Grid>{" "}
           <Grid item>

@@ -97,7 +97,7 @@ export default class ImageAndTextQuestion extends Component {
               </Grid>{" "}
             </Grid>{" "}
           </div>{" "}
-          <Typography variant="caption"> 12, 000 votes </Typography>{" "}
+          <Typography variant="caption"> 12,000 votes </Typography>{" "}
         </Card>{" "}
       </div>
     );

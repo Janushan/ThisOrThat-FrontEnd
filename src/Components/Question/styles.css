@@ -88,6 +88,7 @@
 
 .timer {
   text-align: center;
+  position: relative;
 }
 .options {
   display: flex;
@@ -101,4 +102,12 @@
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.5);
   margin-bottom: 0.5rem;
+}
+
+.circularProgressWrapper {
+  position: absolute;
+}
+
+.circularProgress {
+  color: white;
 }
