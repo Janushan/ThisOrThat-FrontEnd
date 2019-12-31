@@ -15,11 +15,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 const BorderLinearProgress = withStyles({
   root: {
     height: 10,
-    backgroundColor: lighten('#ff6c5c', 0.5),
+    backgroundColor: lighten('#a6a6a6', 0.5),
   },
   bar: {
     borderRadius: 20,
-    backgroundColor: '#ff6c5c',
+    backgroundColor: '#22ba00',
   },
 })(LinearProgress);
 
@@ -101,6 +101,10 @@ export default class ProfileToT extends Component {
             <Typography gutterBottom variant="subtitle2" component="subtitle2">
               {this.state.totalVotes + " votes in total."}
             </Typography>
+            <br /><br />
+            <Button onClick={function () {window.location.href = "/question"}} variant="contained" color="primary" >
+              Next ToT
+            </Button>
           </div>
         </Card>
       </div>

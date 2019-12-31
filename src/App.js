@@ -123,7 +123,7 @@ class App extends Component {
                         )
                       }
                     />
-                    <Route
+                    {/* <Route
                       path="/join"
                       render={(props) =>
                         this.state.isLoggedIn ? (
@@ -132,7 +132,7 @@ class App extends Component {
                           <Redirect to="/login" />
                         )
                       }
-                    />
+                    /> */}
                     <Route
                       path="/creator"
                       render={(props) =>

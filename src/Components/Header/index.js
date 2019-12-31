@@ -8,6 +8,7 @@ import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import MenuItem from '@material-ui/core/MenuItem';
 import "./header.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ isLoggedIn, changeIsLoggedIn }) {
   const classes = useStyles();
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleChange = event => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -76,13 +93,13 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
         >
           Feed
         </Button>
-        <Button
+        {/* <Button
           onClick={function() {
             window.location.href = "/join";
           }}
         >
           Join
-        </Button>
+        </Button> */}
         <Button
           onClick={function() {
             window.location.href = "/creator";
@@ -90,21 +107,14 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
         >
           Create
         </Button>
-        <Button
-          onClick={function() {
-            window.location.href = "/profile";
-          }}
-        >
-          Profile
-        </Button>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
-          <Button onClick={() => changeIsLoggedIn(false)}>Logout</Button>
           <IconButton
             color="inherit"
-            onClick={function() {
-              window.location.href = "/profile";
-            }}
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            onClick={handleMenu}
           >
             <AccountCircle />
           </IconButton>
@@ -119,6 +129,24 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
           >
             <MoreIcon />
           </IconButton>
+          <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={function() {handleClose(); window.location.href = "/profile";}}>My profile</MenuItem>
+                <MenuItem onClick={function() {handleClose(); changeIsLoggedIn(false);}}>Log out</MenuItem>
+              </Menu>
         </div>
       </React.Fragment>
     );
