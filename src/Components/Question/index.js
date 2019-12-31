@@ -17,7 +17,7 @@ export default class Question extends Component {
     choice2: 0,
     votes: 0,
     seconds: 10,
-    group:true
+    group: true
   };
 
   componentDidMount() {
@@ -48,17 +48,15 @@ export default class Question extends Component {
 
   render() {
     //const { title, option1, option2} = this.props;
-    if(this.state.group===false){
+    if (this.state.group === false) {
       return (
         <div className="question">
-          <ImageAndTextQuestion />
-          {/* <ImageQuestion /> */}
-          {/* <TextQuestion /> */}
-          <br /> <br />
+          <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
+          {/* <TextQuestion /> */} <br /> <br />
           <div className="timer">
             <Typography variant="caption">
-              Next ToT in {this.state.seconds} seconds...
-              {/* {this.state.votes} */}{" "}
+              Next ToT in {this.state.seconds}
+              seconds...{/* {this.state.votes} */}{" "}
             </Typography>{" "}
           </div>{" "}
           <br />
@@ -96,28 +94,16 @@ export default class Question extends Component {
           </div>{" "}
         </div>
       );
-    }else{
+    } else {
       return (
         <div>
-          <div className="groupButton">
-          <Button
-            onClick={function () {window.location.href='/feed';}}
-            variant="contained"
-            color="primary"
-          >
-            Leave Group Session
-          </Button>
-          <br/>
-          </div>
           <div className="question">
-            <ImageAndTextQuestion />
-            {/* <ImageQuestion /> */}
-            {/* <TextQuestion /> */}
-            <br /> <br />
+            <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
+            {/* <TextQuestion /> */} <br /> <br />
             <div className="timer">
               <Typography variant="caption">
-                Next ToT in {this.state.seconds} seconds...
-                {/* {this.state.votes} */}{" "}
+                Next ToT in {this.state.seconds}
+                seconds...{/* {this.state.votes} */}{" "}
               </Typography>{" "}
             </div>{" "}
             <br />
@@ -153,7 +139,7 @@ export default class Question extends Component {
                 </Grid>{" "}
               </Grid>{" "}
             </div>{" "}
-          </div>
+          </div>{" "}
         </div>
       );
     }
