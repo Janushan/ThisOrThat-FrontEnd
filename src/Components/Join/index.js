@@ -18,7 +18,7 @@ export default class Question extends Component {
     }
 
     submit= e => {
-        
+        window.location.href = "/question";
     }
 
     render() {

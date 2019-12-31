@@ -1,45 +1,44 @@
-.holder{
-    display: grid;
-    margin-top: 3%;
-    justify-content: center;
-    align-items: center;
+.holder {
+  display: grid;
+  margin-top: 3%;
+  justify-content: center;
+  align-items: center;
 }
 
-.creator{
-    padding:50px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    color: white;
-    background-color: #60308B;
-    text-align: center;
+.creator {
+  padding: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: white;
+  background-color: #60308b;
+  text-align: center;
 }
 
-.questionTitle{
-    padding-bottom: 15px;;
+.questionTitle {
+  padding-bottom: 15px;
 }
 
-
-.option1{
-    padding-bottom: 15px;
+.option1 {
+  padding-bottom: 15px;
 }
 
-.image{
+/* .image{
     width:60px;
     height:60px;
+} */
+
+.option2 {
+  padding-bottom: 15px;
+}
+.colorPanel {
+  text-align: left;
 }
 
-.option2{
-    padding-bottom: 15px;
-}
-.colorPanel{
-    text-align: left;
-}
-
-.colorChoice:hover { 
-    border: 1px solid white; 
-    border-collapse: collapse;
+.colorChoice:hover {
+  border: 1px solid white;
+  border-collapse: collapse;
 }
 
 .fileInput {
-    display: none;
+  display: none;
 }

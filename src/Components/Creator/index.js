@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -13,7 +14,6 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -25,17 +25,19 @@ export default class Question extends Component {
         title: "",
         text1: "",
         text2: "",
-        image1Name: "",
-        image2Name: "",
+        unsplashUrl1: "",
+        unsplashUrl2: "",
+        image1: null,
+        image2: null,
 
         searchString: "",
         results: [],
-        uriOption1: "https://images.unsplash.com/photo-1560363199-a1264d4ea5fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80",
-        uriOption2: "https://images.unsplash.com/photo-1570871303513-6faf999850fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=375&q=80",
-        uriOption3: "https://images.unsplash.com/photo-1572324755260-ec8c3e7fae29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=237&q=80",
-        uriOption4: "https://images.unsplash.com/photo-1518823526-0df532eb95a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80",
-        unsplashUri1: "",
-        unsplashUri2: "",
+        image1Url: "",
+        image2Url: "",
+        urlOption1: "https://images.unsplash.com/photo-1560363199-a1264d4ea5fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80",
+        urlOption2: "https://images.unsplash.com/photo-1570871303513-6faf999850fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=375&q=80",
+        urlOption3: "https://images.unsplash.com/photo-1572324755260-ec8c3e7fae29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=237&q=80",
+        urlOption4: "https://images.unsplash.com/photo-1518823526-0df532eb95a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80",
 
         open1: false,
         open2: false
@@ -48,12 +50,47 @@ export default class Question extends Component {
     }
 
     submit = e => {
+        console.log("right before");
+        console.log(this.state.image1Name);
+        if (this.state.text1 !== this.state.image1Name)
+            document.getElementById("image1Uploader").value = "";
+        if (this.state.text2 !== this.state.image2Name)
+            document.getElementById("image2Uploader").value = "";
 
+        const fd = new FormData();
+        fd.append('title', this.state.title);
+        fd.append('text1', this.state.text1);
+        fd.append('text2', this.state.text2);
+        if (this.state.image1 !== null) {
+            fd.append('image1', this.state.image1, this.state.image1.name);
+        } else {
+            if (this.state.unsplashUrl1 !== "") {
+                fd.append('unsplashUrl1', this.state.unsplashUrl1);
+            }
+        }
+
+        if (this.state.image2 !== null) {
+            fd.append('image2', this.state.image2, this.state.image2.name);
+        } else {
+            if (this.state.unsplashUrl2 !== "") {
+                fd.append('unsplashUrl2', this.state.unsplashUrl2);
+            }
+        }
+
+        try {
+            axios.post('', fd).then(res => {
+                console.log(res);
+                window.location.href = '/totsubmit';
+            });
+        } catch (e) {
+            alert("Something went wrong!");
+            window.location.href = '/totsubmit';
+        }
     }
 
     handleClickOpen = (openIndex) => {
         console.log(openIndex);
-        if(openIndex === 1) {
+        if (openIndex === 1) {
             this.setState({
                 open1: true
             })
@@ -66,7 +103,7 @@ export default class Question extends Component {
 
     handleClose = (openIndex) => {
         console.log(openIndex);
-        if(openIndex === 1) {
+        if (openIndex === 1) {
             this.setState({
                 open1: false
             })
@@ -99,10 +136,10 @@ export default class Question extends Component {
             response.json().then(data => {
                 this.setState({
                     results: data.results,
-                    uriOption1: data.results[0].urls.small,
-                    uriOption2: data.results[1].urls.small,
-                    uriOption3: data.results[2].urls.small,
-                    uriOption4: data.results[3].urls.small,
+                    urlOption1: data.results[0].urls.small,
+                    urlOption2: data.results[1].urls.small,
+                    urlOption3: data.results[2].urls.small,
+                    urlOption4: data.results[3].urls.small,
                 });
             });
         }
@@ -114,34 +151,36 @@ export default class Question extends Component {
         }
     }
 
-    selectUnsplashUri1 = (uriToSet) => {
-        console.log("urlToSet: >" + uriToSet + "<");
+    selectUnsplashUrl1 = (urlToSet) => {
+        console.log("urlToSet: >" + urlToSet + "<");
 
         this.setState({
-            unsplashUri1: uriToSet,
-            text1: uriToSet
+            unsplashUrl1: urlToSet,
+            image1Url: urlToSet,
+            image1: null
         }, function () {
-            console.log("unsplashUri1: >" + this.state.unsplashUri1 + "<")
-            console.log(this.state.uriOption1);
-            console.log(this.state.uriOption2);
-            console.log(this.state.uriOption3);
-            console.log(this.state.uriOption4);
+            console.log("unsplashUrl1: >" + this.state.unsplashUrl1 + "<")
+            console.log(this.state.urlOption1);
+            console.log(this.state.urlOption2);
+            console.log(this.state.urlOption3);
+            console.log(this.state.urlOption4);
             this.handleClose(1);
         });
     }
 
-    selectUnsplashUri2 = (uriToSet) => {
-        console.log("urlToSet: >" + uriToSet + "<");
+    selectUnsplashUrl2 = (urlToSet) => {
+        console.log("urlToSet: >" + urlToSet + "<");
 
         this.setState({
-            unsplashUri2: uriToSet,
-            text2: uriToSet
+            unsplashUrl2: urlToSet,
+            image2Url: urlToSet,
+            image2: null
         }, function () {
-            console.log("unsplashUri2: >" + this.state.unsplashUri2 + "<")
-            console.log(this.state.uriOption1);
-            console.log(this.state.uriOption2);
-            console.log(this.state.uriOption3);
-            console.log(this.state.uriOption4);
+            console.log("unsplashUrl2: >" + this.state.unsplashUrl2 + "<")
+            console.log(this.state.urlOption1);
+            console.log(this.state.urlOption2);
+            console.log(this.state.urlOption3);
+            console.log(this.state.urlOption4);
             this.handleClose(2);
         });
     }
@@ -149,33 +188,26 @@ export default class Question extends Component {
     image1SelectedHandler = e => {
         console.log("image1: " + e.target.files[0]);
         this.setState({
-            text1: e.target.files[0].name,
-            image1Name: e.target.files[0].name
+            image1Url: URL.createObjectURL(e.target.files[0]),
+            image1: e.target.files[0],
+            unsplashUrl1: ""
         });
     }
 
     image2SelectedHandler = e => {
         console.log("image2:" + e.target.files[0]);
         this.setState({
-            text2: e.target.files[0].name,
-            image2Name: e.target.files[0].name
+            image2Url: URL.createObjectURL(e.target.files[0]),
+            image2: e.target.files[0],
+            unsplashUrl2: ""
         });
-    }
-
-    checkBeforeSubmission = e => {
-        console.log("right before");
-        console.log(this.state.image1Name);
-        if(this.state.text1 !== this.state.image1Name)
-            document.getElementById("image1Uploader").value = "";
-        if(this.state.text2 !== this.state.image2Name)
-            document.getElementById("image2Uploader").value = "";
     }
 
     render() {
         return (
             <div className='holder'>
                 <Card className="creator" raised>
-                    <form onSubmit={this.checkBeforeSubmission}>
+                    <div>
                         <CardHeader title="Create a ToT" />
                         <br />
                         <TextField
@@ -218,7 +250,6 @@ export default class Question extends Component {
                                         >
                                             <DialogTitle id="alert-dialog-title">{"This: Search for an image on Unsplash"}</DialogTitle>
                                             <DialogContent>
-                                                <DialogContentText>lol1</DialogContentText>
                                                 <TextField
                                                     name="searchString"
                                                     value={this.state.searchString}
@@ -229,16 +260,16 @@ export default class Question extends Component {
                                                 <br /><br />
                                                 <GridList id="gridList1">
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri1.bind(this, this.state.uriOption1)} src={this.state.uriOption1} alt="imageOption1" />
+                                                        <img onClick={this.selectUnsplashUrl1.bind(this, this.state.urlOption1)} src={this.state.urlOption1} alt="imageOption1" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri1.bind(this, this.state.uriOption2)} src={this.state.uriOption2} alt="imageOption2" />
+                                                        <img onClick={this.selectUnsplashUrl1.bind(this, this.state.urlOption2)} src={this.state.urlOption2} alt="imageOption2" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri1.bind(this, this.state.uriOption3)} src={this.state.uriOption3} alt="imageOption3" />
+                                                        <img onClick={this.selectUnsplashUrl1.bind(this, this.state.urlOption3)} src={this.state.urlOption3} alt="imageOption3" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri1.bind(this, this.state.uriOption4)} src={this.state.uriOption4} alt="imageOption4" />
+                                                        <img onClick={this.selectUnsplashUrl1.bind(this, this.state.urlOption4)} src={this.state.urlOption4} alt="imageOption4" />
                                                     </GridListTile>
                                                 </GridList>
                                             </DialogContent>
@@ -252,6 +283,8 @@ export default class Question extends Component {
                                 ),
                             }}
                         />
+                        <br />
+                        <img className="image" src={this.state.image1Url} alt="Preview 1" />
                         <br />
                         <Typography variant="caption">
                             or
@@ -270,7 +303,7 @@ export default class Question extends Component {
                                     <InputAdornment position='end' >
                                         <input name="image2" onChange={this.image2SelectedHandler} accept="image/*" className="fileInput" id="image2Uploader" type="file" />
                                         <label htmlFor="image2Uploader">
-                                        <Tooltip title="Upload image">
+                                            <Tooltip title="Upload image">
                                                 <IconButton aria-label="upload image" component="span">
                                                     <ImageSearchIcon />
                                                 </IconButton>
@@ -299,16 +332,16 @@ export default class Question extends Component {
                                                 <br /><br />
                                                 <GridList id="gridList2">
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri2.bind(this, this.state.uriOption1)} src={this.state.uriOption1} alt="imageOption1" />
+                                                        <img onClick={this.selectUnsplashUrl2.bind(this, this.state.urlOption1)} src={this.state.urlOption1} alt="imageOption1" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri2.bind(this, this.state.uriOption2)} src={this.state.uriOption2} alt="imageOption2" />
+                                                        <img onClick={this.selectUnsplashUrl2.bind(this, this.state.urlOption2)} src={this.state.urlOption2} alt="imageOption2" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri2.bind(this, this.state.uriOption3)} src={this.state.uriOption3} alt="imageOption3" />
+                                                        <img onClick={this.selectUnsplashUrl2.bind(this, this.state.urlOption3)} src={this.state.urlOption3} alt="imageOption3" />
                                                     </GridListTile>
                                                     <GridListTile>
-                                                        <img onClick={this.selectUnsplashUri2.bind(this, this.state.uriOption4)} src={this.state.uriOption4} alt="imageOption4" />
+                                                        <img onClick={this.selectUnsplashUrl2.bind(this, this.state.urlOption4)} src={this.state.urlOption4} alt="imageOption4" />
                                                     </GridListTile>
                                                 </GridList>
                                             </DialogContent>
@@ -323,6 +356,8 @@ export default class Question extends Component {
                             }}
                         />
                         <br />
+                        <img className="image" src={this.state.image2Url} alt="Preview 2" />
+                        <br />
                         <div className="colorPanel">
                             <FiberManualRecordIcon className="colorChoice" />
                             <FiberManualRecordIcon className="colorChoice" />
@@ -331,13 +366,12 @@ export default class Question extends Component {
                         </div>
 
                         <br />
-                        <Button type="submit" value="Submit" variant="contained" color="primary" onClick={e => this.submit(e)}>
+                        <Button onClick={this.submit} value="Submit" variant="contained" color="primary">
                             Submit
                         </Button>
-                    </form>
+                    </div>
                 </Card>
             </div>
-
         )
     }
 }

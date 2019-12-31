@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
@@ -81,8 +80,9 @@ export default class ImageAndTextQuestion extends Component {
                   className="image"
                   src={Image1}
                   onClick={(e) => this.incrementChoice1(e)}
+                  alt="image1"
                 />{" "}
-                <Typography className="cardCaptionText">Pizza</Typography>
+                <Typography className="cardCaptionText"> Pizza </Typography>{" "}
               </Grid>{" "}
             </Grid>{" "}
             <Grid container direction="column" alignItems="center">
@@ -91,12 +91,13 @@ export default class ImageAndTextQuestion extends Component {
                   className="image"
                   src={Image2}
                   onClick={(e) => this.incrementChoice2(e)}
+                  alt="image2"
                 />{" "}
-                <Typography className="cardCaptionText">Ice Cream</Typography>
+                <Typography className="cardCaptionText"> Ice Cream </Typography>{" "}
               </Grid>{" "}
             </Grid>{" "}
           </div>{" "}
-          <Typography variant="caption"> Number of votes: </Typography>{" "}
+          <Typography variant="caption"> 12, 000 votes </Typography>{" "}
         </Card>{" "}
       </div>
     );
