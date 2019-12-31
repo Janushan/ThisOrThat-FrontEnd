@@ -6,7 +6,7 @@ import { Typography } from "@material-ui/core";
 import Image1 from "../../Assets/pizza.jpg";
 import Image2 from "../../Assets/ice-cream.jpg";
 
-import "./question.css";
+import "./styles.css";
 
 export default class ImageQuestion extends Component {
   state = {
@@ -61,7 +61,7 @@ export default class ImageQuestion extends Component {
         {" "}
         {/* Tot with only text{" "} */}{" "}
         {/* {this.state.title}{this.state.option1}{this.state.option2}{this.state.votes} */}{" "}
-        {/* ToT with only images */}
+        {/* ToT with only images */}{" "}
         <Card className="imageCard" raised>
           <CardHeader title="What is Better for a Breakup?" />
           <div className="row">
@@ -79,7 +79,7 @@ export default class ImageQuestion extends Component {
             />{" "}
           </div>{" "}
           <br />
-          <Typography variant="caption">Number of votes:</Typography>{" "}
+          <Typography variant="caption">12,000 votes</Typography>{" "}
         </Card>{" "}
       </div>
     );
