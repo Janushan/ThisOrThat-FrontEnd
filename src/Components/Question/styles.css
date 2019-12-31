@@ -67,6 +67,8 @@
 .imageAndTextCard {
   margin: auto;
   color: white;
+  box-shadow: 0px 33px 0px -22px rgba(0, 0, 0, 0.65);
+  border-radius: 0.8rem;
 }
 
 .options {
