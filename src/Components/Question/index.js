@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import SaveIconButton from "@material-ui/icons/Save";
-import ShareSharpIconButton from "@material-ui/icons/ShareSharp";
-import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import Options from "./options";
 
 import ImageAndTextQuestion from "./imageAndText";
 // import ImageQuestion from "./image";
@@ -60,38 +57,7 @@ export default class Question extends Component {
             </Typography>{" "}
           </div>{" "}
           <br />
-          <div className="options">
-            <Grid container direction="column" alignItems="center">
-              <Grid item>
-                <SaveIconButton onClick={(e) => this.save(e)} />{" "}
-              </Grid>{" "}
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => this.save(e)}
-                >
-                  {" "}
-                  Save{" "}
-                </Button>{" "}
-              </Grid>{" "}
-            </Grid>{" "}
-            <Grid container direction="column" alignItems="center">
-              <Grid item>
-                <ShareSharpIconButton onClick={(e) => this.share(e)} />{" "}
-              </Grid>{" "}
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={(e) => this.share(e)}
-                >
-                  {" "}
-                  Share{" "}
-                </Button>{" "}
-              </Grid>{" "}
-            </Grid>{" "}
-          </div>{" "}
+          <Options />
         </div>
       );
     } else {
@@ -107,38 +73,7 @@ export default class Question extends Component {
               </Typography>{" "}
             </div>{" "}
             <br />
-            <div className="options">
-              <Grid container direction="column" alignItems="center">
-                <Grid item>
-                  <SaveIconButton onClick={(e) => this.save(e)} />{" "}
-                </Grid>{" "}
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={(e) => this.save(e)}
-                  >
-                    {" "}
-                    Save{" "}
-                  </Button>{" "}
-                </Grid>{" "}
-              </Grid>{" "}
-              <Grid container direction="column" alignItems="center">
-                <Grid item>
-                  <ShareSharpIconButton onClick={(e) => this.share(e)} />{" "}
-                </Grid>{" "}
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={(e) => this.share(e)}
-                  >
-                    {" "}
-                    Share{" "}
-                  </Button>{" "}
-                </Grid>{" "}
-              </Grid>{" "}
-            </div>{" "}
+            <Options />
           </div>{" "}
         </div>
       );
