@@ -37,22 +37,22 @@ export default class ImageAndTextQuestion extends Component {
 
   incrementChoice1 = (e) => {
     this.setState({
-      choice1: this.state.choice1 + 1
-    });
-    this.setState({
+      choice1: this.state.choice1 + 1,
       votes: this.state.votes + 1
+    }, function() {
+      console.log("Click1");
+      window.location.href = "/profiletot";
     });
-    console.log("Click1");
   };
 
   incrementChoice2 = (e) => {
     this.setState({
-      choice2: this.state.choice2 + 1
-    });
-    this.setState({
+      choice2: this.state.choice2 + 1,
       votes: this.state.votes + 1
+    }, function() {
+      console.log("Click2");
+      window.location.href = "/profiletot";
     });
-    console.log("Click2");
   };
 
   save = (e) => {
@@ -69,7 +69,7 @@ export default class ImageAndTextQuestion extends Component {
       <div className="question">
         <Card className="card imageAndTextCard">
           <CardHeader
-            classes="cardTitle"
+            //classes="cardTitle"
             title="What is Better for a Breakup?"
           />
           <div className="row"> </div> <br />

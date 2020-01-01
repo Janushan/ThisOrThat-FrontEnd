@@ -52,8 +52,7 @@ export default class Question extends Component {
           {/* <TextQuestion /> */} <br /> <br />
           <div className="timer">
             <Typography variant="caption">
-              Next ToT in {this.state.seconds}
-              seconds...{/* {this.state.votes} */}{" "}
+              "Next ToT in " + {this.state.seconds} + " seconds..." + {/* {this.state.votes} */}{" "}
             </Typography>{" "}
           </div>{" "}
           <br />

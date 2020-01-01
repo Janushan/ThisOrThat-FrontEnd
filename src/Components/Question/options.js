@@ -22,8 +22,8 @@ export default class Options extends Component {
       <div className="options">
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton">
-              <TurnedInIcon onClick={(e) => this.save(e)} />
+            <IconButton className="iconButton" onClick={(e) => this.save(e)} >
+              <TurnedInIcon />
             </IconButton>
           </Grid>{" "}
           <Grid item>
@@ -32,8 +32,8 @@ export default class Options extends Component {
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton">
-              <ShareSharpIconButton onClick={(e) => this.share(e)} />
+            <IconButton className="iconButton" onClick={(e) => this.share(e)} >
+              <ShareSharpIconButton />
             </IconButton>
           </Grid>{" "}
           <Grid item>
