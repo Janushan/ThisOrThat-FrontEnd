@@ -67,8 +67,8 @@ export default class Options extends Component {
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton">
-              <ShareSharpIconButton onClick={(e) => this.share(e)} />
+            <IconButton className="iconButton" onClick={(e) => this.share(e)} >
+              <ShareSharpIconButton />
             </IconButton>
             <Dialog open={this.state.open} onClose={this.handleClose}>
               <DialogTitle>{"Share This or That"}</DialogTitle>
