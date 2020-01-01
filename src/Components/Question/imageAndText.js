@@ -68,10 +68,7 @@ export default class ImageAndTextQuestion extends Component {
     return (
       <div className="question">
         <Card className="card imageAndTextCard">
-          <CardHeader
-            classes="cardTitle"
-            title="What is Better for a Breakup?"
-          />
+          <CardHeader title="What is Better for a Breakup?" />
           <div className="row"> </div> <br />
           <div className="options">
             <Grid container direction="column" alignItems="center">
