@@ -1,32 +1,31 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Typography from '@material-ui/core/Typography';
-import './styles.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Typography from "@material-ui/core/Typography";
+import "./styles.css";
 
 export default class Login extends Component {
   state = {
     userName: "",
     password: "",
-    validated:0,
+    validated: 0
   };
 
-  change = e => {
+  change = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
-    if( this.state.userName=== "" || this.state.password=== "" ){
+    if (this.state.userName === "" || this.state.password === "") {
       alert("You must complete all fields");
-    }
-    else{
+    } else {
       // axios.post('', {
       // username: this.state.userName,
       // passwd: this.state.password
@@ -41,10 +40,9 @@ export default class Login extends Component {
       //     this.setState({ password: ""});
       //   }
       // })
-      
+
       this.props.changeIsLoggedIn(true);
     }
-    
   };
 
   render() {
@@ -53,32 +51,43 @@ export default class Login extends Component {
         <div className="wrapper">
           <Card className="loginCard" raised>
             <form className="login">
-              <CardHeader  
-                title="Login"
-              />
+              <CardHeader title="Login" />
               <TextField
                 name="userName"
                 label="Username"
                 value={this.state.firstName}
-                onChange={e => this.change(e)}
+                onChange={(e) => this.change(e)}
               />
               <br />
               <TextField
                 name="password"
                 label="Password"
                 value={this.state.password}
-                onChange={e => this.change(e)}
+                onChange={(e) => this.change(e)}
                 type="password"
               />
-              <br/><br/>
-              <Button variant="contained" color="primary" onClick={e => this.onSubmit(e)}>
-                  Login
+              <br />
+              <br />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={(e) => this.onSubmit(e)}
+              >
+                Login
               </Button>
-              <br/>
-              <Typography variant="overline" className="" color="textSecondary" gutterBottom>
-                  Don't have an Account?
+              <br />
+              <Typography
+                variant="overline"
+                className=""
+                color="textSecondary"
+                gutterBottom
+              >
+                Don't have an Account?
               </Typography>
               <Link to="/signup">Sign Up</Link>
+              <Button href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/question">
+                Continue with Facebook
+              </Button>
             </form>
           </Card>
         </div>
