@@ -6,6 +6,10 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import FacebookIcon from "@material-ui/icons/Facebook";
+
 import "./styles.css";
 
 export default class Login extends Component {
@@ -52,42 +56,56 @@ export default class Login extends Component {
           <Card className="loginCard" raised>
             <form className="login">
               <CardHeader title="Login" />
-              <TextField
-                name="userName"
-                label="Username"
-                value={this.state.firstName}
-                onChange={(e) => this.change(e)}
-              />
-              <br />
-              <TextField
-                name="password"
-                label="Password"
-                value={this.state.password}
-                onChange={(e) => this.change(e)}
-                type="password"
-              />
-              <br />
-              <br />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(e) => this.onSubmit(e)}
-              >
-                Login
-              </Button>
-              <br />
-              <Typography
-                variant="overline"
-                className=""
-                color="textSecondary"
-                gutterBottom
-              >
-                Don't have an Account?
-              </Typography>
-              <Link to="/signup">Sign Up</Link>
-              <Button href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/question">
-                Continue with Facebook
-              </Button>
+              <Grid container direction="column" alignItems="center">
+                <TextField
+                  name="userName"
+                  label="Username"
+                  variant="outlined"
+                  className="loginTextField"
+                  value={this.state.firstName}
+                  fullWidth={true}
+                  onChange={(e) => this.change(e)}
+                />
+                <TextField
+                  name="password"
+                  label="Password"
+                  variant="outlined"
+                  value={this.state.password}
+                  fullWidth={true}
+                  onChange={(e) => this.change(e)}
+                  type="password"
+                />
+              </Grid>
+              <Grid container direction="column" alignItems="center">
+                <Grid container direction="column" alignItems="center">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="loginButtonWrapper"
+                    onClick={(e) => this.onSubmit(e)}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    className="facebookLoginButton"
+                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/question"
+                    startIcon={<FacebookIcon />}
+                  >
+                    Log in with Facebook
+                  </Button>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    className="signupMessage"
+                  >
+                    <Typography color="textSecondary" className="signupText">
+                      Don't have an account?
+                    </Typography>
+                    <Link to="/signup">Sign Up</Link>
+                  </Grid>
+                </Grid>
+              </Grid>
             </form>
           </Card>
         </div>

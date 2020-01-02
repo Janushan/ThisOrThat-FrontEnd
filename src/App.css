@@ -24,12 +24,23 @@
   background-color: purple;
 }
 
+.MuiButton-root {
+  text-transform: none;
+}
 .MuiButton-containedPrimary {
   background-color: white;
   color: #955abb;
+  text-transform: none;
 }
 
 .MuiButton-containedPrimary:hover {
   background-color: #955abb;
   color: white;
+}
+
+.MuiOutlinedInput-input {
+  color: black !important;
+}
+.MuiInput-outlined:after {
+  border-bottom-color: "green";
 }
