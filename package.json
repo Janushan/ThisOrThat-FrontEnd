@@ -15,7 +15,6 @@
     "react-swipeable-views": "^0.13.3"
   },
   "scripts": {
-    "prestart": "react-scripts build",
     "dev": "react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
