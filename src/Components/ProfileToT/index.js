@@ -6,6 +6,8 @@ import { Typography } from "@material-ui/core";
 import CardContent from '@material-ui/core/CardContent';
 import "./profileToT.css";
 
+import Image1 from "../../Assets/pizza.jpg";
+import Image2 from "../../Assets/ice-cream.jpg";
 
 import { lighten, makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -51,8 +53,8 @@ function CustomizedProgressBars({ percent }) {
 export default class ProfileToT extends Component {
   state = {
     title: "",
-    text1: "Option 1",
-    text2: "Option 2",
+    text1: "Pizza",
+    text2: "Ice-Cream",
     image1: null,
     image2: null,
 
@@ -67,14 +69,14 @@ export default class ProfileToT extends Component {
     var percentage2 = (100 * (1 - this.state.option1Votes / this.state.totalVotes)).toFixed(2);
     return (
       <div className='holder'>
-        <Card className="creator" raised>
+        <Card className="totInProfile" raised>
           <div>
-            <CardHeader title="Results" />
+            <CardHeader title="What is Better for a Breakup" />
             <br />
             <br />
-            <div>
-              <div className="horizontalDiv">
-                <img className="image" />
+            <div classname="parts">
+              <div className="part1">
+                <img className="image" src={Image1}/>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {this.state.text1}
@@ -85,8 +87,8 @@ export default class ProfileToT extends Component {
                   {percentage1 + "%"}
                 </Typography>
               </div>
-              <div className="horizontalDiv">
-                <img className="image" />
+              <div className="part2">
+                <img className="image" src={Image2} />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {this.state.text2}

@@ -91,10 +91,7 @@ export default function Profile() {
     return (
         <div className="profilePage">
             <Card className="profileCard">
-                <CardHeader 
-                    avatar={<AccountCircleIcon/>}
-                    title="Profile"
-                />
+                <CardHeader title="Profile" /> 
             </Card>
             <br/>
             <div className={classes.root}>
@@ -118,26 +115,28 @@ export default function Profile() {
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
                         <ul className="listOfMyToTs">
-                            {profileToTs.map(info => (
+                            {/* {profileToTs.map(info => (
                                 <Card className="myToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
                                         votes={info.Votes}
                                     />
                                 </Card>
-                            ))}
+                            ))} */}
+                            <ProfileToT/>
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
                         <ul className="listOfSavedToTs">
-                            {savedToTs.map(info => (
+                            {/* {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
                                         votes={info.Votes}
                                     />
                                 </Card>
-                            ))}
+                            ))} */}
+                            <ProfileToT/>
                         </ul>
                     </TabPanel>
                 </SwipeableViews>
