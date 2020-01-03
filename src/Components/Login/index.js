@@ -7,7 +7,6 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
