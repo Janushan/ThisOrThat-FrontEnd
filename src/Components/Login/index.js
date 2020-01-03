@@ -8,6 +8,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 import "./styles.css";
 
@@ -48,6 +50,15 @@ export default class Login extends Component {
     }
   };
 
+  facebookLogin = (response) => {
+    if(response.userID) {
+      this.props.changeIsLoggedIn(true);
+      console.log("Facebook login was successful!");
+    } else {
+      console.log("Facebook login was unsucessful!");
+    }
+  }
+
   render() {
     return (
       <div>
@@ -85,13 +96,15 @@ export default class Login extends Component {
                   >
                     Login
                   </Button>
-                  <Button
-                    className="facebookLoginButton"
-                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=https://hip-graph-263913.appspot.com/login"
-                    startIcon={<FacebookIcon />}
-                  >
-                    Log in with Facebook
-                  </Button>
+                  <FacebookLogin
+                      appId="542050589716105"
+                      autLoad
+                      fields="name,email,picture"
+                      callback={this.facebookLogin}
+                      render={renderProps => (
+                        <Button onClick={renderProps.onClick} className="facebookLoginButton" startIcon={<FacebookIcon />}>Log in with Facebook</Button>
+                      )}
+                  />
                   <Grid
                     container
                     alignItems="center"
