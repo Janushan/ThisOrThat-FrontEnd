@@ -357,15 +357,7 @@ export default class Question extends Component {
                         />
                         <br />
                         <img className="image" src={this.state.image2Url} alt="Preview 2" />
-                        <br />
-                        <div className="colorPanel">
-                            <FiberManualRecordIcon className="colorChoice" />
-                            <FiberManualRecordIcon className="colorChoice" />
-                            <FiberManualRecordIcon className="colorChoice" />
-                            <FiberManualRecordIcon className="colorChoice" />
-                        </div>
-
-                        <br />
+                        <br /><br />
                         <Button onClick={this.submit} value="Submit" variant="contained" color="primary">
                             Submit
                         </Button>

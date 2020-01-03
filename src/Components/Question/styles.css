@@ -88,6 +88,7 @@
 
 .timer {
   text-align: center;
+  position: relative;
 }
 .options {
   display: flex;
@@ -101,4 +102,21 @@
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.5);
   margin-bottom: 0.5rem;
+}
+.facebookIconButton {
+  background-color: #3b5998;
+  color: white;
+  margin-bottom: 0.8rem;
+  margin-right: 0.6rem;
+}
+.facebookIconButton:hover {
+  background-color: rgba(59, 89, 152, 0.92) !important;
+}
+
+.circularProgressWrapper {
+  position: absolute;
+}
+
+.circularProgress {
+  color: white;
 }

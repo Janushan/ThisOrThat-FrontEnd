@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Typography } from "@material-ui/core";
-import Options from "./options";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Grid from "@material-ui/core/Grid";
 
+import Options from "./options";
 import ImageAndTextQuestion from "./imageAndText";
 // import ImageQuestion from "./image";
 // import TextQuestion from "./text";
@@ -35,14 +37,6 @@ export default class Question extends Component {
     clearInterval(this.myInterval);
   }
 
-  save = (e) => {
-    console.log("Save");
-  };
-
-  share = (e) => {
-    console.log("Share");
-  };
-
   render() {
     //const { title, option1, option2} = this.props;
     if (this.state.group === false) {
@@ -51,9 +45,9 @@ export default class Question extends Component {
           <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
           {/* <TextQuestion /> */} <br /> <br />
           <div className="timer">
-            <Typography variant="caption">
-              Next ToT in {this.state.seconds}
-              seconds...{/* {this.state.votes} */}{" "}
+            <Typography>
+              {this.state.seconds}
+              {/* {this.state.votes} */}{" "}
             </Typography>{" "}
           </div>{" "}
           <br />
@@ -66,12 +60,23 @@ export default class Question extends Component {
           <div className="question">
             <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
             {/* <TextQuestion /> */} <br /> <br />
-            <div className="timer">
-              <Typography variant="caption">
-                Next ToT in {this.state.seconds}
-                seconds...{/* {this.state.votes} */}{" "}
-              </Typography>{" "}
-            </div>{" "}
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justify="center"
+              className="timer"
+            >
+              <Grid item>
+                <Typography>
+                  {this.state.seconds}
+                  {/* {this.state.votes} */}{" "}
+                </Typography>{" "}
+              </Grid>
+              <Grid item className="circularProgressWrapper">
+                <CircularProgress size={36} className="circularProgress" />
+              </Grid>
+            </Grid>{" "}
             <br />
             <Options />
           </div>{" "}
