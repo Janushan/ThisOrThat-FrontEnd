@@ -8,6 +8,10 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 
@@ -15,10 +19,25 @@ import "./styles.css";
 
 export default class Login extends Component {
   state = {
-    userName: "",
+    email: "",
     password: "",
-    validated: 0
+    validated: 0,
+    open1: false,
+    errorMessage: ""
   };
+
+  handleClose = (openIndex) => {
+    console.log(openIndex);
+    if (openIndex === 1) {
+        this.setState({
+            open1: false
+        })
+    } else {
+        this.setState({
+            open2: false
+        })
+    }
+  }
 
   change = (e) => {
     this.setState({
@@ -28,23 +47,27 @@ export default class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.userName === "" || this.state.password === "") {
-      alert("You must complete all fields");
+    var alertString="";
+    if (this.state.email === "" || this.state.password === "") {
+      alertString+="You must complete all fields";
+      this.setState({errorMessage:alertString});
+      this.setState({open1:true});
     } else {
-      // axios.post('', {
-      // username: this.state.userName,
-      // passwd: this.state.password
-      // })
-      // .then(response => {
-      //   this.setState({ validated: response.data})
-      //   if(this.state.validated===1){
-      //     localStorage.setItem('user',this.state.userName);
-      //     // this.props.history.push("/<homepage>"); add in path to home page here
-      //   }else{
-      //     alert("Wrong Credentials");
-      //     this.setState({ password: ""});
-      //   }
-      // })
+      axios.post('https://thisorthat-260419.appspot.com/login/email', {
+      email: this.state.email,
+      password: this.state.password
+      })
+      .then(response => {
+        this.setState({ validated: response.data})
+        if(this.state.validated===1){
+          // this.props.history.push("/<homepage>"); add in path to home page here
+        }else{
+          alertString+="Invalid Credentials";
+          this.setState({errorMessage:alertString});
+          this.setState({open1:true});
+          this.setState({ password: ""});
+        }
+      })
 
       this.props.changeIsLoggedIn(true);
     }
@@ -68,11 +91,11 @@ export default class Login extends Component {
               <CardHeader title="Login" />
               <Grid container direction="column" alignItems="center">
                 <TextField
-                  name="userName"
-                  label="Username"
+                  name="email"
+                  label="Email"
                   variant="outlined"
                   className="loginTextField"
-                  value={this.state.firstName}
+                  value={this.state.email}
                   fullWidth={true}
                   onChange={(e) => this.change(e)}
                 />
@@ -121,6 +144,22 @@ export default class Login extends Component {
             </form>
           </Card>
         </div>
+        <Dialog
+          open={this.state.open1}
+          onClose={this.handleClose.bind(this, 1)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+        <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+        <DialogContent>
+          {this.state.errorMessage}
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={this.handleClose.bind(this, 1)} color="primary">
+                Close
+            </Button>
+        </DialogActions>
+        </Dialog>
       </div>
     );
   }
