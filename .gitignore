@@ -10,6 +10,7 @@
 
 # production
 /build
+cloudbuild.yaml
 
 # misc
 .DS_Store
