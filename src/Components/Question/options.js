@@ -43,6 +43,16 @@ export default class Options extends Component {
     console.log("Share");
   };
 
+  facebookShare = (e) => {
+    window.FB.ui(
+      {
+        method: "share",
+        href: "https://developers.facebook.com/docs/"
+      },
+      function(response) {}
+    );
+  };
+
   handleClose() {
     this.setState({ open: false });
     // this.setState({ setSelectedValue: value });
@@ -67,14 +77,14 @@ export default class Options extends Component {
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton" onClick={(e) => this.share(e)} >
+            <IconButton className="iconButton" onClick={(e) => this.share(e)}>
               <ShareSharpIconButton />
             </IconButton>
             <Dialog open={this.state.open} onClose={this.handleClose}>
               <DialogTitle>{"Share This or That"}</DialogTitle>
               <DialogContent>
                 <IconButton className="facebookIconButton">
-                  <FacebookIcon onClick={(e) => this.share(e)} />
+                  <FacebookIcon onClick={(e) => this.facebookShare(e)} />
                 </IconButton>
               </DialogContent>
               {/* <DialogActions>

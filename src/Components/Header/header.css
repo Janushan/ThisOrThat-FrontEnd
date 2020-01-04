@@ -5,3 +5,11 @@
   padding-left: 5rem;
   padding-right: 5rem;
 }
+
+.headerButtonContainer {
+  margin-left: 1rem;
+}
+.headerButton {
+  color: white;
+  font-weight: bold;
+}

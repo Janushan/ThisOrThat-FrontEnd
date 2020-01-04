@@ -117,7 +117,7 @@ class App extends Component {
                       path="/feed"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Profile />
+                          <Question />
                         ) : (
                           <Redirect to="/login" />
                         )

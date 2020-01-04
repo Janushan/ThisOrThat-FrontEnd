@@ -7,12 +7,14 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
+
 import "./styles.css";
 
 export default class Login extends Component {
@@ -71,6 +73,15 @@ export default class Login extends Component {
     }
   };
 
+  facebookLogin = (response) => {
+    if(response.userID) {
+      this.props.changeIsLoggedIn(true);
+      console.log("Facebook login was successful!");
+    } else {
+      console.log("Facebook login was unsucessful!");
+    }
+  }
+
   render() {
     return (
       <div>
@@ -108,13 +119,15 @@ export default class Login extends Component {
                   >
                     Login
                   </Button>
-                  <Button
-                    className="facebookLoginButton"
-                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/question"
-                    startIcon={<FacebookIcon />}
-                  >
-                    Log in with Facebook
-                  </Button>
+                  <FacebookLogin
+                      appId="542050589716105"
+                      autLoad
+                      fields="name,email,picture"
+                      callback={this.facebookLogin}
+                      render={renderProps => (
+                        <Button onClick={renderProps.onClick} className="facebookLoginButton" startIcon={<FacebookIcon />}>Log in with Facebook</Button>
+                      )}
+                  />
                   <Grid
                     container
                     alignItems="center"

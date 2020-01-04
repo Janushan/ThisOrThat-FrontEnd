@@ -8,7 +8,7 @@ import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import MenuItem from '@material-ui/core/MenuItem';
+import MenuItem from "@material-ui/core/MenuItem";
 import "./header.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,11 +44,11 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setAuth(event.target.checked);
   };
 
-  const handleMenu = event => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -86,27 +86,24 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
   if (isLoggedIn === true) {
     fullNavBar = (
       <React.Fragment>
-        <Button
-          onClick={function() {
-            window.location.href = "/question";
-          }}
-        >
-          Feed
-        </Button>
-        {/* <Button
-          onClick={function() {
-            window.location.href = "/join";
-          }}
-        >
-          Join
-        </Button> */}
-        <Button
-          onClick={function() {
-            window.location.href = "/creator";
-          }}
-        >
-          Create
-        </Button>
+        <div className="headerButtonContainer">
+          <Button
+            className="headerButton"
+            onClick={function() {
+              window.location.href = "/question";
+            }}
+          >
+            Feed
+          </Button>
+          <Button
+            className="headerButton"
+            onClick={function() {
+              window.location.href = "/creator";
+            }}
+          >
+            Create
+          </Button>
+        </div>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
           <IconButton
@@ -130,23 +127,37 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
             <MoreIcon />
           </IconButton>
           <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={function() {handleClose(); window.location.href = "/profile";}}>My profile</MenuItem>
-                <MenuItem onClick={function() {handleClose(); changeIsLoggedIn(false);}}>Log out</MenuItem>
-              </Menu>
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right"
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right"
+            }}
+            open={open}
+            onClose={handleClose}
+          >
+            <MenuItem
+              onClick={function() {
+                handleClose();
+                window.location.href = "/profile";
+              }}
+            >
+              My profile
+            </MenuItem>
+            <MenuItem
+              onClick={function() {
+                handleClose();
+                changeIsLoggedIn(false);
+              }}
+            >
+              Log out
+            </MenuItem>
+          </Menu>
         </div>
       </React.Fragment>
     );
