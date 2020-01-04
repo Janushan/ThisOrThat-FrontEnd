@@ -1,3 +1,0 @@
-steps:
-  - name: "gcr.io/cloud-builders/gcloud-slim"
-    args: ["app", "deploy", "app.yaml"]
