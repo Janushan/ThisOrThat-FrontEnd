@@ -39,12 +39,14 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    profile: null
   };
 
   saveToLocalStorage = () => {
     try {
       localStorage.set("isLoggedIn", JSON.stringify(this.state.isLoggedIn));
+      localStorage.set("profile", JSON.stringify(this.state.profile));
     } catch (e) {}
   };
 
@@ -52,6 +54,8 @@ class App extends Component {
     try {
       var isLoggedInCopy = JSON.parse(localStorage.get("isLoggedIn"));
       this.setState({ isLoggedIn: isLoggedInCopy });
+      var profileCopy = JSON.parse(localStorage.get("profile"));
+      this.setState({ profile: profileCopy });
     } catch (e) {}
   };
 
@@ -62,10 +66,22 @@ class App extends Component {
       },
       function() {
         this.saveToLocalStorage();
-        console.log("This got called: " + this.state.isLoggedIn);
+        console.log("isLoggedIn = " + this.state.isLoggedIn);
       }
     );
-  };
+  }
+
+  changeProfile = (newValue) => {
+    this.setState(
+      {
+        profile: newValue
+      },
+      function() {
+        this.saveToLocalStorage();
+        console.log("profile = " + this.state.profile);
+      }
+    );
+  }
 
   UNSAFE_componentWillMount = () => {
     this.loadFromLocalStorage();
@@ -99,7 +115,7 @@ class App extends Component {
                         this.state.isLoggedIn ? (
                           <Redirect to="/feed" />
                         ) : (
-                          <Login changeIsLoggedIn={this.changeIsLoggedIn} />
+                          <Login changeIsLoggedIn={this.changeIsLoggedIn} changeProfile={this.changeProfile} />
                         )
                       }
                     />
@@ -205,3 +221,4 @@ class App extends Component {
 }
 
 export default App;
+

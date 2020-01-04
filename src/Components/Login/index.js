@@ -74,12 +74,35 @@ export default class Login extends Component {
   };
 
   facebookLogin = (response) => {
+    console.log(response)
     if(response.userID) {
+      this.getUserProfile();
       this.props.changeIsLoggedIn(true);
-      console.log("Facebook login was successful!");
+      console.log("hello there ");
+      console.log("OK!");
     } else {
       console.log("Facebook login was unsucessful!");
     }
+  }
+
+  fbLogin = () => {
+    window.location.href = "https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed";
+    // this.props.changeIsLoggedIn(true);
+  }
+
+  getUserProfile = () => {
+    console.log("inside getUserProfile");
+    axios.get('/login/facebook/callback').then(function (response) {
+      axios.get('https://thisorthat-260419.appspot.com/me').then(function (response) {
+        console.log("success");
+        console.log("response = " + response.data);
+      })
+      .catch(function (error) {
+        console.log("No reponse: " + error);
+      });
+    });
+    
+    console.log("end of getUserProfile");
   }
 
   render() {
@@ -118,6 +141,14 @@ export default class Login extends Component {
                     onClick={(e) => this.onSubmit(e)}
                   >
                     Login
+                  </Button>
+                  <Button
+                    className="facebookLoginButton"
+                    // href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed"
+                    onClick={(e) => this.fbLogin(e)}
+                    startIcon={<FacebookIcon />}
+                  >
+                    Log in with Facebook
                   </Button>
                   <FacebookLogin
                       appId="542050589716105"
