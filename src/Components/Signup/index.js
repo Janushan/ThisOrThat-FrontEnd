@@ -7,6 +7,13 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import './styles.css';
 
 
@@ -18,6 +25,8 @@ export default class Signup extends Component {
     confirmPassword: "",
     usernameCheck:[],
     usernameError:false,
+    open1: false,
+    errorMessage: ""
   };
 
   change = e => {
@@ -26,31 +35,44 @@ export default class Signup extends Component {
     });
   };
 
-  changeUser = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    if(e.target.value.length===0){
-      this.setState({usernameError:false});
-    }
-    else if(e.target.value.length>0 && e.target.value.length<5){
-      this.setState({usernameError:true});
-    }
-    else{
-      // axios.post('', {
-      //     username: e.target.value
-      // })
-      // .then(response => {
-      //     this.setState({usernameCheck:response.data});
-      //     if(this.state.usernameCheck.length===1){
-      //       this.setState({usernameError:true});
-      //     }else{
-      //       this.setState({usernameError:false});
-      //     }
-      // })
-    }
+  // changeUser = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  //   if(e.target.value.length===0){
+  //     this.setState({usernameError:false});
+  //   }
+  //   else if(e.target.value.length>0 && e.target.value.length<5){
+  //     this.setState({usernameError:true});
+  //   }
+  //   else{
+  //     axios.post('https://thisorthat-260419.appspot.com/me', {
+  //         username: e.target.value
+  //     })
+  //     .then(response => {
+  //         this.setState({usernameCheck:response.data});
+  //         if(this.state.usernameCheck.length===1){
+  //           this.setState({usernameError:true});
+  //         }else{
+  //           this.setState({usernameError:false});
+  //         }
+  //     })
+  //   }
     
-  };
+  // };
+
+  handleClose = (openIndex) => {
+    console.log(openIndex);
+    if (openIndex === 1) {
+        this.setState({
+            open1: false
+        })
+    } else {
+        this.setState({
+            open2: false
+        })
+    }
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -82,24 +104,17 @@ export default class Signup extends Component {
       }
     }
     if(alertString==="" && (this.state.usernameError===false)){
-      //  axios.post('', {
-      //     username: this.state.userName,
-      //     email: this.state.email,
-      //     passwd: this.state.password
-      //   })
-      //   .then(response => {
-      //     localStorage.setItem('user', this.state.userName);
-      //     // this.props.history.push("/<homepage>"); add in path to home page here
-      //   })
+        axios.post('https://thisorthat-260419.appspot.com/signup/email', {
+          email: this.state.email,
+          password: this.state.password,
+          name: this.state.userName
+        })
+        .then(response => {
+          this.props.history.push("/feed"); 
+        })
     }else{
-      if(this.state.usernameError===true){
-        alertString+="Username is already taken!"
-      }
-      else {
-        window.location.href = "/login";
-      }
-      
-      alert(alertString);
+      this.setState({errorMessage:alertString});
+      this.setState({open1:true});
     }
   };
 
@@ -113,13 +128,25 @@ export default class Signup extends Component {
               <CardHeader 
                 title="Signup"
               />
+              <br/>
               <TextField
                 name="userName"
-                label="Username"
+                label="Full-Name"
                 className="usernamefield"
                 value={this.state.userName}
-                onChange={e => this.changeUser(e)}
+                onChange={e => this.change(e)}
                 error={this.state.usernameError}
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position='end' >
+                              <Tooltip title="Fullname: Must consist of only letters">
+                                  <IconButton aria-label="upload image" component="span">
+                                      <HelpOutlineOutlinedIcon />
+                                  </IconButton>
+                              </Tooltip>
+                      </InputAdornment>
+                  ),
+                }}
               />
               <br />
               <TextField
@@ -128,6 +155,17 @@ export default class Signup extends Component {
                 value={this.state.email}
                 onChange={e => this.change(e)}
                 type="email"
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position='end' >
+                              <Tooltip title="Must me a valid email address">
+                                  <IconButton aria-label="upload image" component="span">
+                                      <HelpOutlineOutlinedIcon />
+                                  </IconButton>
+                              </Tooltip>
+                      </InputAdornment>
+                  ),
+                }}
               /><br />
               <TextField
                 name="password"
@@ -135,6 +173,18 @@ export default class Signup extends Component {
                 value={this.state.password}
                 onChange={e => this.change(e)}
                 type="password"
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position='end' >
+                              <Tooltip title="Password: At least 7 alphanumeric characters, an
+                Uppercase character and a Number">
+                                  <IconButton aria-label="upload image" component="span">
+                                      <HelpOutlineOutlinedIcon />
+                                  </IconButton>
+                              </Tooltip>
+                      </InputAdornment>
+                  ),
+                }}
               /><br />
               <TextField
                 name="confirmPassword"
@@ -143,27 +193,47 @@ export default class Signup extends Component {
                 onChange={e => this.change(e)}
                 type="password"
                 className="requirements"
+                InputProps={{
+                  endAdornment: (
+                      <InputAdornment position='end' >
+                              <Tooltip title="Password entered must match the previously entered password">
+                                  <IconButton aria-label="upload image" component="span">
+                                      <HelpOutlineOutlinedIcon />
+                                  </IconButton>
+                              </Tooltip>
+                      </InputAdornment>
+                  ),
+                }}
               />
               <br/>
               <br/>
-              <Tooltip className="userTip" 
-                title="Usernames: Must be unique and a minimum of 5 alphanumeric characters Passwords: At least 7 alphanumeric characters, an
-                Uppercase character and a Number." 
-                interactive 
-              >
-                <Button className="requirements" >Requirements</Button>
-              </Tooltip>
               <Button variant="contained" color="primary" onClick={e => this.onSubmit(e)} >
                 Submit
               </Button>  
               <br/>
               <Typography variant="overline" className="" color="textSecondary" gutterBottom>
-                  Already have an Account?
+                  Already have an Account?&nbsp;
               </Typography>
               <Link to="/login">Log In</Link>
             </form>
           </Card>
         </div>
+        <Dialog
+          open={this.state.open1}
+          onClose={this.handleClose.bind(this, 1)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+        <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+        <DialogContent>
+          {this.state.errorMessage}
+        </DialogContent>
+        <DialogActions>
+            <Button onClick={this.handleClose.bind(this, 1)} color="primary">
+                Close
+            </Button>
+        </DialogActions>
+        </Dialog>
       </div>
     );
   }
