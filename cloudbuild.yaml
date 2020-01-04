@@ -1,4 +1,7 @@
 steps:
   - name: "gcr.io/cloud-builders/gcloud"
+    args: ["source", "repos", "clone", "default"]
+    timeout: "600s"
+  - name: "gcr.io/cloud-builders/gcloud-slim"
     args: ["source", "repos", "clone", "default", "app", "deploy"]
     timeout: "600s"
