@@ -1,6 +1,6 @@
 steps:
   - name: "gcr.io/cloud-builders/npm"
-    args: ["install"]
+    args: ["install", "start"]
     # args: ["app", "deploy"]
     # dir: "ThisOrThat-FrontEnd"
 timeout: "1600s"
