@@ -4,15 +4,13 @@ import TurnedInIcon from "@material-ui/icons/TurnedIn";
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
 import ShareSharpIconButton from "@material-ui/icons/ShareSharp";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import SkipNextIcon from "@material-ui/icons/SkipNext";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
 
 import "./styles.css";
 
@@ -73,6 +71,16 @@ export default class Options extends Component {
           </Grid>{" "}
           <Grid item>
             <Typography>Save</Typography>
+          </Grid>{" "}
+        </Grid>{" "}
+        <Grid container direction="column" alignItems="center">
+          <Grid item>
+            <IconButton className="iconButton">
+              <SkipNextIcon onClick={console.log("skip")} />
+            </IconButton>
+          </Grid>{" "}
+          <Grid item>
+            <Typography>Skip</Typography>
           </Grid>{" "}
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
