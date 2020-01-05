@@ -87,14 +87,6 @@ export default class Options extends Component {
                   <FacebookIcon onClick={(e) => this.facebookShare(e)} />
                 </IconButton>
               </DialogContent>
-              {/* <DialogActions>
-                <Button autoFocus onClick={this.handleClose} color="primary">
-                  Disagree
-                </Button>
-                <Button onClick={this.handleClose} color="primary" autoFocus>
-                  Agree
-                </Button>
-              </DialogActions> */}
             </Dialog>
           </Grid>{" "}
           <Grid item>

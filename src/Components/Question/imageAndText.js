@@ -36,23 +36,29 @@ export default class ImageAndTextQuestion extends Component {
   }
 
   incrementChoice1 = (e) => {
-    this.setState({
-      choice1: this.state.choice1 + 1,
-      votes: this.state.votes + 1
-    }, function() {
-      console.log("Click1");
-      window.location.href = "/profiletot";
-    });
+    this.setState(
+      {
+        choice1: this.state.choice1 + 1,
+        votes: this.state.votes + 1
+      },
+      function() {
+        console.log("Click1");
+        window.location.href = "/profiletot";
+      }
+    );
   };
 
   incrementChoice2 = (e) => {
-    this.setState({
-      choice2: this.state.choice2 + 1,
-      votes: this.state.votes + 1
-    }, function() {
-      console.log("Click2");
-      window.location.href = "/profiletot";
-    });
+    this.setState(
+      {
+        choice2: this.state.choice2 + 1,
+        votes: this.state.votes + 1
+      },
+      function() {
+        console.log("Click2");
+        window.location.href = "/profiletot";
+      }
+    );
   };
 
   save = (e) => {
@@ -94,7 +100,9 @@ export default class ImageAndTextQuestion extends Component {
               </Grid>{" "}
             </Grid>{" "}
           </div>{" "}
-          <Typography variant="caption"> 12,000 votes </Typography>{" "}
+          <Grid className="cardCaptionVotes">
+            <Typography variant="caption"> 12,000 votes </Typography>{" "}
+          </Grid>
         </Card>{" "}
       </div>
     );
