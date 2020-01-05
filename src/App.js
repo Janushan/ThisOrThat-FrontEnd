@@ -40,12 +40,15 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    userId: "5e0e5e2c865c4946ea9a2dcf", 
+    questionState: null
   };
 
   saveToLocalStorage = () => {
     try {
       localStorage.set("isLoggedIn", JSON.stringify(this.state.isLoggedIn));
+      localStorage.set("questionState", JSON.stringify(this.state.questionState));
     } catch (e) {}
   };
 
@@ -53,6 +56,8 @@ class App extends Component {
     try {
       var isLoggedInCopy = JSON.parse(localStorage.get("isLoggedIn"));
       this.setState({ isLoggedIn: isLoggedInCopy });
+      var questionStateCopy = JSON.parse(localStorage.get("questionState"));
+      this.setState({ questionState: questionStateCopy });
     } catch (e) {}
   };
 
@@ -67,6 +72,24 @@ class App extends Component {
       }
     );
   };
+
+  setQuestionState = (newValue) => {
+    this.setState({ 
+      questionState: newValue 
+    },
+    () => {
+      console.log("questionState has been set");
+      console.log(this.state.questionState);
+      this.saveToLocalStorage();
+    });
+  }
+
+  getQuestionState = () => {
+    console.log("question set has been retrieved");
+    console.log(this.state.questionState);
+    console.log("question set has been retrieved");
+    return this.state.questionState;
+  }
 
   UNSAFE_componentWillMount = () => {
     this.loadFromLocalStorage();
@@ -118,7 +141,11 @@ class App extends Component {
                       path="/feed"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Voucher />
+
+                          <Question />
+
+                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
+
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -138,7 +165,7 @@ class App extends Component {
                       path="/creator"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Creator />
+                          <Creator userId={this.state.userId} />
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -158,7 +185,7 @@ class App extends Component {
                       path="/question"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question />
+                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -178,7 +205,7 @@ class App extends Component {
                       path="/profiletot"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <ProfileToT />
+                          <ProfileToT getQuestionState={this.getQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -188,7 +215,7 @@ class App extends Component {
                       path="*"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question />
+                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )
