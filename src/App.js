@@ -10,6 +10,7 @@ import Join from "./Components/Join";
 import Profile from "./Components/Profile";
 import ProfileToT from "./Components/ProfileToT";
 import ToTSubmit from "./Components/ToTSubmit";
+import Voucher from "./Components/Voucher";
 import {
   BrowserRouter as Router,
   Route,
@@ -58,7 +59,10 @@ class App extends Component {
   saveToLocalStorage = () => {
     try {
       localStorage.set("isLoggedIn", JSON.stringify(this.state.isLoggedIn));
-      localStorage.set("questionState", JSON.stringify(this.state.questionState));
+      localStorage.set(
+        "questionState",
+        JSON.stringify(this.state.questionState)
+      );
     } catch (e) {}
   };
 
@@ -88,22 +92,24 @@ class App extends Component {
   }
 
   setQuestionState = (newValue) => {
-    this.setState({ 
-      questionState: newValue 
-    },
-    () => {
-      console.log("questionState has been set");
-      console.log(this.state.questionState);
-      this.saveToLocalStorage();
-    });
-  }
+    this.setState(
+      {
+        questionState: newValue
+      },
+      () => {
+        console.log("questionState has been set");
+        console.log(this.state.questionState);
+        this.saveToLocalStorage();
+      }
+    );
+  };
 
   getQuestionState = () => {
     console.log("question set has been retrieved");
     console.log(this.state.questionState);
     console.log("question set has been retrieved");
     return this.state.questionState;
-  }
+  };
 
   UNSAFE_componentWillMount = () => {
     this.loadFromLocalStorage();
@@ -216,7 +222,9 @@ class App extends Component {
                       path="/profiletot"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <ProfileToT getQuestionState={this.getQuestionState} />
+                          <ProfileToT
+                            getQuestionState={this.getQuestionState}
+                          />
                         ) : (
                           <Redirect to="/login" />
                         )

@@ -11,8 +11,16 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ProfileToT from '../ProfileToT'
+import Button from "@material-ui/core/Button";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import ProfileToT from '../ProfileToT';
+import Avatar from '@material-ui/core/Avatar';
+
 import './profile.css';
+import { TextField } from "@material-ui/core";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -57,6 +65,10 @@ export default function Profile(props) {
     const [value, setValue] = useState(0);
     const [profileToTs, setProfileToTs]= useState([]);
     const [savedToTs, setSavedToTs]= useState([]);
+    const [userID, setUserID]=useState(0);
+    const [profile, setProfile]= useState(false);
+    const [url, setURL]= useState("");
+    const [name, setName]= useState("");
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -72,15 +84,24 @@ export default function Profile(props) {
 
     const getToTs = async () => {
         //might need checks for empty responses
+        // const user= async () => {
+        //     const result = await axios.get('https://thisorthat-260419.appspot.com/users/me');
+        //     console.log(result);
+        //     setUserID(result.data);
+        // };
         const fetchProfileToTs = async () => {
             const result = await axios.post(
-              '', {}
+              'https://thisorthat-260419.appspot.com/users/ /created', {
+                userID:{userID}
+              }
             );
             setProfileToTs(result.data);
         };
         const fetchSavedToTs = async () => {
             const result = await axios.post(
-              '', {}
+              'https://thisorthat-260419.appspot.com/ /saved', {
+                  userID:{userID}
+              }
             );
             setSavedToTs(result.data);
         };
@@ -88,11 +109,37 @@ export default function Profile(props) {
         fetchSavedToTs();
     };
 
+    const onClick= (e) =>  {
+        setProfile(true);
+        console.log({profile})
+    };
+
+    const cancel= (e) =>  {
+        setProfile(false);
+    };
+
+    const save= (e) =>  {
+        setProfile(false);
+    };
+
+    const  URL= (e) =>  {
+        setURL(e.target.value);
+    };
+
+    const profileName= (e) =>  {
+        setName(e.target.value);
+    };
+
     return (
         <div className="profilePage">
-            <Card className="profileCard">
-                <CardHeader title="Profile" /> 
-            </Card>
+            <Button className="profileCard" onClick={e => onClick(e)}> 
+                <Avatar>  
+                    <AccountCircleIcon/> 
+                </Avatar>
+                <Typography>
+                    Profile
+                </Typography>
+            </Button>
             <br/>
             <div className={classes.root}>
                 <AppBar position="static" color="default">
@@ -141,6 +188,54 @@ export default function Profile(props) {
                     </TabPanel>
                 </SwipeableViews>
             </div>
+            <Dialog
+                open={profile}
+                onClose={handleChange}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+            <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
+            <DialogContent>
+                <Typography variant="h5" display="block" gutterBottom >
+                    Profile Picture
+                </Typography>
+                <br/>
+                <TextField
+                    name="url"
+                    label="Image URL"
+                    variant="outlined"
+                    className=""
+                    value={url}
+                    fullWidth={true}
+                    onChange={(e) => URL(e)}
+                />
+                 <img className="profileImage" src={url} alt="Preview" />
+                 <br/><br/>
+                 <Typography variant="h5" display="block" gutterBottom >
+                    Profile Name
+                 </Typography>
+                 <br/>
+                 <TextField
+                    name="name"
+                    label="Profle Name"
+                    variant="outlined"
+                    className=""
+                    value={name}
+                    fullWidth={true}
+                    onChange={(e) => profileName(e)}
+                />
+
+
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={e => cancel(e)} color="primary">
+                    Cancel
+                </Button>
+                <Button onClick={e => save(e)} color="primary">
+                    Save
+                </Button>
+            </DialogActions>
+            </Dialog>
         </div>
     );
 }
