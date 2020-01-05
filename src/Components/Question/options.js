@@ -124,7 +124,7 @@ export default class Options extends Component {
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton">
+            <IconButton className="iconButton" onClick={(e) => window.location.href = "/feed"}>
               <SkipNextIcon onClick={console.log("skip")} />
             </IconButton>
           </Grid>{" "}

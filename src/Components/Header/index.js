@@ -171,7 +171,7 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
           <Button
             className="headerButton headerTitle"
             onClick={function() {
-              window.location.href = "/question";
+              window.location.href = "/feed";
             }}
           >
             <img alt="this or that logo" class="headerLogo" src={logo} />
