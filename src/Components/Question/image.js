@@ -3,8 +3,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import { Typography } from "@material-ui/core";
 
-import Image1 from "../../Assets/pizza.jpg";
-import Image2 from "../../Assets/ice-cream.jpg";
+import Image1 from "https://unsplash.com/photos/oqmIM9bkAWQ";
+import Image2 from "https://unsplash.com/photos/oqmIM9bkAWQ";
 
 import "./styles.css";
 
@@ -67,7 +67,7 @@ export default class ImageQuestion extends Component {
           <div className="row">
             <img
               className="image1"
-              src={Image1}
+              src={"Image1"}
               onClick={(e) => this.incrementChoice1(e)}
               alt="image1"
             />{" "}

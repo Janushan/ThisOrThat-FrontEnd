@@ -23,7 +23,7 @@ export default class Question extends Component {
     numberOfVotes: 0,
     seconds: 10,
     group: true
-  }
+  };
 
   componentDidMount() {
     this.myInterval = setInterval(() => {
@@ -47,43 +47,55 @@ export default class Question extends Component {
   }
 
   updateStateFromAPICall = () => {
-    this.setState({
-      userId: this.props.userId
-    }, () => {
-      axios.get('https://thisorthat-260419.appspot.com/users/' + this.state.userId + '/feed').then((response) => {
-        console.log("response on next line");
-        console.log(response.data);
-        console.log(response.data.id)
-        console.log("response on previous line");
-        this.setState({
-          questionId: response.data.id,
-          title: response.data.questionText,
-          text1: response.data.option1.text,
-          text2: response.data.option2.text,
-          numberOfVotes: response.data.option1.numberOfVotes + response.data.option2.numberOfVotes
-        },
-        function() {
-          this.props.setQuestionState(this.state);
-        }
-        );
-        if(response.data.option1.imageURL) {
-          this.setState({
-            url1: response.data.option1.imageURL
+    this.setState(
+      {
+        userId: this.props.userId
+      },
+      () => {
+        axios
+          .get(
+            "https://thisorthat-260419.appspot.com/users/" +
+              this.state.userId +
+              "/feed"
+          )
+          .then((response) => {
+            console.log("response on next line");
+            console.log(response.data);
+            console.log(response.data.id);
+            console.log("response on previous line");
+            this.setState(
+              {
+                questionId: response.data.id,
+                title: response.data.questionText,
+                text1: response.data.option1.text,
+                text2: response.data.option2.text,
+                numberOfVotes:
+                  response.data.option1.numberOfVotes +
+                  response.data.option2.numberOfVotes
+              },
+              function() {
+                this.props.setQuestionState(this.state);
+              }
+            );
+            if (response.data.option1.imageURL) {
+              this.setState({
+                url1: response.data.option1.imageURL
+              });
+            }
+            if (response.data.option2.imageURL) {
+              this.setState({
+                url2: response.data.option2.imageURL
+              });
+            }
+
+            console.log("at least we tried");
+          })
+          .catch(function(error) {
+            console.log("No reponse: " + error);
           });
-        }
-        if(response.data.option2.imageURL) {
-          this.setState({
-            url2: response.data.option2.imageURL
-          });
-        }
-  
-        console.log("at least we tried");
-      })
-      .catch(function (error) {
-        console.log("No reponse: " + error);
-      });
-    });
-  }
+      }
+    );
+  };
 
   render() {
     if (this.state.group === false) {
@@ -105,8 +117,8 @@ export default class Question extends Component {
       return (
         <div>
           <div className="question">
-            <ImageAndTextQuestion parent={this.state} /> {/* <ImageQuestion /> */}{" "}
-            {/* <TextQuestion /> */} <br /> <br />
+            <ImageAndTextQuestion parent={this.state} />{" "}
+            {/* <ImageQuestion /> */} {/* <TextQuestion /> */} <br /> <br />
             <Grid
               container
               direction="row"
