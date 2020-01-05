@@ -27,6 +27,7 @@ export default class Question extends Component {
         text2: "",
         unsplashUrl1: "",
         unsplashUrl2: "",
+        isSponsored: false,
         image1: null,
         image2: null,
 
@@ -77,9 +78,30 @@ export default class Question extends Component {
             }
         }
 
+        var option1Object = {
+            text: this.state.text1
+        };
+        if(this.state.unsplashUrl1 !== "") {
+            option1Object.imageURL = this.state.unsplashUrl1;
+        }
+        var option2Object = {
+            text: this.state.text2
+        };
+        if(this.state.unsplashUrl2 !== "") {
+            option2Object.imageURL = this.state.unsplashUrl2;
+        }
+
         try {
-            axios.post('', fd).then(res => {
+            axios.post('https://thisorthat-260419.appspot.com/questions', {
+                questionText: this.state.title,
+                option1: option1Object,
+                option2: option2Object,
+                userID: this.props.userId,
+                isSponsored: this.state.isSponsored
+            })
+            .then(res => {
                 console.log(res);
+                console.log("ToT posted.")
                 window.location.href = '/totsubmit';
             });
         } catch (e) {

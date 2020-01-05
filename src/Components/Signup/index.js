@@ -105,12 +105,13 @@ export default class Signup extends Component {
     }
     if(alertString==="" && (this.state.usernameError===false)){
         axios.post('https://thisorthat-260419.appspot.com/signup/email', {
+          name: this.state.userName,
           email: this.state.email,
-          password: this.state.password,
-          name: this.state.userName
+          password: this.state.password
         })
         .then(response => {
-          this.props.history.push("/feed"); 
+         // this.props.history.push("/feed"); 
+         console.log("success");
         })
     }else{
       this.setState({errorMessage:alertString});
