@@ -47,6 +47,8 @@ export default class Options extends Component {
     window.FB.ui(
       {
         method: "share",
+        quote: "The most fun way make decisions",
+        hashtag: "#thisorthat",
         href: "https://hip-graph-263913.appspot.com/"
       },
       function(response) {}
