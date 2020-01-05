@@ -164,7 +164,6 @@ class App extends Component {
                           <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
                           <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
-
                         )
                       }
                     />
