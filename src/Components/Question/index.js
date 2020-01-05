@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 import { Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
@@ -23,6 +24,27 @@ export default class Question extends Component {
     numberOfVotes: 0,
     seconds: 10,
     group: true
+  }
+
+  componentWillMount() {
+    // alert("hei we are here");
+    var cookie = Cookies.get('session');
+    // alert("cookie: " + cookie);
+    axios.get('http://thisorthat-260419.appspot.com/me', {
+      headers: {
+          Cookie: "cookie1=value; cookie2=value; cookie3=value;"
+      }
+    })
+    .then((response) => {
+      this.props.changeIsLoggedIn(true);
+      // alert(this.props.getIsLoggedIn);
+      // alert("ME WAS SUCCESSFUL");
+    })
+    .catch(function (error) {
+      // window.location.href = "/login";
+      // alert("ME WAS NOT SUCCESSFUL: " + error);
+      console.log("And the error was: " + error);
+    });
   }
 
   componentDidMount() {

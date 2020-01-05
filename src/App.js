@@ -41,7 +41,18 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     userId: "5e0e5e2c865c4946ea9a2dcf", 
-    questionState: null
+    questionState: {
+      userId: "...",
+      questionId: "",
+      title: "...",
+      text1: "...",
+      text2: "...",
+      url1: "",
+      url2: "",
+      numberOfVotes: 0,
+      seconds: 10,
+      group: true
+    }
   };
 
   saveToLocalStorage = () => {
@@ -71,6 +82,10 @@ class App extends Component {
       }
     );
   };
+
+  getIsLoggedIn = () => {
+    return this.state.isLoggedIn;
+  }
 
   setQuestionState = (newValue) => {
     this.setState({ 
@@ -140,9 +155,10 @@ class App extends Component {
                       path="/feed"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
+                          <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
-                          <Redirect to="/login" />
+                          <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
+
                         )
                       }
                     />
@@ -170,7 +186,7 @@ class App extends Component {
                       path="/profile"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Profile />
+                          <Profile getQuestionState={this.getQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -180,7 +196,7 @@ class App extends Component {
                       path="/question"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
+                          <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )
@@ -210,7 +226,7 @@ class App extends Component {
                       path="*"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question userId={this.state.userId} setQuestionState={this.setQuestionState} />
+                          <Question getIsLoggedIn={this.getIsLoggedIn} changeIsLoggedIn={this.changeIsLoggedIn} userId={this.state.userId} setQuestionState={this.setQuestionState} />
                         ) : (
                           <Redirect to="/login" />
                         )

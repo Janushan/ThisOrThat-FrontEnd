@@ -82,6 +82,10 @@ export default class Login extends Component {
     }
   }
 
+  fbLogin = () => {
+    window.location.href = "https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed";
+  }
+
   render() {
     return (
       <div>
@@ -118,6 +122,14 @@ export default class Login extends Component {
                     onClick={(e) => this.onSubmit(e)}
                   >
                     Login
+                  </Button>
+                  <Button
+                    className="facebookLoginButton"
+                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed"
+                    // onClick={(e) => this.fbLogin(e)}
+                    startIcon={<FacebookIcon />}
+                  >
+                    Log in with Facebook
                   </Button>
                   <FacebookLogin
                       appId="542050589716105"

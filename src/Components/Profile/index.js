@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Profile() {
+export default function Profile(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = useState(0);
@@ -123,7 +123,7 @@ export default function Profile() {
                                     />
                                 </Card>
                             ))} */}
-                            <ProfileToT/>
+                            <ProfileToT getQuestionState={props.getQuestionState} />
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
@@ -136,7 +136,7 @@ export default function Profile() {
                                     />
                                 </Card>
                             ))} */}
-                            <ProfileToT/>
+                            <ProfileToT getQuestionState={props.getQuestionState} />
                         </ul>
                     </TabPanel>
                 </SwipeableViews>

@@ -78,15 +78,24 @@ export default class Question extends Component {
             }
         }
 
+        var option1Object = {
+            text: this.state.text1
+        };
+        if(this.state.unsplashUrl1 !== "") {
+            option1Object.imageURL = this.state.unsplashUrl1;
+        }
+        var option2Object = {
+            text: this.state.text2
+        };
+        if(this.state.unsplashUrl2 !== "") {
+            option2Object.imageURL = this.state.unsplashUrl2;
+        }
+
         try {
             axios.post('https://thisorthat-260419.appspot.com/questions', {
                 questionText: this.state.title,
-                option1: {
-                    text: this.state.text1
-                },
-                option2: {
-                    text: this.state.text2
-                },
+                option1: option1Object,
+                option2: option2Object,
                 userID: this.props.userId,
                 isSponsored: this.state.isSponsored
             })
