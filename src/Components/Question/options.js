@@ -18,7 +18,7 @@ import "./styles.css";
 export default class Options extends Component {
   state = {
     saved: false
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -32,29 +32,49 @@ export default class Options extends Component {
   }
 
   save = (e) => {
-    axios.post('https://thisorthat-260419.appspot.com/questions/' + this.props.parent.questionId + '/' + this.props.parent.userId + '/save', {
-    })
-      .then(response => {
-        console.log("ToT saved.")
-    })
+    axios
+      .post(
+        "https://thisorthat-260419.appspot.com/questions/" +
+          this.props.parent.questionId +
+          "/" +
+          this.props.parent.userId +
+          "/save",
+        {}
+      )
+      .then((response) => {
+        console.log("ToT saved.");
+      });
 
-    this.setState({ saved: true });
+    this.setState({
+      saved: true
+    });
     console.log("Save");
   };
 
   unsave = (e) => {
-    axios.post('https://thisorthat-260419.appspot.com/questions/' + this.props.parent.questionId + '/' + this.props.parent.userId + '/save', {
-    })
-      .then(response => {
-        console.log("ToT unsaved.")
-    })
+    axios
+      .post(
+        "https://thisorthat-260419.appspot.com/questions/" +
+          this.props.parent.questionId +
+          "/" +
+          this.props.parent.userId +
+          "/save",
+        {}
+      )
+      .then((response) => {
+        console.log("ToT unsaved.");
+      });
 
-    this.setState({ saved: false });
+    this.setState({
+      saved: false
+    });
     console.log("Unsave");
   };
 
   share = (e) => {
-    this.setState({ open: true });
+    this.setState({
+      open: true
+    });
     console.log("Share");
   };
 
@@ -71,7 +91,9 @@ export default class Options extends Component {
   };
 
   handleClose() {
-    this.setState({ open: false });
+    this.setState({
+      open: false
+    });
     // this.setState({ setSelectedValue: value });
   }
 
@@ -81,21 +103,51 @@ export default class Options extends Component {
 
   getSavedQuestions() {
     var savedQuestions = [];
+    let response = null;
 
-    axios.get('https://thisorthat-260419.appspot.com/users/' + this.props.parent.userId + '/saved').then((response) => {
-      console.log(this.props.parent.userId);
-      console.log("saved:");
-      console.log(response.data);
-      
-    })
-    .catch(function (error) {
-      console.log("something went wrong: " + error);
-    });
+    try {
+      const config = {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        url:
+          "https://thisorthat-260419.appspot.com/users/" +
+          this.props.parent.userId +
+          "/saved",
+        method: "get",
+        data: {},
+        withCredentials: true
+      };
 
-    if(savedQuestions.includes(this.props.parent.questionId)) {
-      this.setState({ saved: true });
+      response = axios(config)
+        .then((resp) => resp)
+        .catch((error) => error);
+    } catch (error) {
+      response = error;
+    }
+
+    console.log("response is: " + response);
+    // return response;
+    console.log("i think I ran");
+    // axios.get('https://thisorthat-260419.appspot.com/users/' + this.props.parent.userId + '/saved').then((response) => {
+    //     console.log(this.props.parent.userId);
+    //     console.log("saved:");
+    //     console.log(response.data);
+
+    //   })
+    //   .catch(function (error) {
+    //     console.log("something went wrong: " + error);
+    //   });
+
+    if (savedQuestions.includes(this.props.parent.questionId)) {
+      this.setState({
+        saved: true
+      });
     } else {
-      this.setState({ saved: false });
+      this.setState({
+        saved: false
+      });
     }
   }
 
@@ -104,50 +156,58 @@ export default class Options extends Component {
       <div className="options">
         <Grid container direction="column" alignItems="center">
           <Grid item>
+            {" "}
             {this.state.saved === true ? (
-              <IconButton className="iconButton" onClick={(e) => this.unsave(e)} >
+              <IconButton
+                className="iconButton"
+                onClick={(e) => this.unsave(e)}
+              >
                 <TurnedInIcon />
               </IconButton>
             ) : (
-              <IconButton className="iconButton" onClick={(e) => this.save(e)} >
+              <IconButton className="iconButton" onClick={(e) => this.save(e)}>
                 <TurnedInNotIcon />
               </IconButton>
-            )}
+            )}{" "}
           </Grid>{" "}
           <Grid item>
+            {" "}
             {this.state.saved === true ? (
-              <Typography>Unsave</Typography>
+              <Typography> Unsave </Typography>
             ) : (
-              <Typography>Save</Typography>
-            )}
+              <Typography> Save </Typography>
+            )}{" "}
           </Grid>{" "}
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
-            <IconButton className="iconButton" onClick={(e) => window.location.href = "/feed"}>
-              <SkipNextIcon onClick={console.log("skip")} />
-            </IconButton>
+            <IconButton
+              className="iconButton"
+              onClick={(e) => (window.location.href = "/feed")}
+            >
+              <SkipNextIcon onClick={console.log("skip")} />{" "}
+            </IconButton>{" "}
           </Grid>{" "}
           <Grid item>
-            <Typography>Skip</Typography>
+            <Typography> Skip </Typography>{" "}
           </Grid>{" "}
         </Grid>{" "}
         <Grid container direction="column" alignItems="center">
           <Grid item>
             <IconButton className="iconButton" onClick={(e) => this.share(e)}>
               <ShareSharpIconButton />
-            </IconButton>
+            </IconButton>{" "}
             <Dialog open={this.state.open} onClose={this.handleClose}>
-              <DialogTitle>{"Share This or That"}</DialogTitle>
+              <DialogTitle> {"Share This or That"} </DialogTitle>{" "}
               <DialogContent>
                 <IconButton className="facebookIconButton">
-                  <FacebookIcon onClick={(e) => this.facebookShare(e)} />
-                </IconButton>
-              </DialogContent>
-            </Dialog>
+                  <FacebookIcon onClick={(e) => this.facebookShare(e)} />{" "}
+                </IconButton>{" "}
+              </DialogContent>{" "}
+            </Dialog>{" "}
           </Grid>{" "}
           <Grid item>
-            <Typography>Share</Typography>
+            <Typography> Share </Typography>{" "}
           </Grid>{" "}
         </Grid>{" "}
       </div>
