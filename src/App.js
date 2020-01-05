@@ -10,6 +10,7 @@ import Join from "./Components/Join";
 import Profile from "./Components/Profile";
 import ProfileToT from "./Components/ProfileToT";
 import ToTSubmit from "./Components/ToTSubmit";
+import Voucher from "./Components/Voucher";
 import {
   BrowserRouter as Router,
   Route,
@@ -117,7 +118,7 @@ class App extends Component {
                       path="/feed"
                       render={(props) =>
                         this.state.isLoggedIn ? (
-                          <Question />
+                          <Voucher />
                         ) : (
                           <Redirect to="/login" />
                         )

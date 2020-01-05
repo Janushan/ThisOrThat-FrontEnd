@@ -57,12 +57,13 @@ export default class ProfileToT extends Component {
     text2: "Ice-Cream",
     image1: null,
     image2: null,
-
     option1Votes: 8,
     option2Votes: 5,
     totalVotes: 13
   }
 
+
+  comp
 
   render() {
     var percentage1 = (100 * (this.state.option1Votes / this.state.totalVotes)).toFixed(2);
