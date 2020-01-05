@@ -27,6 +27,7 @@ export default class Question extends Component {
         text2: "",
         unsplashUrl1: "",
         unsplashUrl2: "",
+        isSponsored: false,
         image1: null,
         image2: null,
 
@@ -78,8 +79,20 @@ export default class Question extends Component {
         }
 
         try {
-            axios.post('', fd).then(res => {
+            axios.post('https://thisorthat-260419.appspot.com/questions', {
+                questionText: this.state.title,
+                option1: {
+                    text: this.state.text1
+                },
+                option2: {
+                    text: this.state.text2
+                },
+                userID: this.props.userId,
+                isSponsored: this.state.isSponsored
+            })
+            .then(res => {
                 console.log(res);
+                console.log("ToT posted.")
                 window.location.href = '/totsubmit';
             });
         } catch (e) {
