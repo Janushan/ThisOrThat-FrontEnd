@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import MenuItem from "@material-ui/core/MenuItem";
+
+import logo from "../../Assets/logo.jpg";
 import "./header.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -86,9 +88,9 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
   if (isLoggedIn === true) {
     fullNavBar = (
       <React.Fragment>
-        <div className="headerButtonContainer">
+        <div className="headerButtonContainer headerVertLine">
           <Button
-            className="headerButton"
+            className="headerButton leftHeaderButton"
             onClick={function() {
               window.location.href = "/question";
             }}
@@ -167,9 +169,15 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
     <div className={classes.grow}>
       <AppBar className="AppBar" position="static">
         <Toolbar disableGutters={true} variant="dense">
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Button
+            className="headerButton headerTitle"
+            onClick={function() {
+              window.location.href = "/question";
+            }}
+          >
+            <img alt="this or that logo" class="headerLogo" src={logo} />
             This or That
-          </Typography>
+          </Button>
           {fullNavBar}
         </Toolbar>
       </AppBar>
