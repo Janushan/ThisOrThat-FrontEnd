@@ -64,11 +64,11 @@ export default class ProfileToT extends Component {
     var percentage1 = (
       100 *
       (this.state.option1Votes / this.state.totalVotes)
-    ).toFixed(2);
+    ).toFixed(0);
     var percentage2 = (
       100 *
       (1 - this.state.option1Votes / this.state.totalVotes)
-    ).toFixed(2);
+    ).toFixed(0);
     return (
       <div className="holder">
         <Card className="totInProfile" raised>
