@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 
 import Options from "./options";
 import ImageAndTextQuestion from "./imageAndText";
-// import ImageQuestion from "./image";
-// import TextQuestion from "./text";
 
 import "./styles.css";
 
@@ -28,23 +26,24 @@ export default class Question extends Component {
 
   componentWillMount() {
     // alert("hei we are here");
-    var cookie = Cookies.get('session');
+    var cookie = Cookies.get("session");
     // alert("cookie: " + cookie);
-    axios.get('http://thisorthat-260419.appspot.com/me', {
-      headers: {
+    axios
+      .get("http://thisorthat-260419.appspot.com/me", {
+        headers: {
           Cookie: "cookie1=value; cookie2=value; cookie3=value;"
-      }
-    })
-    .then((response) => {
-      this.props.changeIsLoggedIn(true);
-      // alert(this.props.getIsLoggedIn);
-      // alert("ME WAS SUCCESSFUL");
-    })
-    .catch(function (error) {
-      // window.location.href = "/login";
-      // alert("ME WAS NOT SUCCESSFUL: " + error);
-      console.log("And the error was: " + error);
-    });
+        }
+      })
+      .then((response) => {
+        this.props.changeIsLoggedIn(true);
+        // alert(this.props.getIsLoggedIn);
+        // alert("ME WAS SUCCESSFUL");
+      })
+      .catch(function(error) {
+        // window.location.href = "/login";
+        // alert("ME WAS NOT SUCCESSFUL: " + error);
+        console.log("And the error was: " + error);
+      });
   }
 
   componentDidMount() {
@@ -123,13 +122,10 @@ export default class Question extends Component {
     if (this.state.group === false) {
       return (
         <div className="question">
-          <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
-          {/* <TextQuestion /> */} <br /> <br />
+          <ImageAndTextQuestion />
+          <br /> <br />
           <div className="timer">
-            <Typography>
-              {this.state.seconds}
-              {/* {this.state.votes} */}{" "}
-            </Typography>{" "}
+            <Typography>{this.state.seconds}</Typography>{" "}
           </div>{" "}
           <br />
           <Options />
@@ -139,8 +135,7 @@ export default class Question extends Component {
       return (
         <div>
           <div className="question">
-            <ImageAndTextQuestion parent={this.state} />{" "}
-            {/* <ImageQuestion /> */} {/* <TextQuestion /> */} <br /> <br />
+            <ImageAndTextQuestion parent={this.state} /> <br /> <br />
             <Grid
               container
               direction="row"
@@ -149,10 +144,7 @@ export default class Question extends Component {
               className="timer"
             >
               <Grid item>
-                <Typography>
-                  {this.state.seconds}
-                  {/* {this.state.votes} */}{" "}
-                </Typography>{" "}
+                <Typography>{this.state.seconds}</Typography>{" "}
               </Grid>
               <Grid item className="circularProgressWrapper">
                 <CircularProgress size={36} className="circularProgress" />
