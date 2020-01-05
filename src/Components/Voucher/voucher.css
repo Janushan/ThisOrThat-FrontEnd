@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.holder {
+    display: grid;
+    margin-top: 3%;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .voucher {
+    padding: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: white;
+    background-color: #60308b;
+    text-align: center;
+  }
+
+  .percenage{
+      padding-right: 30px;
+      padding-bottom: 15px;
+  }
+
+  .voucherImage {
+    padding-bottom: 15px;
+  }
+  
+  .website {
+    padding-bottom: 15px;
+  }
+
+  .description {
+    padding-bottom: 15px;
+  }
+
+  .code{
+    padding-bottom: 15px;
+  }

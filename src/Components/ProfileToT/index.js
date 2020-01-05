@@ -52,6 +52,12 @@ export default class ProfileToT extends Component {
     },
 
     title: "",
+
+    text1: "Pizza",
+    text2: "Ice-Cream",
+    image1: null,
+    image2: null,
+
     text1: "",
     text2: "",
     url1: "",
@@ -114,6 +120,8 @@ export default class ProfileToT extends Component {
         console.log("No reponse: " + error);
       });
   }
+
+  comp
 
   render() {
     var percentage1 = 0;

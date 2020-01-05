@@ -54,13 +54,14 @@ export default class Login extends Component {
       this.setState({open1:true});
     } else {
       axios.post('https://thisorthat-260419.appspot.com/login/email', {
-      email: this.state.email,
-      password: this.state.password
+        email: this.state.email,
+        password: this.state.password
       })
       .then(response => {
+        console.log(response);
         this.setState({ validated: response.data})
-        if(this.state.validated===1){
-          // this.props.history.push("/<homepage>"); add in path to home page here
+        if(response.status==201){
+          this.props.changeIsLoggedIn(true);
         }else{
           alertString+="Invalid Credentials";
           this.setState({errorMessage:alertString});
@@ -69,7 +70,7 @@ export default class Login extends Component {
         }
       })
 
-      this.props.changeIsLoggedIn(true);
+      //this.props.changeIsLoggedIn(true);
     }
   };
 
