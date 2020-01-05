@@ -85,7 +85,12 @@ export default class ImageAndTextQuestion extends Component {
                   onClick={(e) => this.incrementChoice1(e)}
                   alt="image1"
                 />{" "}
-                <Typography className="cardCaptionText"> Pizza </Typography>{" "}
+                <Grid className="cardCaptionTextContainer">
+                  <Grid className="cardCaptionOptionContainer">
+                    <Typography className="cardCaptionOption">A</Typography>
+                  </Grid>
+                  <Typography className="cardCaptionText"> Pizza </Typography>{" "}
+                </Grid>
               </Grid>{" "}
             </Grid>{" "}
             <Grid container direction="column" alignItems="center">
@@ -96,7 +101,15 @@ export default class ImageAndTextQuestion extends Component {
                   onClick={(e) => this.incrementChoice2(e)}
                   alt="image2"
                 />{" "}
-                <Typography className="cardCaptionText"> Ice Cream </Typography>{" "}
+                <Grid className="cardCaptionTextContainer">
+                  <Grid className="cardCaptionOptionContainer">
+                    <Typography className="cardCaptionOption">B</Typography>
+                  </Grid>
+                  <Typography className="cardCaptionText">
+                    {" "}
+                    Ice Cream{" "}
+                  </Typography>{" "}
+                </Grid>{" "}
               </Grid>{" "}
             </Grid>{" "}
           </div>{" "}
