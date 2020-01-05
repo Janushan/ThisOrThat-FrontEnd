@@ -47,7 +47,7 @@ export default class Options extends Component {
     window.FB.ui(
       {
         method: "share",
-        href: "https://developers.facebook.com/docs/"
+        href: "https://hip-graph-263913.appspot.com/"
       },
       function(response) {}
     );
