@@ -4,6 +4,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 
+import ImageAndTextQuestionOption from "./imageAndTextOption";
+
 import Image1 from "../../Assets/pizza.jpg";
 import Image2 from "../../Assets/ice-cream.jpg";
 
@@ -70,51 +72,30 @@ export default class ImageAndTextQuestion extends Component {
   };
 
   render() {
-    //const { title, option1, option2} = this.props;
+    const { title, totalVoteCount } = this.props;
     return (
       <div className="question">
         <Card className="card imageAndTextCard">
-          <CardHeader title="What is Better for a Breakup?" />
+          <CardHeader title={title} />
           <div className="row"> </div> <br />
           <div className="options">
-            <Grid container direction="column" alignItems="center">
-              <Grid item className="cardContainerLeft">
-                <img
-                  className="image"
-                  src={Image1}
-                  onClick={(e) => this.incrementChoice1(e)}
-                  alt="image1"
-                />{" "}
-                <Grid className="cardCaptionTextContainer">
-                  <Grid className="cardCaptionOptionContainer">
-                    <Typography className="cardCaptionOption">A</Typography>
-                  </Grid>
-                  <Typography className="cardCaptionText"> Pizza </Typography>{" "}
-                </Grid>
-              </Grid>{" "}
-            </Grid>{" "}
-            <Grid container direction="column" alignItems="center">
-              <Grid item className="cardContainer">
-                <img
-                  className="image"
-                  src={Image2}
-                  onClick={(e) => this.incrementChoice2(e)}
-                  alt="image2"
-                />{" "}
-                <Grid className="cardCaptionTextContainer">
-                  <Grid className="cardCaptionOptionContainer">
-                    <Typography className="cardCaptionOption">B</Typography>
-                  </Grid>
-                  <Typography className="cardCaptionText">
-                    {" "}
-                    Ice Cream{" "}
-                  </Typography>{" "}
-                </Grid>{" "}
-              </Grid>{" "}
-            </Grid>{" "}
+            <ImageAndTextQuestionOption
+              cardContainerClass="cardContainerButtonLeft"
+              image={Image1}
+              handleClick={this.incrementChoice1}
+              option="A"
+              label="Pizza"
+            />
+            <ImageAndTextQuestionOption
+              cardContainerClass="cardContainerButton"
+              image={Image2}
+              handleClick={this.incrementChoice2}
+              option="B"
+              label="Ice Cream"
+            />
           </div>{" "}
           <Grid className="cardCaptionVotes">
-            <Typography variant="caption"> 12,000 votes </Typography>{" "}
+            <Typography variant="caption"> {totalVoteCount} votes </Typography>{" "}
           </Grid>
         </Card>{" "}
       </div>

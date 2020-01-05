@@ -42,8 +42,11 @@ export default class Question extends Component {
     if (this.state.group === false) {
       return (
         <div className="question">
-          <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
-          {/* <TextQuestion /> */} <br /> <br />
+          <ImageAndTextQuestion
+            title="What is Better for a Breakup?"
+            totalVoteCount="12,000"
+          />{" "}
+          {/* <ImageQuestion /> */} {/* <TextQuestion /> */} <br /> <br />
           <div className="timer">
             <Typography>
               {this.state.seconds}
@@ -58,8 +61,11 @@ export default class Question extends Component {
       return (
         <div>
           <div className="question">
-            <ImageAndTextQuestion /> {/* <ImageQuestion /> */}{" "}
-            {/* <TextQuestion /> */} <br /> <br />
+            <ImageAndTextQuestion
+              title="What is Better for a Breakup?"
+              totalVoteCount="12,000"
+            />{" "}
+            {/* <ImageQuestion /> */} {/* <TextQuestion /> */} <br /> <br />
             <Grid
               container
               direction="row"

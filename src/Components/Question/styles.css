@@ -32,18 +32,19 @@
   background-color: #4b2d5e;
 }
 
-.cardContainer {
+.cardContainerButton {
 }
 
-.cardContainerLeft {
+.cardContainerButtonLeft {
   margin-right: 3rem;
 }
 
-.cardContainer:hover,
-.cardContainerLeft:hover {
+.cardContainerButton:hover,
+.cardContainerButtonLeft:hover {
   transform: scale(1.05);
   cursor: pointer;
   background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
 .card {
@@ -78,7 +79,7 @@
 }
 
 .image {
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   width: 10rem;
   height: 10rem;
 }
