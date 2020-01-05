@@ -8,12 +8,11 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
 import "./styles.css";
 
@@ -29,15 +28,15 @@ export default class Login extends Component {
   handleClose = (openIndex) => {
     console.log(openIndex);
     if (openIndex === 1) {
-        this.setState({
-            open1: false
-        })
+      this.setState({
+        open1: false
+      });
     } else {
-        this.setState({
-            open2: false
-        })
+      this.setState({
+        open2: false
+      });
     }
-  }
+  };
 
   change = (e) => {
     this.setState({
@@ -47,40 +46,47 @@ export default class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    var alertString="";
+    var alertString = "";
     if (this.state.email === "" || this.state.password === "") {
-      alertString+="You must complete all fields";
-      this.setState({errorMessage:alertString});
-      this.setState({open1:true});
+      alertString += "You must complete all fields";
+      this.setState({ errorMessage: alertString });
+      this.setState({ open1: true });
     } else {
-      axios.post('https://thisorthat-260419.appspot.com/login/email', {
-      email: this.state.email,
-      password: this.state.password
-      })
-      .then(response => {
-        this.setState({ validated: response.data})
-        if(this.state.validated===1){
-          // this.props.history.push("/<homepage>"); add in path to home page here
-        }else{
-          alertString+="Invalid Credentials";
-          this.setState({errorMessage:alertString});
-          this.setState({open1:true});
-          this.setState({ password: ""});
-        }
-      })
+      axios
+        .post("https://thisorthat-260419.appspot.com/login/email", {
+          email: this.state.email,
+          password: this.state.password
+        })
+        .then((response) => {
+          console.log(response);
+          this.setState({ validated: response.data });
+          if (response.status === 201) {
+            this.props.changeIsLoggedIn(true);
+          } else {
+            alertString += "Invalid Credentials";
+            this.setState({ errorMessage: alertString });
+            this.setState({ open1: true });
+            this.setState({ password: "" });
+          }
+        });
 
-      this.props.changeIsLoggedIn(true);
+      //this.props.changeIsLoggedIn(true);
     }
   };
 
   facebookLogin = (response) => {
-    if(response.userID) {
+    if (response.userID) {
       this.props.changeIsLoggedIn(true);
       console.log("Facebook login was successful!");
     } else {
       console.log("Facebook login was unsucessful!");
     }
-  }
+  };
+
+  fbLogin = () => {
+    window.location.href =
+      "https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed";
+  };
 
   render() {
     return (
@@ -119,14 +125,28 @@ export default class Login extends Component {
                   >
                     Login
                   </Button>
+                  <Button
+                    className="facebookLoginButton"
+                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=https://localhost:3000/feed"
+                    // onClick={(e) => this.fbLogin(e)}
+                    startIcon={<FacebookIcon />}
+                  >
+                    Log in with Facebook
+                  </Button>
                   <FacebookLogin
-                      appId="542050589716105"
-                      autLoad
-                      fields="name,email,picture"
-                      callback={this.facebookLogin}
-                      render={renderProps => (
-                        <Button onClick={renderProps.onClick} className="facebookLoginButton" startIcon={<FacebookIcon />}>Log in with Facebook</Button>
-                      )}
+                    appId="542050589716105"
+                    autLoad
+                    fields="name,email,picture"
+                    callback={this.facebookLogin}
+                    render={(renderProps) => (
+                      <Button
+                        onClick={renderProps.onClick}
+                        className="facebookLoginButton"
+                        startIcon={<FacebookIcon />}
+                      >
+                        Log in with Facebook
+                      </Button>
+                    )}
                   />
                   <Grid
                     container
@@ -150,15 +170,13 @@ export default class Login extends Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-        <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
-        <DialogContent>
-          {this.state.errorMessage}
-        </DialogContent>
-        <DialogActions>
+          <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+          <DialogContent>{this.state.errorMessage}</DialogContent>
+          <DialogActions>
             <Button onClick={this.handleClose.bind(this, 1)} color="primary">
-                Close
+              Close
             </Button>
-        </DialogActions>
+          </DialogActions>
         </Dialog>
       </div>
     );
