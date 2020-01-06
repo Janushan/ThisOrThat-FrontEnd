@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import { StringFormat } from "../../Helpers/capitalise";
 
 import "./styles.css";
 
@@ -14,10 +15,6 @@ export default class ImageAndTextQuestionOption extends Component {
       cardContainerClass
     } = this.props;
 
-    const capitalise = (string) => {
-      if (typeof string !== "string") return "";
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
     return (
       <div className="options">
         <Grid container direction="column" alignItems="center">
@@ -27,12 +24,12 @@ export default class ImageAndTextQuestionOption extends Component {
               <Grid className="cardCaptionOptionContainer">
                 <Typography className="cardCaptionOption">
                   {" "}
-                  {option}{" "}
+                  {StringFormat.capitalise(option)}{" "}
                 </Typography>{" "}
               </Grid>{" "}
               <Typography className="cardCaptionText">
                 {" "}
-                {capitalise(label)}{" "}
+                {StringFormat.capitalise(label)}{" "}
               </Typography>{" "}
             </Grid>{" "}
           </Grid>{" "}
