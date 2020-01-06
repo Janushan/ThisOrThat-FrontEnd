@@ -111,7 +111,7 @@ export default function Profile(props) {
         },
         {
           headers: {
-            Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+            // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
           }
         }
       );
