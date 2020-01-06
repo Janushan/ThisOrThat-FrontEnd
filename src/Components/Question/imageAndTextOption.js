@@ -1,8 +1,46 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import { StringFormat } from "../../Helpers/capitalise";
 
 import "./styles.css";
+
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const BorderLinearProgress = withStyles({
+  root: {
+    marginTop: 4,
+    height: 16,
+    backgroundColor: "#FFF",
+    borderRadius: 2
+  },
+  bar: {
+    borderRadius: 0,
+    backgroundColor: "#50E3C2"
+  }
+})(LinearProgress);
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  }
+}));
+
+function CustomizedProgressBars({ percent }) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <BorderLinearProgress
+        className={classes.margin}
+        variant="determinate"
+        color="secondary"
+        value={percent}
+      />
+    </div>
+  );
+}
 
 export default class ImageAndTextQuestionOption extends Component {
   render() {
@@ -11,13 +49,10 @@ export default class ImageAndTextQuestionOption extends Component {
       handleClick,
       option,
       label,
-      cardContainerClass
+      cardContainerClass,
+      percentage
     } = this.props;
 
-    const capitalise = (string) => {
-      if (typeof string !== "string") return "";
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
     return (
       <div className="options">
         <Grid container direction="column" alignItems="center">
@@ -27,14 +62,24 @@ export default class ImageAndTextQuestionOption extends Component {
               <Grid className="cardCaptionOptionContainer">
                 <Typography className="cardCaptionOption">
                   {" "}
-                  {option}{" "}
+                  {StringFormat.capitalise(option)}{" "}
                 </Typography>{" "}
               </Grid>{" "}
               <Typography className="cardCaptionText">
                 {" "}
-                {capitalise(label)}{" "}
+                {StringFormat.capitalise(label)}{" "}
               </Typography>{" "}
             </Grid>{" "}
+            {percentage ? (
+              <Grid className="resultsContainer">
+                <CustomizedProgressBars percent={percentage} />
+                <Typography className="percentage" variant="subtitle2">
+                  {percentage + "%"}
+                </Typography>
+              </Grid>
+            ) : (
+              <div></div>
+            )}
           </Grid>{" "}
         </Grid>{" "}
       </div>

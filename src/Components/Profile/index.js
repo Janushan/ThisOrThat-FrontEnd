@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Card from "@material-ui/core/Card";
+import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
