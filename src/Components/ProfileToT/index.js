@@ -6,9 +6,14 @@ import CardHeader from "@material-ui/core/CardHeader";
 import { Typography } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import "./profileToT.css";
+import Grid from "@material-ui/core/Grid";
 
 import { lighten, makeStyles, withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+
+import { StringFormat } from "../../Helpers/capitalise";
+
+import ImageAndTextQuestionOption from "./imageAndTextOption";
 
 const BorderLinearProgress = withStyles({
   root: {
@@ -133,55 +138,86 @@ export default class ProfileToT extends Component {
     }
 
     return (
-      <div className="holder">
-        <Card className="totInProfile" raised>
-          <div>
-            <CardHeader title={this.state.title} />
-            <br />
-            <br />
-            <div className="parts">
-              <div className="part1">
-                <img className="image" alt="" src={this.state.url1} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {this.state.text1}
-                  </Typography>
-                </CardContent>
-                <CustomizedProgressBars percent={percentage1} />
-                <Typography gutterBottom variant="subtitle2">
-                  {percentage1 + "%"}
-                </Typography>
-              </div>
-              <div className="part2">
-                <img className="image" alt="" src={this.state.url2} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {this.state.text2}
-                  </Typography>
-                </CardContent>
-                <CustomizedProgressBars percent={percentage2} />
-                <Typography gutterBottom variant="subtitle2">
-                  {percentage2 + "%"}
-                </Typography>
-              </div>
-            </div>
-            <Typography gutterBottom variant="subtitle2">
-              {this.state.totalVotes + " votes in total."}
-            </Typography>
-            <br />
-            <br />
-            <Button
-              onClick={function() {
-                window.location.href = "/question";
-              }}
-              variant="contained"
-              color="primary"
-            >
-              Next ToT
-            </Button>
-          </div>
-        </Card>
+      <div className="question">
+        <Card className="card imageAndTextCard">
+          <CardHeader title={StringFormat.capitalise(this.state.title)} />{" "}
+          <div className="row"> </div> <br />
+          <div className="options">
+            <ImageAndTextQuestionOption
+              cardContainerClass="cardContainerButtonLeft"
+              image={this.state.url1}
+              handleClick={(e) => this.incrementChoice1(e)}
+              option="A"
+              label={this.state.text1}
+              percentage={percentage1}
+            />{" "}
+            <ImageAndTextQuestionOption
+              cardContainerClass="cardContainerButton"
+              image={this.state.url2}
+              handleClick={this.incrementChoice2}
+              option="B"
+              label={this.state.text2}
+              percentage={percentage2}
+            />{" "}
+          </div>{" "}
+          <Grid className="cardCaptionVotes">
+            <Typography variant="caption">
+              {" "}
+              {this.state.totalVotes}
+              votes{" "}
+            </Typography>{" "}
+          </Grid>{" "}
+        </Card>{" "}
       </div>
+      // <div className="holder">
+      //   <Card className="totInProfile" raised>
+      //     <div>
+      //       <CardHeader title={this.state.title} />
+      //       <br />
+      //       <br />
+      //       <div className="parts">
+      //         <div className="part1">
+      //           <img className="image" alt="" src={this.state.url1} />
+      //           <CardContent>
+      //             <Typography gutterBottom variant="h5" component="h2">
+      //               {this.state.text1}
+      //             </Typography>
+      //           </CardContent>
+      //           <CustomizedProgressBars percent={percentage1} />
+      //           <Typography gutterBottom variant="subtitle2">
+      //             {percentage1 + "%"}
+      //           </Typography>
+      //         </div>
+      //         <div className="part2">
+      //           <img className="image" alt="" src={this.state.url2} />
+      //           <CardContent>
+      //             <Typography gutterBottom variant="h5" component="h2">
+      //               {this.state.text2}
+      //             </Typography>
+      //           </CardContent>
+      //           <CustomizedProgressBars percent={percentage2} />
+      //           <Typography gutterBottom variant="subtitle2">
+      //             {percentage2 + "%"}
+      //           </Typography>
+      //         </div>
+      //       </div>
+      //       <Typography gutterBottom variant="subtitle2">
+      //         {this.state.totalVotes + " votes in total."}
+      //       </Typography>
+      //       <br />
+      //       <br />
+      //       <Button
+      //         onClick={function() {
+      //           window.location.href = "/question";
+      //         }}
+      //         variant="contained"
+      //         color="primary"
+      //       >
+      //         Next ToT
+      //       </Button>
+      //     </div>
+      //   </Card>
+      // </div>
     );
   }
 }

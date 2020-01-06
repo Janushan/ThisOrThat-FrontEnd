@@ -157,3 +157,11 @@
 .cardCaptionVotes {
   margin-top: 1rem;
 }
+
+.resultsContainer {
+  width: 100%;
+}
+.percentage {
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
