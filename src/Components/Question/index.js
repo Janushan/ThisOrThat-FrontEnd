@@ -35,11 +35,15 @@ export default class Question extends Component {
       })
       .then((response) => {
         this.props.changeIsLoggedIn(true);
+        console.log("response:");
+        console.log(response);
+        var userId = response.data.id;
+        this.props.setUserId(userId);
         // alert(this.props.getIsLoggedIn);
         // alert("ME WAS SUCCESSFUL");
       })
       .catch(function(error) {
-        // window.location.href = "/login";
+        window.location.href = "/login";
         // alert("ME WAS NOT SUCCESSFUL: " + error);
         console.log("And the error was: " + error);
       });
