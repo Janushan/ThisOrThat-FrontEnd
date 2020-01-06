@@ -34,7 +34,7 @@ export default class Options extends Component {
   save = (e) => {
     axios
       .post(
-        "https://thisorthat-260419.appspot.com/questions/" +
+        "https://thisorthat-260419.appspot.com/api/questions/" +
           this.props.parent.questionId +
           "/" +
           this.props.parent.userId +
@@ -54,7 +54,7 @@ export default class Options extends Component {
   unsave = (e) => {
     axios
       .post(
-        "https://thisorthat-260419.appspot.com/questions/" +
+        "https://thisorthat-260419.appspot.com/api/questions/" +
           this.props.parent.questionId +
           "/" +
           this.props.parent.userId +
@@ -84,7 +84,7 @@ export default class Options extends Component {
         method: "share",
         quote: "The most fun way make decisions",
         hashtag: "#thisorthat",
-        href: "https://hip-graph-263913.appspot.com/"
+        href: "https://hip-graph-263913.appspot.com/api/"
       },
       function(response) {}
     );
@@ -112,7 +112,7 @@ export default class Options extends Component {
           "Content-Type": "application/json"
         },
         url:
-          "https://thisorthat-260419.appspot.com/users/" +
+          "https://thisorthat-260419.appspot.com/api/users/" +
           this.props.parent.userId +
           "/saved",
         method: "get",
@@ -130,7 +130,7 @@ export default class Options extends Component {
     console.log("response is: " + response);
     // return response;
     console.log("i think I ran");
-    // axios.get('https://thisorthat-260419.appspot.com/users/' + this.props.parent.userId + '/saved').then((response) => {
+    // axios.get('https://thisorthat-260419.appspot.com/api/users/' + this.props.parent.userId + '/saved').then((response) => {
     //     console.log(this.props.parent.userId);
     //     console.log("saved:");
     //     console.log(response.data);

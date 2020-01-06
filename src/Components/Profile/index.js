@@ -85,13 +85,13 @@ export default function Profile(props) {
     const getToTs = async () => {
         //might need checks for empty responses
         // const user= async () => {
-        //     const result = await axios.get('https://thisorthat-260419.appspot.com/users/me');
+        //     const result = await axios.get('https://thisorthat-260419.appspot.com/api/users/me');
         //     console.log(result);
         //     setUserID(result.data);
         // };
         const fetchProfileToTs = async () => {
             const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/users/ /created', {
+              'https://thisorthat-260419.appspot.com/api/users/ /created', {
                 userID:{userID}
               }
             );
@@ -99,7 +99,7 @@ export default function Profile(props) {
         };
         const fetchSavedToTs = async () => {
             const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/ /saved', {
+              'https://thisorthat-260419.appspot.com/api/ /saved', {
                   userID:{userID}
               }
             );

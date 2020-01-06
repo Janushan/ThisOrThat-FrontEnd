@@ -13,7 +13,7 @@ export default class ImageAndTextQuestion extends Component {
   incrementChoice1 = (e) => {
     axios
       .post(
-        "https://thisorthat-260419.appspot.com/questions/" +
+        "https://thisorthat-260419.appspot.com/api/questions/" +
           this.props.parent.questionId +
           "/" +
           this.props.parent.userId,
@@ -29,7 +29,7 @@ export default class ImageAndTextQuestion extends Component {
   incrementChoice2 = (e) => {
     axios
       .post(
-        "https://thisorthat-260419.appspot.com/questions/" +
+        "https://thisorthat-260419.appspot.com/api/questions/" +
           this.props.parent.questionId +
           "/" +
           this.props.parent.userId,

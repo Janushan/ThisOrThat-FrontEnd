@@ -92,7 +92,7 @@ export default class Question extends Component {
         }
 
         try {
-            axios.post('https://thisorthat-260419.appspot.com/questions', {
+            axios.post('https://thisorthat-260419.appspot.com/api/questions', {
                 questionText: this.state.title,
                 option1: option1Object,
                 option2: option2Object,

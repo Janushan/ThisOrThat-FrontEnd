@@ -52,7 +52,7 @@ export default class Voucher extends Component {
       };
 
       save = (e) => {
-        axios.post('https://thisorthat-260419.appspot.com/', {
+        axios.post('https://thisorthat-260419.appspot.com/api/', {
             percentageDiscount: this.state.email,
             discountTerms: this.state.terms,
             imageURL:this.state.image,

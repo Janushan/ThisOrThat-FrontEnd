@@ -46,7 +46,7 @@ export default class Signup extends Component {
   //     this.setState({usernameError:true});
   //   }
   //   else{
-  //     axios.post('https://thisorthat-260419.appspot.com/me', {
+  //     axios.post('https://thisorthat-260419.appspot.com/api/me', {
   //         username: e.target.value
   //     })
   //     .then(response => {
@@ -104,7 +104,7 @@ export default class Signup extends Component {
       }
     }
     if(alertString==="" && (this.state.usernameError===false)){
-        axios.post('https://thisorthat-260419.appspot.com/signup/email', {
+        axios.post('https://thisorthat-260419.appspot.com/api/signup/email', {
           name: this.state.userName,
           email: this.state.email,
           password: this.state.password

@@ -53,7 +53,7 @@ export default class Login extends Component {
       this.setState({ open1: true });
     } else {
       axios
-        .post("https://thisorthat-260419.appspot.com/login/email", {
+        .post("https://thisorthat-260419.appspot.com/api/login/email", {
           email: this.state.email,
           password: this.state.password
         })
@@ -85,7 +85,7 @@ export default class Login extends Component {
 
   fbLogin = () => {
     window.location.href =
-      "https://thisorthat-260419.appspot.com/login/facebook/init?redirect=http://localhost:3000/feed";
+      "https://thisorthat-260419.appspot.com/api/login/facebook/init?redirect=http://localhost:3000/feed";
   };
 
   render() {
@@ -127,7 +127,7 @@ export default class Login extends Component {
                   </Button>
                   <Button
                     className="facebookLoginButton"
-                    href="https://thisorthat-260419.appspot.com/login/facebook/init?redirect=https://localhost:3000/feed"
+                    href="https://thisorthat-260419.appspot.com/api/login/facebook/init?redirect=https://thisorthat-260419.appspot.com/api/feed"
                     // onClick={(e) => this.fbLogin(e)}
                     startIcon={<FacebookIcon />}
                   >

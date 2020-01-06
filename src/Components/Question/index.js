@@ -29,7 +29,7 @@ export default class Question extends Component {
     var cookie = Cookies.get("session");
     // alert("cookie: " + cookie);
     axios
-      .get("http://thisorthat-260419.appspot.com/me", {
+      .get("http://thisorthat-260419.appspot.com/api/me", {
         headers: {
           Cookie: "cookie1=value; cookie2=value; cookie3=value;"
         }
@@ -75,7 +75,7 @@ export default class Question extends Component {
       () => {
         axios
           .get(
-            "https://thisorthat-260419.appspot.com/users/" +
+            "https://thisorthat-260419.appspot.com/api/users/" +
               this.state.userId +
               "/feed"
           )
