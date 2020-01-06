@@ -1,62 +1,62 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import axios from "axios";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import PropTypes from "prop-types";
+import SwipeableViews from "react-swipeable-views";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import ProfileToT from '../ProfileToT';
-import Avatar from '@material-ui/core/Avatar';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import ProfileToT from "../ProfileToT";
+import Avatar from "@material-ui/core/Avatar";
 
-import './profile.css';
+import "./profile.css";
 import { TextField } from "@material-ui/core";
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <Typography
-        component="div"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`full-width-tabpanel-${index}`}
-        aria-labelledby={`full-width-tab-${index}`}
-        {...other}
-      >
-        {value === index && <Box p={2}>{children}</Box>}
-      </Typography>
-    );
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={2}>{children}</Box>}
+    </Typography>
+  );
 }
-  
+
 TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
 };
 
 function a11yProps(index) {
-    return {
-        id: `full-width-tab-${index}`,
-        'aria-controls': `full-width-tabpanel-${index}`,
-    };
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`
+  };
 }
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        width: 500,
-    },
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500
+  }
 }));
 
 export default function Profile(props) {
@@ -69,6 +69,9 @@ export default function Profile(props) {
     const [profile, setProfile]= useState(false);
     const [url, setURL]= useState("");
     const [name, setName]= useState("");
+    const [profilename, setProfileName]= useState("Profile");
+    const [profileIcon, setProfileIcon]= useState("https://image.flaticon.com/icons/svg/1738/1738760.svg");
+    const [userId, setUserId]=useState(localStorage.getItem('userId'));
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -79,46 +82,64 @@ export default function Profile(props) {
     };
 
     useEffect(() => {
-        getToTs();
+        created();
+        saved();
+        // getToTs();
     }, []);
 
+    const created = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created')
+        .then((response) => {
+            console.log(response);
+            setProfileToTs(response.data);
+        });
+    };
+
+    const saved = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved');
+        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved')
+        .then((response) => {
+            console.log(response);
+            setSavedToTs(response.data);
+        });
+    };
+
     const getToTs = async () => {
-        //might need checks for empty responses
-        // const user= async () => {
-        //     const result = await axios.get('https://thisorthat-260419.appspot.com/api/users/me');
-        //     console.log(result);
-        //     setUserID(result.data);
-        // };
+        console.log('ID'+ userId+ "<>");
         const fetchProfileToTs = async () => {
-            const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/api/users/ /created', {
-                userID:{userID}
-              }
-            );
+            const result = await axios.get(
+              'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+            console.log(result);
             setProfileToTs(result.data);
         };
         const fetchSavedToTs = async () => {
-            const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/api/ /saved', {
-                  userID:{userID}
-              }
-            );
+            const result = await axios.get(
+              'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
+            console.log(result);
             setSavedToTs(result.data);
         };
         fetchProfileToTs();
         fetchSavedToTs();
+        console.log(profileToTs);
+        console.log(savedToTs);
     };
 
     const onClick= (e) =>  {
         setProfile(true);
-        console.log({profile})
     };
 
     const cancel= (e) =>  {
+        setName(profilename);
+        setURL(profileIcon);
         setProfile(false);
     };
 
     const save= (e) =>  {
+        setProfileName(name);
+        setProfileIcon(url);
         setProfile(false);
     };
 
@@ -133,11 +154,12 @@ export default function Profile(props) {
     return (
         <div className="profilePage">
             <Button className="profileCard" onClick={e => onClick(e)}> 
-                <Avatar>  
+                {/* <Avatar>  
                     <AccountCircleIcon/> 
-                </Avatar>
-                <Typography>
-                    Profile
+                </Avatar> */}
+                <img className="profileIcon" src={profileIcon}/>
+                <Typography variant="h3"  display="block" gutterbottom>
+                    {profilename}
                 </Typography>
             </Button>
             <br/>
@@ -170,7 +192,7 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-                            <ProfileToT getQuestionState={props.getQuestionState} />
+                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
@@ -183,7 +205,7 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-                            <ProfileToT getQuestionState={props.getQuestionState} />
+                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
                         </ul>
                     </TabPanel>
                 </SwipeableViews>

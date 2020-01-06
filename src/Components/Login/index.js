@@ -79,8 +79,6 @@ export default class Login extends Component {
             this.setState({ password: "" });
           }
         });
-
-      //this.props.changeIsLoggedIn(true);
     }
   };
 
