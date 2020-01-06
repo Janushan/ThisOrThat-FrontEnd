@@ -90,7 +90,7 @@ export default function Profile(props) {
     const created = async () => {
         console.log(userId);
         console.log('https://thisorthat-260419.appspot.com/api/created');
-        axios.get('https://thisorthat-260419.appspot.com/api/created',{withCredentials:true})
+        axios.get({method:'get', url:'https://thisorthat-260419.appspot.com/api/created',withCredentials:true})
         .then((response) => {
             console.log(response);
             setProfileToTs(response.data);
@@ -98,7 +98,7 @@ export default function Profile(props) {
     };
 
     const saved = async () => {
-        axios.get('https://thisorthat-260419.appspot.com/api/saved',{withCredentials:true})
+        axios.get({method:'get', url:'https://thisorthat-260419.appspot.com/api/saved',withCredentials:true})
         .then((response) => {
             console.log(response);
             setSavedToTs(response.data);
@@ -182,27 +182,31 @@ export default function Profile(props) {
                 >
                     <TabPanel value={value} index={0} dir={theme.direction}>
                         <ul className="listOfMyToTs">
-                            {/* {profileToTs.map(info => (
+                            {profileToTs.map(info => (
                                 <Card className="myToTs" raised>
                                     <ProfileToT
-                                        title={info.Title}
-                                        votes={info.Votes}
+                                        title={info.questionText}
+                                        votes1={info.option1.numberOfVotes}
+                                        votes2={info.option2.numberOfVotes}
+                                        totalVotes={info.option1.numberOfVotes+info.option2.numberOfVotes}
                                     />
                                 </Card>
-                            ))} */}
-                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
+                            ))}
+                            <ProfileToT getQuestionState={props.getQuestionState} />
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
                         <ul className="listOfSavedToTs">
-                            {/* {savedToTs.map(info => (
+                            {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
                                     <ProfileToT
-                                        title={info.Title}
-                                        votes={info.Votes}
+                                        title={info.questionText}
+                                        votes1={info.option1.numberOfVotes}
+                                        votes2={info.option2.numberOfVotes}
+                                        totalVotes={info.option1.numberOfVotes+info.option2.numberOfVotes}
                                     />
                                 </Card>
-                            ))} */}
+                            ))}
                             {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
                         </ul>
                     </TabPanel>
