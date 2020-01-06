@@ -137,12 +137,14 @@ export default function Profile(props) {
         direction="row"
       >
         <Grid item justify="center">
-          <Avatar>
-            <AccountCircleIcon />
-          </Avatar>
-          <Typography className="profileName">
-            Profile Name Goes Here
-          </Typography>
+          <Grid container>
+            <Avatar>
+              <AccountCircleIcon />
+            </Avatar>
+            <Typography className="profileName">
+              Profile Name Goes Here
+            </Typography>
+          </Grid>
         </Grid>
         <Grid item>
           <IconButton
@@ -198,18 +200,12 @@ export default function Profile(props) {
           </ul>
         </TabPanel>
       </div>
-      <Dialog
-        open={profile}
-        onClose={handleChange}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
+      <Dialog open={profile} onClose={handleChange}>
+        <DialogTitle>{"Update Profile"}</DialogTitle>
         <DialogContent>
-          <Typography display="block" gutterBottom>
+          <Typography className="profileDialogHeader">
             Profile Picture
           </Typography>
-          <br />
           <TextField
             name="url"
             label="Image URL"
@@ -219,12 +215,12 @@ export default function Profile(props) {
             fullWidth={true}
             onChange={(e) => URL(e)}
           />
-          <img className="profileImage" src={url} alt="Preview" />
+          <Grid className="creatorImageContainer profileImageContainer">
+            <img className="creatorImage" src={url} alt="" />
+          </Grid>
           <br />
           <br />
-          <Typography display="block" gutterBottom>
-            Profile Name
-          </Typography>
+          <Typography className="profileDialogHeader">Profile Name</Typography>
           <TextField
             name="name"
             label="Profle Name"
@@ -236,7 +232,7 @@ export default function Profile(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={(e) => cancel(e)} color="primary">
+          <Button onClick={(e) => cancel(e)} color="secondary">
             Cancel
           </Button>
           <Button onClick={(e) => save(e)} color="primary">

@@ -23,7 +23,10 @@
 }
 .profileName {
   margin-top: 0.5rem;
+  margin-left: 1rem;
   color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .editpProfileButton {
@@ -38,6 +41,14 @@ ul {
   color: white;
   margin-top: 2rem;
   margin-bottom: 1rem;
+}
+
+.profileDialogHeader {
+  margin-bottom: 0.8rem;
+}
+
+.profileImageContainer {
+  margin-top: 0.5rem;
 }
 
 .MuiPaper-elevation4 {

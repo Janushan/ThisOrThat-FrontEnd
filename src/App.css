@@ -45,6 +45,12 @@
   border-bottom-color: "green";
 }
 
+.MuiButton-root:hover {
+  color: white;
+}
+.MuiButton-textSecondary:hover {
+  background-color: #657786 !important;
+}
 .MuiFormLabel-root.Mui-focused .MuiOutlinedInput-notchedOutline:focus {
   color: #955abb;
   border-color: #955abb;
