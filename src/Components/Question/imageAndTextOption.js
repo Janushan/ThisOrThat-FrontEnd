@@ -13,6 +13,11 @@ export default class ImageAndTextQuestionOption extends Component {
       label,
       cardContainerClass
     } = this.props;
+
+    const capitalise = (string) => {
+      if (typeof string !== "string") return "";
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
     return (
       <div className="options">
         <Grid container direction="column" alignItems="center">
@@ -25,7 +30,10 @@ export default class ImageAndTextQuestionOption extends Component {
                   {option}{" "}
                 </Typography>{" "}
               </Grid>{" "}
-              <Typography className="cardCaptionText"> {label} </Typography>{" "}
+              <Typography className="cardCaptionText">
+                {" "}
+                {capitalise(label)}{" "}
+              </Typography>{" "}
             </Grid>{" "}
           </Grid>{" "}
         </Grid>{" "}

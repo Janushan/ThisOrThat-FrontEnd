@@ -20,7 +20,7 @@ export default class Question extends Component {
     url1: "",
     url2: "",
     numberOfVotes: 0,
-    seconds: 10,
+    seconds: 1000,
     group: true
   };
 

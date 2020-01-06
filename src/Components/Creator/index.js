@@ -10,7 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import PublicIcon from '@material-ui/icons/Public';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -227,8 +227,8 @@ export default class Question extends Component {
 
     render() {
         return (
-            <div className='holder'>
-                <Card className="creator" raised>
+            <div className='wrapper'>
+                <Card className="loginCard" raised>
                     <div>
                         <CardHeader title="Create a ToT" />
                         <br />
