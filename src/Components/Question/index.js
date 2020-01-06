@@ -27,7 +27,7 @@ export default class Question extends Component {
   componentWillMount() {
     // alert("hei we are here");
     var cookie = Cookies.get("session");
-    // alert("cookie: " + cookie);
+    alert("cookie: " + document.cookie);
     axios
       .get("http://thisorthat-260419.appspot.com/api/me", {
         headers: {
