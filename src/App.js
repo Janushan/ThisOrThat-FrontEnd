@@ -39,7 +39,7 @@ const theme = createMuiTheme({
 class App extends Component {
   state = {
     isLoggedIn: false,
-    userId: "5e0e5e2c865c4946ea9a2dcf",
+    userId: "",
     questionState: {
       userId: "...",
       questionId: "",
