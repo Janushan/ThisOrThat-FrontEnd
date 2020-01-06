@@ -60,115 +60,131 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Profile(props) {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = useState(0);
-  const [profileToTs, setProfileToTs] = useState([]);
-  const [savedToTs, setSavedToTs] = useState([]);
-  const [userID, setUserID] = useState(0);
-  const [profile, setProfile] = useState(false);
-  const [url, setURL] = useState("");
-  const [name, setName] = useState("");
+    const classes = useStyles();
+    const theme = useTheme();
+    const [value, setValue] = useState(0);
+    const [profileToTs, setProfileToTs]= useState([]);
+    const [savedToTs, setSavedToTs]= useState([]);
+    const [userID, setUserID]=useState(0);
+    const [profile, setProfile]= useState(false);
+    const [url, setURL]= useState("");
+    const [name, setName]= useState("");
+    const [profilename, setProfileName]= useState("Profile");
+    const [profileIcon, setProfileIcon]= useState("https://image.flaticon.com/icons/svg/1738/1738760.svg");
+    const [userId, setUserId]=useState(localStorage.getItem('userId'));
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
-  useEffect(() => {
-    getToTs();
-  }, []);
-
-  const getToTs = async () => {
-    //might need checks for empty responses
-    // const user= async () => {
-    //     const result = await axios.get('https://thisorthat-260419.appspot.com/api/users/me');
-    //     console.log(result);
-    //     setUserID(result.data);
-    // };
-    const fetchProfileToTs = async () => {
-      const result = await axios.post(
-        "https://thisorthat-260419.appspot.com/api/users/ /created",
-        {
-          userID: { userID }
-        },
-        {
-          headers: {}
-        }
-      );
-      setProfileToTs(result.data);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
-    const fetchSavedToTs = async () => {
-      const result = await axios.post(
-        "https://thisorthat-260419.appspot.com/api/ /saved",
-        {
-          userID: { userID }
-        },
-        {
-          headers: {}
-        }
-      );
-      setSavedToTs(result.data);
+
+    const handleChangeIndex = index => {
+        setValue(index);
     };
-    fetchProfileToTs();
-    fetchSavedToTs();
-  };
 
-  const onClick = (e) => {
-    setProfile(true);
-    console.log({ profile });
-  };
+    useEffect(() => {
+        created();
+        saved();
+        // getToTs();
+    }, []);
 
-  const cancel = (e) => {
-    setProfile(false);
-  };
+    const created = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created')
+        .then((response) => {
+            console.log(response);
+            setProfileToTs(response.data);
+        });
+    };
 
-  const save = (e) => {
-    setProfile(false);
-  };
+    const saved = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved');
+        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved')
+        .then((response) => {
+            console.log(response);
+            setSavedToTs(response.data);
+        });
+    };
 
-  const URL = (e) => {
-    setURL(e.target.value);
-  };
+    const getToTs = async () => {
+        console.log('ID'+ userId+ "<>");
+        const fetchProfileToTs = async () => {
+            const result = await axios.get(
+              'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+            console.log(result);
+            setProfileToTs(result.data);
+        };
+        const fetchSavedToTs = async () => {
+            const result = await axios.get(
+              'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
+            console.log(result);
+            setSavedToTs(result.data);
+        };
+        fetchProfileToTs();
+        fetchSavedToTs();
+        console.log(profileToTs);
+        console.log(savedToTs);
+    };
 
-  const profileName = (e) => {
-    setName(e.target.value);
-  };
+    const onClick= (e) =>  {
+        setProfile(true);
+    };
 
-  return (
-    <div className="profilePage">
-      <Button className="profileCard" onClick={(e) => onClick(e)}>
-        <Avatar>
-          <AccountCircleIcon />
-        </Avatar>
-        <Typography>Profile</Typography>
-      </Button>
-      <br />
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            aria-label="full width tabs example"
-          >
-            <Tab label="Your ToTs" {...a11yProps(0)} />
-            <Tab label="Saved" {...a11yProps(1)} />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={handleChangeIndex}
-        >
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            <ul className="listOfMyToTs">
-              {/* {profileToTs.map(info => (
+    const cancel= (e) =>  {
+        setName(profilename);
+        setURL(profileIcon);
+        setProfile(false);
+    };
+
+    const save= (e) =>  {
+        setProfileName(name);
+        setProfileIcon(url);
+        setProfile(false);
+    };
+
+    const  URL= (e) =>  {
+        setURL(e.target.value);
+    };
+
+    const profileName= (e) =>  {
+        setName(e.target.value);
+    };
+
+    return (
+        <div className="profilePage">
+            <Button className="profileCard" onClick={e => onClick(e)}> 
+                {/* <Avatar>  
+                    <AccountCircleIcon/> 
+                </Avatar> */}
+                <img className="profileIcon" src={profileIcon}/>
+                <Typography variant="h3"  display="block" gutterbottom>
+                    {profilename}
+                </Typography>
+            </Button>
+            <br/>
+            <div className={classes.root}>
+                <AppBar position="static" color="default">
+                    <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="full width tabs example"
+                    >
+                    <Tab label="Your ToTs" {...a11yProps(0)} />
+                    <Tab label="Saved" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+                <SwipeableViews
+                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                    index={value}
+                    onChangeIndex={handleChangeIndex}
+                >
+                    <TabPanel value={value} index={0} dir={theme.direction}>
+                        <ul className="listOfMyToTs">
+                            {/* {profileToTs.map(info => (
                                 <Card className="myToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
@@ -176,12 +192,12 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-              <ProfileToT getQuestionState={props.getQuestionState} />
-            </ul>
-          </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <ul className="listOfSavedToTs">
-              {/* {savedToTs.map(info => (
+                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
+                        </ul>
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <ul className="listOfSavedToTs">
+                            {/* {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
@@ -189,58 +205,59 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-              <ProfileToT getQuestionState={props.getQuestionState} />
-            </ul>
-          </TabPanel>
-        </SwipeableViews>
-      </div>
-      <Dialog
-        open={profile}
-        onClose={handleChange}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
-        <DialogContent>
-          <Typography variant="h5" display="block" gutterBottom>
-            Profile Picture
-          </Typography>
-          <br />
-          <TextField
-            name="url"
-            label="Image URL"
-            variant="outlined"
-            className=""
-            value={url}
-            fullWidth={true}
-            onChange={(e) => URL(e)}
-          />
-          <img className="profileImage" src={url} alt="Preview" />
-          <br />
-          <br />
-          <Typography variant="h5" display="block" gutterBottom>
-            Profile Name
-          </Typography>
-          <br />
-          <TextField
-            name="name"
-            label="Profle Name"
-            variant="outlined"
-            className=""
-            value={name}
-            fullWidth={true}
-            onChange={(e) => profileName(e)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={(e) => cancel(e)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={(e) => save(e)} color="primary">
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
+                        </ul>
+                    </TabPanel>
+                </SwipeableViews>
+            </div>
+            <Dialog
+                open={profile}
+                onClose={handleChange}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+            <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
+            <DialogContent>
+                <Typography variant="h5" display="block" gutterBottom >
+                    Profile Picture
+                </Typography>
+                <br/>
+                <TextField
+                    name="url"
+                    label="Image URL"
+                    variant="outlined"
+                    className=""
+                    value={url}
+                    fullWidth={true}
+                    onChange={(e) => URL(e)}
+                />
+                 <img className="profileImage" src={url} alt="Preview" />
+                 <br/><br/>
+                 <Typography variant="h5" display="block" gutterBottom >
+                    Profile Name
+                 </Typography>
+                 <br/>
+                 <TextField
+                    name="name"
+                    label="Profle Name"
+                    variant="outlined"
+                    className=""
+                    value={name}
+                    fullWidth={true}
+                    onChange={(e) => profileName(e)}
+                />
+
+
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={e => cancel(e)} color="primary">
+                    Cancel
+                </Button>
+                <Button onClick={e => save(e)} color="primary">
+                    Save
+                </Button>
+            </DialogActions>
+            </Dialog>
+        </div>
+    );
 }
