@@ -27,12 +27,13 @@ export default class Question extends Component {
   componentWillMount() {
     // alert("hei we are here");
     var cookie = Cookies.get("session");
-    alert("cookie: " + document.cookie);
+    // alert("cookie: " + cookie);
     axios
-      .get("http://thisorthat-260419.appspot.com/api/me", {
+      .get("https://thisorthat-260419.appspot.com/api/me", {
         headers: {
           Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-        }
+        }, 
+        withCredentials: true
       })
       .then((response) => {
         this.props.changeIsLoggedIn(true);
