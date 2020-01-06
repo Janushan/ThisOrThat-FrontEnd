@@ -206,7 +206,7 @@ export default function Profile(props) {
       >
         <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
         <DialogContent>
-          <Typography variant="h5" display="block" gutterBottom>
+          <Typography display="block" gutterBottom>
             Profile Picture
           </Typography>
           <br />
@@ -222,10 +222,9 @@ export default function Profile(props) {
           <img className="profileImage" src={url} alt="Preview" />
           <br />
           <br />
-          <Typography variant="h5" display="block" gutterBottom>
+          <Typography display="block" gutterBottom>
             Profile Name
           </Typography>
-          <br />
           <TextField
             name="name"
             label="Profle Name"

@@ -52,3 +52,11 @@
 .MuiOutlinedInput-notchedOutline:focus {
   border-color: #955abb;
 }
+
+.MuiFormLabel-root.Mui-focused {
+  color: rgba(109, 58, 149, 1);
+}
+
+.MuiDialog-paperScrollPaper {
+  max-height: fit-content;
+}
