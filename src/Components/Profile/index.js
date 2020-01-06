@@ -96,9 +96,7 @@ export default function Profile(props) {
           userID: { userID }
         },
         {
-          headers: {
-            //   Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-          }
+          headers: {}
         }
       );
       setProfileToTs(result.data);
@@ -110,9 +108,7 @@ export default function Profile(props) {
           userID: { userID }
         },
         {
-          headers: {
-            // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-          }
+          headers: {}
         }
       );
       setSavedToTs(result.data);

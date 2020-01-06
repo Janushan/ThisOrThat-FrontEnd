@@ -30,9 +30,7 @@ export default class Question extends Component {
     // alert("cookie: " + cookie);
     axios
       .get("https://thisorthat-260419.appspot.com/api/me", {
-        headers: {
-          // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-        },
+        headers: {},
         withCredentials: true
       })
       .then((response) => {
@@ -80,9 +78,7 @@ export default class Question extends Component {
               this.state.userId +
               "/feed",
             {
-              headers: {
-                // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-              }
+              headers: {}
             }
           )
           .then((response) => {
