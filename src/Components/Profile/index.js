@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Card from "@material-ui/core/Card";
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
@@ -19,6 +18,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ProfileToT from "../ProfileToT";
 import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
+import CreateIcon from "@material-ui/icons/Create";
+import IconButton from "@material-ui/core/IconButton";
 
 import "./profile.css";
 import { TextField } from "@material-ui/core";
@@ -55,7 +57,7 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "rgba(0, 0, 0, 0.001)",
     width: 500
   }
 }));
