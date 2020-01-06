@@ -60,12 +60,16 @@ export default class Login extends Component {
           console.log(response);
           this.setState({ validated: response.data });
           if (response.status === 201) {
-            this.props.changeIsLoggedIn(true);
-            if(this.state.email=="sooklal82@gmail.com"){
-              localStorage.setItem('userId',"5e10c775e07268eb819a8f2a");
-            }else{
-              localStorage.setItem('userId',"5e1297ca9f463f4ca9b7bc89");
-            }
+            axios.get("https://thisorthat-260419.appspot.com/api/me")
+            .then((response) => {
+              console.log(response);
+              //this.props.changeIsLoggedIn(true);
+              if(this.state.email=="sooklal82@gmail.com"){
+                localStorage.setItem('userId',"5e10c775e07268eb819a8f2a");
+              }else{
+                localStorage.setItem('userId',"5e1297ca9f463f4ca9b7bc89");
+              }
+            });
           } else {
             alertString += "Invalid Credentials";
             this.setState({ errorMessage: alertString });
