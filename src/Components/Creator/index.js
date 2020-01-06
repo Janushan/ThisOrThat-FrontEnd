@@ -90,7 +90,9 @@ export default class Question extends Component {
         if(this.state.unsplashUrl2 !== "") {
             option2Object.imageURL = this.state.unsplashUrl2;
         }
-
+        if(localStorage.getItem('userId')== "5e1297ca9f463f4ca9b7bc89"){
+            this.setState({isSponsored:true});
+        }
         try {
             axios({method:'post', url:'https://thisorthat-260419.appspot.com/api/questions', data: {
                 questionText: this.state.title,
@@ -103,7 +105,11 @@ export default class Question extends Component {
             .then(res => {
                 console.log(res);
                 console.log("ToT posted.")
-                window.location.href = '/totsubmit';
+                if(this.state.isSponsored==true){
+                    window.location.href = '/voucher';
+                }else{
+                    window.location.href = '/totsubmit';
+                }
             });
         } catch (e) {
             alert("Something went wrong!");

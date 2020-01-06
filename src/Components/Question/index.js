@@ -29,10 +29,9 @@ export default class Question extends Component {
     var cookie = Cookies.get("session");
     // alert("cookie: " + cookie);
     axios
-      .get("http://thisorthat-260419.appspot.com/api/me", {
-        headers: {
-          Cookie: "cookie1=value; cookie2=value; cookie3=value;"
-        }
+      .get("https://thisorthat-260419.appspot.com/api/me", {
+        headers: {},
+        withCredentials: true
       })
       .then((response) => {
         this.props.changeIsLoggedIn(true);
@@ -77,7 +76,10 @@ export default class Question extends Component {
           .get(
             "https://thisorthat-260419.appspot.com/api/users/" +
               this.state.userId +
-              "/feed"
+              "/feed",
+            {
+              headers: {}
+            }
           )
           .then((response) => {
             console.log("response on next line");
@@ -125,7 +127,7 @@ export default class Question extends Component {
           <ImageAndTextQuestion />
           <br /> <br />
           <div className="timer">
-            <Typography>{this.state.seconds}</Typography>{" "}
+            <Typography> {this.state.seconds} </Typography>{" "}
           </div>{" "}
           <br />
           <Options />
@@ -144,14 +146,14 @@ export default class Question extends Component {
               className="timer"
             >
               <Grid item>
-                <Typography>{this.state.seconds}</Typography>{" "}
-              </Grid>
+                <Typography> {this.state.seconds} </Typography>{" "}
+              </Grid>{" "}
               <Grid item className="circularProgressWrapper">
                 <CircularProgress size={36} className="circularProgress" />
-              </Grid>
+              </Grid>{" "}
             </Grid>{" "}
             <br />
-            <Options parent={this.state} />
+            <Options parent={this.state} />{" "}
           </div>{" "}
         </div>
       );
