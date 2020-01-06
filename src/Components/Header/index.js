@@ -170,7 +170,7 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
               window.location.href = "/feed";
             }}
           >
-            <img alt="this or that logo" class="headerLogo" src={logo} />
+            <img alt="this or that logo" className="headerLogo" src={logo} />
             This or That
           </Button>
           {fullNavBar}

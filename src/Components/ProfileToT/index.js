@@ -139,7 +139,7 @@ export default class ProfileToT extends Component {
             <CardHeader title={this.state.title} />
             <br />
             <br />
-            <div classname="parts">
+            <div className="parts">
               <div className="part1">
                 <img className="image" alt="" src={this.state.url1} />
                 <CardContent>
@@ -148,11 +148,7 @@ export default class ProfileToT extends Component {
                   </Typography>
                 </CardContent>
                 <CustomizedProgressBars percent={percentage1} />
-                <Typography
-                  gutterBottom
-                  variant="subtitle2"
-                  component="subtitle2"
-                >
+                <Typography gutterBottom variant="subtitle2">
                   {percentage1 + "%"}
                 </Typography>
               </div>
@@ -164,16 +160,12 @@ export default class ProfileToT extends Component {
                   </Typography>
                 </CardContent>
                 <CustomizedProgressBars percent={percentage2} />
-                <Typography
-                  gutterBottom
-                  variant="subtitle2"
-                  component="subtitle2"
-                >
+                <Typography gutterBottom variant="subtitle2">
                   {percentage2 + "%"}
                 </Typography>
               </div>
             </div>
-            <Typography gutterBottom variant="subtitle2" component="subtitle2">
+            <Typography gutterBottom variant="subtitle2">
               {this.state.totalVotes + " votes in total."}
             </Typography>
             <br />
