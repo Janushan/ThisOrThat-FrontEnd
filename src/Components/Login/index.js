@@ -43,6 +43,8 @@ export default class Login extends Component {
     });
   };
 
+  
+
   onSubmit = (e) => {
     e.preventDefault();
     var alertString = "";
@@ -60,9 +62,9 @@ export default class Login extends Component {
           console.log(response);
           this.setState({ validated: response.data });
           if (response.status === 201) {
-            axios.get("https://thisorthat-260419.appspot.com/api/me")
-            .then((response) => {
-              console.log(response);
+            axios({method: 'get', url:"https://thisorthat-260419.appspot.com/api/me", withCredentials:true})
+            .then((response2) => {
+              console.log(response2);
               //this.props.changeIsLoggedIn(true);
               if(this.state.email=="sooklal82@gmail.com"){
                 localStorage.setItem('userId',"5e10c775e07268eb819a8f2a");
@@ -141,21 +143,6 @@ export default class Login extends Component {
                   >
                     Log in with Facebook
                   </Button>
-                  <FacebookLogin
-                    appId="542050589716105"
-                    autLoad
-                    fields="name,email,picture"
-                    callback={this.facebookLogin}
-                    render={(renderProps) => (
-                      <Button
-                        onClick={renderProps.onClick}
-                        className="facebookLoginButton"
-                        startIcon={<FacebookIcon />}
-                      >
-                        Log in with Facebook
-                      </Button>
-                    )}
-                  />
                   <Grid
                     container
                     alignItems="center"
