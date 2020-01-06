@@ -100,7 +100,10 @@ export default class Question extends Component {
                 option2: option2Object,
                 userID: this.props.userId,
                 isSponsored: this.state.isSponsored
-            })
+            }, {
+                headers: {
+                }
+              })
             .then(res => {
                 console.log(res);
                 console.log("ToT posted.")
