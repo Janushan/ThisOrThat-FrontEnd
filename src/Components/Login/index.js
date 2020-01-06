@@ -53,11 +53,10 @@ export default class Login extends Component {
       this.setState({ errorMessage: alertString });
       this.setState({ open1: true });
     } else {
-      axios
-        .post("https://thisorthat-260419.appspot.com/api/login/email", {
+      axios.post("https://thisorthat-260419.appspot.com/api/login/email", {
           email: this.state.email,
           password: this.state.password
-        })
+        },{withCredentials:true})
         .then((response) => {
           console.log(response);
           this.setState({ validated: response.data });

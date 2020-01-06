@@ -44,22 +44,22 @@ export default class Voucher extends Component {
     document.body.removeChild(dummy);
   };
 
-  save = (e) => {
-    axios.post(
-      "https://thisorthat-260419.appspot.com/api/",
-      {
-        percentageDiscount: this.state.email,
-        discountTerms: this.state.terms,
-        imageURL: this.state.image,
-        voucherCode: this.state.code,
-        description: this.state.description,
-        logoURL: this.state.logo
-      },
-      {
-        headers: {}
-      }
-    );
-  };
+  // save = (e) => {
+  //   axios.post(
+  //     "https://thisorthat-260419.appspot.com/api/",
+  //     {
+  //       percentageDiscount: this.state.email,
+  //       discountTerms: this.state.terms,
+  //       imageURL: this.state.image,
+  //       voucherCode: this.state.code,
+  //       description: this.state.description,
+  //       logoURL: this.state.logo
+  //     },
+  //     {
+  //       headers: {}
+  //     }
+  //   );
+  // };
 
   render() {
     return (
