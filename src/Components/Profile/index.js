@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
 import PropTypes from "prop-types";
+import SwipeableViews from "react-swipeable-views";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -60,15 +63,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Profile(props) {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = useState(0);
-  const [profileToTs, setProfileToTs] = useState([]);
-  const [savedToTs, setSavedToTs] = useState([]);
-  const [userID, setUserID] = useState(0);
-  const [profile, setProfile] = useState(false);
-  const [url, setURL] = useState("");
-  const [name, setName] = useState("");
+    const classes = useStyles();
+    const theme = useTheme();
+    const [value, setValue] = useState(0);
+    const [profileToTs, setProfileToTs]= useState([]);
+    const [savedToTs, setSavedToTs]= useState([]);
+    const [userID, setUserID]=useState(0);
+    const [profile, setProfile]= useState(false);
+    const [url, setURL]= useState("");
+    const [name, setName]= useState("");
+    const [profilename, setProfileName]= useState("Profile");
+    const [profileIcon, setProfileIcon]= useState("https://image.flaticon.com/icons/svg/1738/1738760.svg");
+    const [userId, setUserId]=useState(localStorage.getItem('userId'));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -107,26 +113,65 @@ export default function Profile(props) {
     fetchSavedToTs();
   };
 
-  const onClick = (e) => {
-    setProfile(true);
-    console.log({ profile });
-  };
+    useEffect(() => {
+        created();
+        saved();
+        // getToTs();
+    }, []);
 
-  const cancel = (e) => {
-    setProfile(false);
-  };
+    const created = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/created');
+        axios.get('https://thisorthat-260419.appspot.com/api/created',{withCredentials:true})
+        .then((response) => {
+            console.log(response);
+            setProfileToTs(response.data);
+        });
+    };
 
-  const save = (e) => {
-    setProfile(false);
-  };
+    const saved = async () => {
+        axios.get('https://thisorthat-260419.appspot.com/api/saved',{withCredentials:true})
+        .then((response) => {
+            console.log(response);
+            setSavedToTs(response.data);
+        });
+    };
 
-  const URL = (e) => {
-    setURL(e.target.value);
-  };
+    // const getToTs = async () => {
+    //     console.log('ID'+ userId+ "<>");
+    //     const fetchProfileToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+    //         console.log(result);
+    //         setProfileToTs(result.data);
+    //     };
+    //     const fetchSavedToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
+    //         console.log(result);
+    //         setSavedToTs(result.data);
+    //     };
+    //     fetchProfileToTs();
+    //     fetchSavedToTs();
+    //     console.log(profileToTs);
+    //     console.log(savedToTs);
+    // };
 
-  const profileName = (e) => {
-    setName(e.target.value);
-  };
+    const onClick= (e) =>  {
+        setProfile(true);
+    };
+
+    const cancel= (e) =>  {
+        setName(profilename);
+        setURL(profileIcon);
+        setProfile(false);
+    };
+
+    const save= (e) =>  {
+        setProfileName(name);
+        setProfileIcon(url);
+        setProfile(false);
+    };
 
   return (
     <div className="profilePage">

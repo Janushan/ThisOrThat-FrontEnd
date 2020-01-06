@@ -60,16 +60,71 @@ export default class Question extends Component {
     if (this.state.text2 !== this.state.image2Name)
       document.getElementById("image2Uploader").value = "";
 
-    const fd = new FormData();
-    fd.append("title", this.state.title);
-    fd.append("text1", this.state.text1);
-    fd.append("text2", this.state.text2);
-    if (this.state.image1 !== null) {
-      fd.append("image1", this.state.image1, this.state.image1.name);
-    } else {
-      if (this.state.unsplashUrl1 !== "") {
-        fd.append("unsplashUrl1", this.state.unsplashUrl1);
-      }
+    submit = e => {
+        console.log("right before");
+        console.log(this.state.image1Name);
+        if (this.state.text1 !== this.state.image1Name)
+            document.getElementById("image1Uploader").value = "";
+        if (this.state.text2 !== this.state.image2Name)
+            document.getElementById("image2Uploader").value = "";
+
+        const fd = new FormData();
+        fd.append('title', this.state.title);
+        fd.append('text1', this.state.text1);
+        fd.append('text2', this.state.text2);
+        if (this.state.image1 !== null) {
+            fd.append('image1', this.state.image1, this.state.image1.name);
+        } else {
+            if (this.state.unsplashUrl1 !== "") {
+                fd.append('unsplashUrl1', this.state.unsplashUrl1);
+            }
+        }
+
+        if (this.state.image2 !== null) {
+            fd.append('image2', this.state.image2, this.state.image2.name);
+        } else {
+            if (this.state.unsplashUrl2 !== "") {
+                fd.append('unsplashUrl2', this.state.unsplashUrl2);
+            }
+        }
+
+        var option1Object = {
+            text: this.state.text1
+        };
+        if(this.state.unsplashUrl1 !== "") {
+            option1Object.imageURL = this.state.unsplashUrl1;
+        }
+        var option2Object = {
+            text: this.state.text2
+        };
+        if(this.state.unsplashUrl2 !== "") {
+            option2Object.imageURL = this.state.unsplashUrl2;
+        }
+        if(localStorage.getItem('userId')== "5e1297ca9f463f4ca9b7bc89"){
+            this.setState({isSponsored:true});
+        }
+        try {
+            axios({method:'post', url:'https://thisorthat-260419.appspot.com/api/questions', data: {
+                questionText: this.state.title,
+                option1: option1Object,
+                option2: option2Object,
+                userID: this.props.userId,
+                isSponsored: this.state.isSponsored
+            }, headers: {}, withCredentials:true
+            })
+            .then(res => {
+                console.log(res);
+                console.log("ToT posted.")
+                if(this.state.isSponsored==true){
+                    window.location.href = '/voucher';
+                }else{
+                    window.location.href = '/totsubmit';
+                }
+            });
+        } catch (e) {
+            alert("Something went wrong!");
+            window.location.href = '/totsubmit';
+        }
     }
 
     if (this.state.image2 !== null) {

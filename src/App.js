@@ -18,7 +18,7 @@ import {
 import Header from "./Components/Header";
 import Question from "./Components/Question";
 import Creator from "./Components/Creator";
-
+import Voucher from "./Components/Voucher";
 import "./App.css";
 
 const theme = createMuiTheme({
@@ -39,7 +39,7 @@ const theme = createMuiTheme({
 class App extends Component {
   state = {
     isLoggedIn: false,
-    userId: "5e0e5e2c865c4946ea9a2dcf",
+    userId: "",
     questionState: {
       userId: "...",
       questionId: "",
@@ -219,6 +219,16 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <ToTSubmit />
+                        ) : (
+                          <Redirect to="/login" />
+                        )
+                      }
+                    />{" "}
+                    <Route
+                      path="/voucher"
+                      render={(props) =>
+                        this.state.isLoggedIn ? (
+                          <Voucher />
                         ) : (
                           <Redirect to="/login" />
                         )
