@@ -108,6 +108,10 @@ export default class Signup extends Component {
           name: this.state.userName,
           email: this.state.email,
           password: this.state.password
+        }, {
+          headers: {
+            Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+          }
         })
         .then(response => {
          // this.props.history.push("/feed"); 

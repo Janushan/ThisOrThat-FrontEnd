@@ -93,6 +93,10 @@ export default function Profile(props) {
             const result = await axios.post(
               'https://thisorthat-260419.appspot.com/api/users/ /created', {
                 userID:{userID}
+              }, {
+                headers: {
+                  Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+                }
               }
             );
             setProfileToTs(result.data);
@@ -101,6 +105,10 @@ export default function Profile(props) {
             const result = await axios.post(
               'https://thisorthat-260419.appspot.com/api/ /saved', {
                   userID:{userID}
+              }, {
+                headers: {
+                  Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+                }
               }
             );
             setSavedToTs(result.data);

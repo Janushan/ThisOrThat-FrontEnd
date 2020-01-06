@@ -98,7 +98,11 @@ export default class Question extends Component {
                 option2: option2Object,
                 userID: this.props.userId,
                 isSponsored: this.state.isSponsored
-            })
+            }, {
+                headers: {
+                  Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+                }
+              })
             .then(res => {
                 console.log(res);
                 console.log("ToT posted.")

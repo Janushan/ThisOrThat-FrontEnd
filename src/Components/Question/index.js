@@ -25,13 +25,13 @@ export default class Question extends Component {
   };
 
   componentWillMount() {
-    // alert("hei we are here");
+    alert("hei we are here");
     var cookie = Cookies.get("session");
-    // alert("cookie: " + cookie);
+    alert("cookie: " + cookie);
     axios
       .get("http://thisorthat-260419.appspot.com/api/me", {
         headers: {
-          Cookie: "cookie1=value; cookie2=value; cookie3=value;"
+          Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
         }
       })
       .then((response) => {
@@ -77,7 +77,11 @@ export default class Question extends Component {
           .get(
             "https://thisorthat-260419.appspot.com/api/users/" +
               this.state.userId +
-              "/feed"
+              "/feed", {
+                headers: {
+                  Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+                }
+              }
           )
           .then((response) => {
             console.log("response on next line");
