@@ -8,12 +8,11 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-
 import "./styles.css";
 
 export default class Login extends Component {
@@ -62,6 +61,11 @@ export default class Login extends Component {
           this.setState({ validated: response.data });
           if (response.status === 201) {
             this.props.changeIsLoggedIn(true);
+            if(this.state.email=="sooklal82@gmail.com"){
+              localStorage.setItem('userId',"5e10c775e07268eb819a8f2a");
+            }else{
+              localStorage.setItem('userId',"5e1297ca9f463f4ca9b7bc89");
+            }
           } else {
             alertString += "Invalid Credentials";
             this.setState({ errorMessage: alertString });
@@ -69,8 +73,6 @@ export default class Login extends Component {
             this.setState({ password: "" });
           }
         });
-
-      //this.props.changeIsLoggedIn(true);
     }
   };
 
@@ -133,21 +135,6 @@ export default class Login extends Component {
                   >
                     Log in with Facebook
                   </Button>
-                  <FacebookLogin
-                    appId="542050589716105"
-                    autLoad
-                    fields="name,email,picture"
-                    callback={this.facebookLogin}
-                    render={(renderProps) => (
-                      <Button
-                        onClick={renderProps.onClick}
-                        className="facebookLoginButton"
-                        startIcon={<FacebookIcon />}
-                      >
-                        Log in with Facebook
-                      </Button>
-                    )}
-                  />
                   <Grid
                     container
                     alignItems="center"

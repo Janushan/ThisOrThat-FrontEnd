@@ -1,20 +1,24 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import Typography from "@material-ui/core/Typography";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
-import "./styles.css";
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import './styles.css';
 
 export default class Signup extends Component {
   state = {
@@ -25,7 +29,9 @@ export default class Signup extends Component {
     usernameCheck: [],
     usernameError: false,
     open1: false,
-    errorMessage: ""
+    brand: 0,
+    errorMessage: "",
+    value: "Personal"
   };
 
   change = (e) => {
@@ -34,31 +40,15 @@ export default class Signup extends Component {
     });
   };
 
-  // changeUser = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  //   if(e.target.value.length===0){
-  //     this.setState({usernameError:false});
-  //   }
-  //   else if(e.target.value.length>0 && e.target.value.length<5){
-  //     this.setState({usernameError:true});
-  //   }
-  //   else{
-  //     axios.post('https://thisorthat-260419.appspot.com/api/me', {
-  //         username: e.target.value
-  //     })
-  //     .then(response => {
-  //         this.setState({usernameCheck:response.data});
-  //         if(this.state.usernameCheck.length===1){
-  //           this.setState({usernameError:true});
-  //         }else{
-  //           this.setState({usernameError:false});
-  //         }
-  //     })
-  //   }
-
-  // };
+  handleChange = event => {
+    this.setState({value:event.target.value});
+    if(event.target.value=="Personal"){
+      this.setState({brand:0});
+    }else{
+      this.setState({brand:1});
+    }
+    
+  };
 
   handleClose = (openIndex) => {
     console.log(openIndex);
@@ -110,26 +100,21 @@ export default class Signup extends Component {
         alertString += "Password must contain a number!\n";
       }
     }
-    if (alertString === "" && this.state.usernameError === false) {
-      axios
-        .post(
-          "https://thisorthat-260419.appspot.com/api/signup/email",
-          {
-            name: this.state.userName,
-            email: this.state.email,
-            password: this.state.password
-          },
-          {
-            headers: {}
-          }
-        )
-        .then((response) => {
-          // this.props.history.push("/feed");
-          console.log("success");
-        });
-    } else {
-      this.setState({ errorMessage: alertString });
-      this.setState({ open1: true });
+    console.log(this.state.brand);
+    if(alertString==="" && (this.state.usernameError===false)){
+        axios.post('https://thisorthat-260419.appspot.com/api/signup/email', {
+          name: this.state.userName,
+          email: this.state.email,
+          password: this.state.password,
+          brand_account: this.state.brand
+        })
+        .then(response => {
+         window.location.href = "/login";
+         console.log("success");
+        })
+    }else{
+      this.setState({errorMessage:alertString});
+      this.setState({open1:true});
     }
   };
 
@@ -221,13 +206,13 @@ export default class Signup extends Component {
                   )
                 }}
               />
-              <br />
-              <br />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={(e) => this.onSubmit(e)}
-              >
+              <br/>
+              <br/>
+              <RadioGroup aria-label="gender" name="gender1" value={this.state.value} onChange={e => this.handleChange(e)}>
+                <FormControlLabel value="Personal" control={<Radio />} label="Personal" />
+                <FormControlLabel value="Business" control={<Radio />} label="Business" />
+              </RadioGroup>
+              <Button variant="contained" color="primary" onClick={e => this.onSubmit(e)} >
                 Submit
               </Button>
               <br />
