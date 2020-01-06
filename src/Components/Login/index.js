@@ -77,8 +77,6 @@ export default class Login extends Component {
             this.setState({ password: "" });
           }
         });
-
-      //this.props.changeIsLoggedIn(true);
     }
   };
 
@@ -141,21 +139,6 @@ export default class Login extends Component {
                   >
                     Log in with Facebook
                   </Button>
-                  <FacebookLogin
-                    appId="542050589716105"
-                    autLoad
-                    fields="name,email,picture"
-                    callback={this.facebookLogin}
-                    render={(renderProps) => (
-                      <Button
-                        onClick={renderProps.onClick}
-                        className="facebookLoginButton"
-                        startIcon={<FacebookIcon />}
-                      >
-                        Log in with Facebook
-                      </Button>
-                    )}
-                  />
                   <Grid
                     container
                     alignItems="center"
