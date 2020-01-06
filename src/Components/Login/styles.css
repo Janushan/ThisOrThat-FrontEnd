@@ -39,6 +39,9 @@
   width: 100%;
   height: 2.5rem;
 }
+.facebookLoginButton:hover {
+  background-color: red;
+}
 
 .loginTextField {
   margin-bottom: 1rem;

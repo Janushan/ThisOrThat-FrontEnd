@@ -5,3 +5,29 @@
   padding-left: 5rem;
   padding-right: 5rem;
 }
+
+.headerButtonContainer {
+  margin-left: 0.5rem;
+}
+.headerButton {
+  color: white;
+  font-weight: bold;
+}
+.leftHeaderButton {
+  margin-left: 0.5rem;
+}
+
+.headerTitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.6px;
+}
+
+.headerLogo {
+  height: 24px;
+  border-radius: 2px;
+  margin-right: 0.8rem;
+}
+
+.headerVertLine {
+  border-left: thin solid rgba(255, 255, 255, 0.3);
+}

@@ -34,14 +34,21 @@
 
 .cardContainer {
 }
-
 .cardContainerLeft {
   margin-right: 3rem;
 }
 
-.cardContainer:hover,
-.cardContainerLeft:hover {
+.cardContainerButton {
+}
+.cardContainerButtonLeft {
+  margin-right: 3rem;
+}
+.cardContainerButton:hover,
+.cardContainerButtonLeft:hover {
   transform: scale(1.05);
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
 .card {
@@ -76,14 +83,38 @@
 }
 
 .image {
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   width: 10rem;
   height: 10rem;
+  object-fit: cover;
 }
 
 .cardCaptionText {
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
+  color: black;
+  margin-left: 1rem;
+}
+.cardCaptionTextContainer {
+  height: 3rem;
+  margin-top: 0.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 0.2rem;
+}
+.cardCaptionTextContainer:hover {
+  background-color: whitesmoke;
+}
+
+.cardCaptionOption {
+  color: #40007a;
+  font-weight: 500;
+}
+.cardCaptionOptionContainer {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: solid 1px #40007a;
+  margin-left: 0.8rem;
 }
 
 .timer {
@@ -92,6 +123,7 @@
 }
 .options {
   display: flex;
+  margin-top: 0.5rem;
 }
 
 .Button {
@@ -119,4 +151,8 @@
 
 .circularProgress {
   color: white;
+}
+
+.cardCaptionVotes {
+  margin-top: 1rem;
 }
