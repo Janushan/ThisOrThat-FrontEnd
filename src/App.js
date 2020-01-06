@@ -57,6 +57,7 @@ class App extends Component {
   saveToLocalStorage = () => {
     try {
       localStorage.set("isLoggedIn", JSON.stringify(this.state.isLoggedIn));
+      localStorage.set("userId", JSON.stringify(this.state.userId));
       localStorage.set(
         "questionState",
         JSON.stringify(this.state.questionState)
@@ -70,12 +71,27 @@ class App extends Component {
       this.setState({
         isLoggedIn: isLoggedInCopy
       });
+      var userIdCopy = JSON.parse(localStorage.get("userId"));
+      this.setState({
+        userId: userIdCopy
+      });
       var questionStateCopy = JSON.parse(localStorage.get("questionState"));
       this.setState({
         questionState: questionStateCopy
       });
     } catch (e) {}
   };
+
+  setUserId = (newValue) => {
+    this.setState(
+      {
+        userId: newValue
+      },
+      function() {
+        this.saveToLocalStorage();
+      }
+    );
+  }
 
   changeIsLoggedIn = (newValue) => {
     this.setState(
@@ -164,6 +180,7 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
+                            setUserId = {this.setUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -171,6 +188,7 @@ class App extends Component {
                           />
                         ) : (
                           <Question
+                            setUserId = {this.setUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -204,6 +222,7 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
+                            setUserId = {this.setUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -251,6 +270,7 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
+                            setUserId = {this.setUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
