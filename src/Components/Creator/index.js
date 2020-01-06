@@ -238,13 +238,13 @@ export default class Question extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Card className="loginCard" raised>
+        <Card className="loginCard creatorCard" raised>
           <div>
             <CardHeader title="Create a ToT" className="creatorCardTitle" />
             <br />
             <TextField
               className="questionTitle"
-              label="This or That"
+              label="Title"
               variant="outlined"
               name="title"
               value={this.state.title}
@@ -276,7 +276,7 @@ export default class Question extends Component {
                           component="span"
                           onClick={this.handleClickOpen.bind(this, 1)}
                         >
-                          <ImageSearchIcon />
+                          <ImageSearchIcon className="creatorIcon" />
                         </IconButton>
                       </Tooltip>
                     </label>
@@ -292,13 +292,18 @@ export default class Question extends Component {
                       <DialogContent>
                         <TextField
                           name="searchString"
+                          variant="outlined"
                           value={this.state.searchString}
                           onChange={(e) => this.onChange(e)}
                           id="standard-basic"
                           label="Type here"
                           onKeyDown={this.searchTextFieldKeyPressed}
                         />
-                        <Button onClick={this.search} color="primary">
+                        <Button
+                          className="creatorSecondaryButton"
+                          onClick={this.search}
+                          color="secondary"
+                        >
                           Search
                         </Button>
                         <br />
@@ -348,8 +353,9 @@ export default class Question extends Component {
                       </DialogContent>
                       <DialogActions>
                         <Button
+                          className="creatorSecondaryButton"
                           onClick={this.handleClose.bind(this, 1)}
-                          color="primary"
+                          color="secondary"
                         >
                           Close
                         </Button>
@@ -389,7 +395,7 @@ export default class Question extends Component {
                         component="span"
                         onClick={this.handleClickOpen.bind(this, 2)}
                       >
-                        <ImageSearchIcon />
+                        <ImageSearchIcon className="creatorIcon" />
                       </IconButton>
                     </Tooltip>
                     <Dialog
@@ -404,13 +410,18 @@ export default class Question extends Component {
                       <DialogContent>
                         <TextField
                           name="searchString"
+                          variant="outlined"
                           value={this.state.searchString}
                           onChange={(e) => this.onChange(e)}
                           id="standard-basic"
                           label="Type here"
                           onKeyDown={this.searchTextFieldKeyPressed}
                         />
-                        <Button onClick={this.search} color="primary">
+                        <Button
+                          className="creatorSecondaryButton"
+                          onClick={this.search}
+                          color="secondary"
+                        >
                           Search
                         </Button>
                         <br />
@@ -460,8 +471,9 @@ export default class Question extends Component {
                       </DialogContent>
                       <DialogActions>
                         <Button
+                          className="creatorSecondaryButton"
+                          color="secondary"
                           onClick={this.handleClose.bind(this, 2)}
-                          color="primary"
                         >
                           Close
                         </Button>
@@ -476,6 +488,7 @@ export default class Question extends Component {
             </Grid>
             <br />
             <Button
+              className="creatorPrimaryButton"
               onClick={this.submit}
               value="Submit"
               variant="contained"

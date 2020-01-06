@@ -44,3 +44,11 @@
 .MuiInput-outlined:after {
   border-bottom-color: "green";
 }
+
+.MuiFormLabel-root.Mui-focused .MuiOutlinedInput-notchedOutline:focus {
+  color: #955abb;
+  border-color: #955abb;
+}
+.MuiOutlinedInput-notchedOutline:focus {
+  border-color: #955abb;
+}
