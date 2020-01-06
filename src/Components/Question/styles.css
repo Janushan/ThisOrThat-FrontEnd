@@ -92,6 +92,7 @@
 .cardCaptionText {
   color: black;
   margin-left: 1rem;
+  padding-right: 0.8rem;
 }
 .cardCaptionTextContainer {
   height: 3rem;

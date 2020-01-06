@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import { StringFormat } from "../../Helpers/capitalise";
 
 import ImageAndTextQuestionOption from "./imageAndTextOption";
 
@@ -46,7 +47,9 @@ export default class ImageAndTextQuestion extends Component {
     return (
       <div className="question">
         <Card className="card imageAndTextCard">
-          <CardHeader title={this.props.parent.title} />
+          <CardHeader
+            title={StringFormat.capitalise(this.props.parent.title)}
+          />{" "}
           <div className="row"> </div> <br />
           <div className="options">
             <ImageAndTextQuestionOption
@@ -55,21 +58,22 @@ export default class ImageAndTextQuestion extends Component {
               handleClick={(e) => this.incrementChoice1(e)}
               option="A"
               label={this.props.parent.text1}
-            />
+            />{" "}
             <ImageAndTextQuestionOption
               cardContainerClass="cardContainerButton"
               image={this.props.parent.url2}
               handleClick={this.incrementChoice2}
               option="B"
               label={this.props.parent.text2}
-            />
+            />{" "}
           </div>{" "}
           <Grid className="cardCaptionVotes">
             <Typography variant="caption">
               {" "}
-              {this.props.parent.numberOfVotes} votes{" "}
+              {this.props.parent.numberOfVotes}
+              votes{" "}
             </Typography>{" "}
-          </Grid>
+          </Grid>{" "}
         </Card>{" "}
       </div>
     );
