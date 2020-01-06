@@ -82,32 +82,43 @@ export default function Profile(props) {
         getToTs();
     }, []);
 
-    const getToTs = async () => {
-        //might need checks for empty responses
-        // const user= async () => {
-        //     const result = await axios.get('https://thisorthat-260419.appspot.com/api/users/me');
-        //     console.log(result);
-        //     setUserID(result.data);
-        // };
-        const fetchProfileToTs = async () => {
-            const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/api/users/ /created', {
-                userID:{userID}
-              }
-            );
-            setProfileToTs(result.data);
-        };
-        const fetchSavedToTs = async () => {
-            const result = await axios.post(
-              'https://thisorthat-260419.appspot.com/api/ /saved', {
-                  userID:{userID}
-              }
-            );
-            setSavedToTs(result.data);
-        };
-        fetchProfileToTs();
-        fetchSavedToTs();
+    const created = async () => {
+        console.log(userId);
+        console.log('https://thisorthat-260419.appspot.com/api/created');
+        axios.get('https://thisorthat-260419.appspot.com/api/created',{withCredentials:true})
+        .then((response) => {
+            console.log(response);
+            setProfileToTs(response.data);
+        });
     };
+
+    const saved = async () => {
+        axios.get('https://thisorthat-260419.appspot.com/api/saved',{withCredentials:true})
+        .then((response) => {
+            console.log(response);
+            setSavedToTs(response.data);
+        });
+    };
+
+    // const getToTs = async () => {
+    //     console.log('ID'+ userId+ "<>");
+    //     const fetchProfileToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+    //         console.log(result);
+    //         setProfileToTs(result.data);
+    //     };
+    //     const fetchSavedToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
+    //         console.log(result);
+    //         setSavedToTs(result.data);
+    //     };
+    //     fetchProfileToTs();
+    //     fetchSavedToTs();
+    //     console.log(profileToTs);
+    //     console.log(savedToTs);
+    // };
 
     const onClick= (e) =>  {
         setProfile(true);
