@@ -1,23 +1,73 @@
-.profilePage{
-    display: grid;
-    margin-top: 3%;
-    justify-content: center;
-    align-items: center;
+.profilePage {
+  display: grid;
+  margin-top: 3%;
+  justify-content: center;
+  align-items: center;
 }
 
-.profileCard{
-    background-color: #60308b;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+.profileCard {
+  background-color: #60308b;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 0.8rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.profileImage{
-    width:80px;
-    height:40px;
+.profileImage {
+  margin-top: 10px;
+  width: 80px;
+  height: 40px;
+}
+.profileName {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-.profileIcon{
-    width:40px;
-    height:40px;
+.editpProfileButton {
+  color: white;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.profileTabs {
+  color: white;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profileDialogHeader {
+  margin-bottom: 0.8rem;
+}
+
+.profileImageContainer {
+  margin-top: 0.5rem;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none;
+}
+
+.PrivateTabIndicator-colorSecondary-259 {
+  background-color: white;
+}
+.MuiTab-textColorSecondary.Mui-selected {
+  color: white;
+}
+.MuiTab-textColorSecondary {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.MuiAppBar-colorDefault {
+  background-color: rgba(0, 0, 0, 0.001);
 }

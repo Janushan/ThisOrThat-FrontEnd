@@ -18,6 +18,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ProfileToT from "../ProfileToT";
 import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
+import CreateIcon from "@material-ui/icons/Create";
+import IconButton from "@material-ui/core/IconButton";
 
 import "./profile.css";
 import { TextField } from "@material-ui/core";
@@ -54,7 +57,7 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "rgba(0, 0, 0, 0.001)",
     width: 500
   }
 }));
@@ -73,13 +76,42 @@ export default function Profile(props) {
     const [profileIcon, setProfileIcon]= useState("https://image.flaticon.com/icons/svg/1738/1738760.svg");
     const [userId, setUserId]=useState(localStorage.getItem('userId'));
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    const handleChangeIndex = index => {
-        setValue(index);
+  useEffect(() => {
+    getToTs();
+  }, []);
+
+  const getToTs = async () => {
+    //might need checks for empty responses
+    // const user= async () => {
+    //     const result = await axios.get('https://thisorthat-260419.appspot.com/api/users/me');
+    //     console.log(result);
+    //     setUserID(result.data);
+    // };
+    const fetchProfileToTs = async () => {
+      const result = await axios.post(
+        "https://thisorthat-260419.appspot.com/api/users/ /created",
+        {
+          userID: { userID }
+        }
+      );
+      setProfileToTs(result.data);
     };
+    const fetchSavedToTs = async () => {
+      const result = await axios.post(
+        "https://thisorthat-260419.appspot.com/api/ /saved",
+        {
+          userID: { userID }
+        }
+      );
+      setSavedToTs(result.data);
+    };
+    fetchProfileToTs();
+    fetchSavedToTs();
+  };
 
     useEffect(() => {
         created();
@@ -141,48 +173,54 @@ export default function Profile(props) {
         setProfile(false);
     };
 
-    const  URL= (e) =>  {
-        setURL(e.target.value);
-    };
+  return (
+    <div className="profilePage">
+      <Grid
+        container
+        alignContent="space-between"
+        className="profileCard"
+        direction="row"
+      >
+        <Grid item justify="center">
+          <Grid container>
+            <Avatar>
+              <AccountCircleIcon />
+            </Avatar>
+            <Typography className="profileName">
+              Profile Name Goes Here
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <IconButton
+            secondary
+            className="editpProfileButton"
+            onClick={(e) => onClick(e)}
+          >
+            <CreateIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
+      <br />
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            className="profileTabs"
+            indicatorColor="secondary"
+            textColor="secondary"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label="Your ToTs" {...a11yProps(0)} />
+            <Tab label="Saved" {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
 
-    const profileName= (e) =>  {
-        setName(e.target.value);
-    };
-
-    return (
-        <div className="profilePage">
-            <Button className="profileCard" onClick={e => onClick(e)}> 
-                {/* <Avatar>  
-                    <AccountCircleIcon/> 
-                </Avatar> */}
-                <img className="profileIcon" src={profileIcon}/>
-                <Typography variant="h3"  display="block" gutterbottom>
-                    {profilename}
-                </Typography>
-            </Button>
-            <br/>
-            <div className={classes.root}>
-                <AppBar position="static" color="default">
-                    <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    variant="fullWidth"
-                    aria-label="full width tabs example"
-                    >
-                    <Tab label="Your ToTs" {...a11yProps(0)} />
-                    <Tab label="Saved" {...a11yProps(1)} />
-                    </Tabs>
-                </AppBar>
-                <SwipeableViews
-                    axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                    index={value}
-                    onChangeIndex={handleChangeIndex}
-                >
-                    <TabPanel value={value} index={0} dir={theme.direction}>
-                        <ul className="listOfMyToTs">
-                            {/* {profileToTs.map(info => (
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          <ul className="listOfMyToTs">
+            {/* {profileToTs.map(info => (
                                 <Card className="myToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
@@ -190,12 +228,12 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
-                        </ul>
-                    </TabPanel>
-                    <TabPanel value={value} index={1} dir={theme.direction}>
-                        <ul className="listOfSavedToTs">
-                            {/* {savedToTs.map(info => (
+            <ProfileToT getQuestionState={props.getQuestionState} />
+          </ul>
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          <ul className="listOfSavedToTs">
+            {/* {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
                                     <ProfileToT
                                         title={info.Title}
@@ -203,59 +241,50 @@ export default function Profile(props) {
                                     />
                                 </Card>
                             ))} */}
-                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
-                        </ul>
-                    </TabPanel>
-                </SwipeableViews>
-            </div>
-            <Dialog
-                open={profile}
-                onClose={handleChange}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-            <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
-            <DialogContent>
-                <Typography variant="h5" display="block" gutterBottom >
-                    Profile Picture
-                </Typography>
-                <br/>
-                <TextField
-                    name="url"
-                    label="Image URL"
-                    variant="outlined"
-                    className=""
-                    value={url}
-                    fullWidth={true}
-                    onChange={(e) => URL(e)}
-                />
-                 <img className="profileImage" src={url} alt="Preview" />
-                 <br/><br/>
-                 <Typography variant="h5" display="block" gutterBottom >
-                    Profile Name
-                 </Typography>
-                 <br/>
-                 <TextField
-                    name="name"
-                    label="Profle Name"
-                    variant="outlined"
-                    className=""
-                    value={name}
-                    fullWidth={true}
-                    onChange={(e) => profileName(e)}
-                />
-
-
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={e => cancel(e)} color="primary">
-                    Cancel
-                </Button>
-                <Button onClick={e => save(e)} color="primary">
-                    Save
-                </Button>
-            </DialogActions>
-            </Dialog>
-        </div>
-    );
+            <ProfileToT getQuestionState={props.getQuestionState} />
+          </ul>
+        </TabPanel>
+      </div>
+      <Dialog open={profile} onClose={handleChange}>
+        <DialogTitle>{"Update Profile"}</DialogTitle>
+        <DialogContent>
+          <Typography className="profileDialogHeader">
+            Profile Picture
+          </Typography>
+          <TextField
+            name="url"
+            label="Image URL"
+            variant="outlined"
+            className=""
+            value={url}
+            fullWidth={true}
+            onChange={(e) => URL(e)}
+          />
+          <Grid className="creatorImageContainer profileImageContainer">
+            <img className="creatorImage" src={url} alt="" />
+          </Grid>
+          <br />
+          <br />
+          <Typography className="profileDialogHeader">Profile Name</Typography>
+          <TextField
+            name="name"
+            label="Profle Name"
+            variant="outlined"
+            className=""
+            value={name}
+            fullWidth={true}
+            onChange={(e) => profileName(e)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={(e) => cancel(e)} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={(e) => save(e)} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }

@@ -92,6 +92,7 @@
 .cardCaptionText {
   color: black;
   margin-left: 1rem;
+  padding-right: 0.8rem;
 }
 .cardCaptionTextContainer {
   height: 3rem;
@@ -155,4 +156,12 @@
 
 .cardCaptionVotes {
   margin-top: 1rem;
+}
+
+.resultsContainer {
+  width: 100%;
+}
+.percentage {
+  margin-top: 0.5rem;
+  opacity: 0.7;
 }
