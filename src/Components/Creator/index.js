@@ -94,16 +94,14 @@ export default class Question extends Component {
             this.setState({isSponsored:true});
         }
         try {
-            axios.post('https://thisorthat-260419.appspot.com/api/questions', {
+            axios({method:'post', url:'https://thisorthat-260419.appspot.com/api/questions', data: {
                 questionText: this.state.title,
                 option1: option1Object,
                 option2: option2Object,
                 userID: this.props.userId,
                 isSponsored: this.state.isSponsored
-            }, {
-                headers: {
-                }
-              })
+            }, headers: {}, withCredentials:true
+            })
             .then(res => {
                 console.log(res);
                 console.log("ToT posted.")

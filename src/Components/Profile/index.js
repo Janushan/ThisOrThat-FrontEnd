@@ -89,8 +89,8 @@ export default function Profile(props) {
 
     const created = async () => {
         console.log(userId);
-        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
-        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/created')
+        console.log('https://thisorthat-260419.appspot.com/api/created');
+        axios.get('https://thisorthat-260419.appspot.com/api/created',{withCredentials:true})
         .then((response) => {
             console.log(response);
             setProfileToTs(response.data);
@@ -98,34 +98,32 @@ export default function Profile(props) {
     };
 
     const saved = async () => {
-        console.log(userId);
-        console.log('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved');
-        axios.get('https://thisorthat-260419.appspot.com/api/users/'+userId+'/saved')
+        axios.get('https://thisorthat-260419.appspot.com/api/saved',{withCredentials:true})
         .then((response) => {
             console.log(response);
             setSavedToTs(response.data);
         });
     };
 
-    const getToTs = async () => {
-        console.log('ID'+ userId+ "<>");
-        const fetchProfileToTs = async () => {
-            const result = await axios.get(
-              'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
-            console.log(result);
-            setProfileToTs(result.data);
-        };
-        const fetchSavedToTs = async () => {
-            const result = await axios.get(
-              'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
-            console.log(result);
-            setSavedToTs(result.data);
-        };
-        fetchProfileToTs();
-        fetchSavedToTs();
-        console.log(profileToTs);
-        console.log(savedToTs);
-    };
+    // const getToTs = async () => {
+    //     console.log('ID'+ userId+ "<>");
+    //     const fetchProfileToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
+    //         console.log(result);
+    //         setProfileToTs(result.data);
+    //     };
+    //     const fetchSavedToTs = async () => {
+    //         const result = await axios.get(
+    //           'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
+    //         console.log(result);
+    //         setSavedToTs(result.data);
+    //     };
+    //     fetchProfileToTs();
+    //     fetchSavedToTs();
+    //     console.log(profileToTs);
+    //     console.log(savedToTs);
+    // };
 
     const onClick= (e) =>  {
         setProfile(true);
