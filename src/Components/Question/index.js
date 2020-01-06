@@ -31,8 +31,8 @@ export default class Question extends Component {
     axios
       .get("https://thisorthat-260419.appspot.com/api/me", {
         headers: {
-          Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-        }, 
+          // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
+        },
         withCredentials: true
       })
       .then((response) => {
@@ -78,11 +78,12 @@ export default class Question extends Component {
           .get(
             "https://thisorthat-260419.appspot.com/api/users/" +
               this.state.userId +
-              "/feed", {
-                headers: {
-                  Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-                }
+              "/feed",
+            {
+              headers: {
+                // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
               }
+            }
           )
           .then((response) => {
             console.log("response on next line");
@@ -130,7 +131,7 @@ export default class Question extends Component {
           <ImageAndTextQuestion />
           <br /> <br />
           <div className="timer">
-            <Typography>{this.state.seconds}</Typography>{" "}
+            <Typography> {this.state.seconds} </Typography>{" "}
           </div>{" "}
           <br />
           <Options />
@@ -149,14 +150,14 @@ export default class Question extends Component {
               className="timer"
             >
               <Grid item>
-                <Typography>{this.state.seconds}</Typography>{" "}
-              </Grid>
+                <Typography> {this.state.seconds} </Typography>{" "}
+              </Grid>{" "}
               <Grid item className="circularProgressWrapper">
                 <CircularProgress size={36} className="circularProgress" />
-              </Grid>
+              </Grid>{" "}
             </Grid>{" "}
             <br />
-            <Options parent={this.state} />
+            <Options parent={this.state} />{" "}
           </div>{" "}
         </div>
       );

@@ -39,11 +39,11 @@ export default class Options extends Component {
           "/" +
           this.props.parent.userId +
           "/save",
-          {
-            headers: {
-              Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
-            }
+        {
+          headers: {
+            // Cookie: "session=1fee3571c3e12eb77b845ef2fb8a271ae7bccf0e"
           }
+        }
       )
       .then((response) => {
         console.log("ToT saved.");
