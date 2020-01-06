@@ -57,7 +57,7 @@ export default class Login extends Component {
           password: this.state.password
         })
         .then((response) => {
-          console.log(response);
+          document.cookie=response.data.cookie;
           this.setState({ validated: response.data });
           if (response.status === 201) {
             axios.get("https://thisorthat-260419.appspot.com/api/me")
