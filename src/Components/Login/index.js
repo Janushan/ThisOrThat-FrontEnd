@@ -127,7 +127,7 @@ export default class Login extends Component {
                   </Button>
                   <Button
                     className="facebookLoginButton"
-                    href="https://thisorthat-260419.appspot.com/api/login/facebook/init?redirect=https://thisorthat-260419.appspot.com/api/feed"
+                    href="https://thisorthat-260419.appspot.com/api/login/facebook/init?redirect=https://thisorthat-260419.appspot.com/feed"
                     // onClick={(e) => this.fbLogin(e)}
                     startIcon={<FacebookIcon />}
                   >
