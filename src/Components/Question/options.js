@@ -39,7 +39,9 @@ export default class Options extends Component {
           "/" +
           this.props.parent.userId +
           "/save",
-        {}
+        {
+          headers: {}
+        }
       )
       .then((response) => {
         console.log("ToT saved.");
