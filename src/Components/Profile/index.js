@@ -211,18 +211,18 @@ export default function Profile(props) {
           <TabPanel value={value} index={0} dir={theme.direction}>
             <ul className="listOfMyToTs">
               {profileToTs.map((info) => (
-                <Card className="myToTs" raised>
-                  <Created
-                    title={info.questionText}
-                    option1={info.option1.text}
-                    option2={info.option2.text}
-                    votes1={info.option1.numberOfVotes}
-                    votes2={info.option2.numberOfVotes}
-                    totalVotes={
-                      info.option1.numberOfVotes + info.option2.numberOfVotes
-                    }
-                  />
-                </Card>
+                <Created
+                  title={info.questionText}
+                  option1={info.option1.text}
+                  option2={info.option2.text}
+                  image1={info.option1.imageURL}
+                  image2={info.option2.imageURL}
+                  votes1={info.option1.numberOfVotes}
+                  votes2={info.option2.numberOfVotes}
+                  totalVotes={
+                    info.option1.numberOfVotes + info.option2.numberOfVotes
+                  }
+                />
               ))}
               {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
             </ul>
