@@ -1,4 +1,6 @@
-[Live Site](https://thisorthat-260419.appspot.com/)
+[Live Site Here](https://thisorthat-260419.appspot.com/)
+**NOTE: Please use Facebook login to use the application.**
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
