@@ -56,8 +56,6 @@ export default class Options extends Component {
       .post(
         "https://thisorthat-260419.appspot.com/api/questions/" +
           this.props.parent.questionId +
-          "/" +
-          this.props.parent.userId +
           "/save",
         {}
       )
