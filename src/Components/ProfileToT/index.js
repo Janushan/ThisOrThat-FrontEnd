@@ -73,20 +73,24 @@ export default class ProfileToT extends Component {
           text2: response.data.option2.text,
           option1Votes: parseFloat(response.data.option1.numberOfVotes),
           option2Votes: parseFloat(response.data.option2.numberOfVotes),
-
-          percentage: response.data.sponsoredData.percentage,
-          logo: response.data.sponsoredData.logo,
-          terms: response.data.sponsoredData.terms,
-          image: response.data.sponsoredData.image,
-          website: response.data.sponsoredData.website,
-          description: response.data.sponsoredData.description,
-          code: response.data.sponsoredData.code,
-
           totalVotes: parseFloat(
-            response.data.option1.numberOfVotes +
-              response.data.option2.numberOfVotes
+            parseFloat(response.data.option1.numberOfVotes) +
+              parseFloat(response.data.option2.numberOfVotes)
           )
-        });
+        }        
+        );
+        if(this.state.isSponsored === true) {
+          this.setState({
+            percentage: response.data.sponsoredData.percentage,
+            logo: response.data.sponsoredData.logo,
+            terms: response.data.sponsoredData.terms,
+            image: response.data.sponsoredData.image,
+            website: response.data.sponsoredData.website,
+            description: response.data.sponsoredData.description,
+            code: response.data.sponsoredData.code,
+          }        
+          );
+        }
         if (response.data.option1.imageURL) {
           this.setState({
             url1: response.data.option1.imageURL
