@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import { StringFormat } from "../../Helpers/capitalise";
 import Options from "../Question/options";
 import ImageAndTextQuestionOption from "../Question/imageAndTextOption";
+import VoucherCard from "../Voucher/card";
 
 import "./profileToT.css";
 
@@ -23,6 +24,7 @@ export default class ProfileToT extends Component {
     text2: "",
     url1: "",
     url2: "",
+    isSponsored: false,
 
     option1Votes: 8,
     option2Votes: 5,
@@ -51,9 +53,13 @@ export default class ProfileToT extends Component {
 
   getQuestionDetails(questionId) {
     axios
-      .get("https://thisorthat-260419.appspot.com/api/questions/" + questionId,{withCredentials:true})
+      .get(
+        "https://thisorthat-260419.appspot.com/api/questions/" + questionId,
+        { withCredentials: true }
+      )
       .then((response) => {
         this.setState({
+          isSponsored: response.data.isSponsored,
           title: response.data.questionText,
           text1: response.data.option1.text,
           text2: response.data.option2.text,
@@ -100,6 +106,13 @@ export default class ProfileToT extends Component {
       <div className="question">
         <Card className="card imageAndTextCard">
           <CardHeader title={StringFormat.capitalise(this.state.title)} />{" "}
+          {this.state.isSponsored === true ? (
+            <Grid container justify="center">
+              <Typography className="sponsorTag">Sponsored</Typography>
+            </Grid>
+          ) : (
+            <div></div>
+          )}
           <div className="row"> </div> <br />
           <div className="options">
             <ImageAndTextQuestionOption
@@ -128,7 +141,8 @@ export default class ProfileToT extends Component {
           </Grid>{" "}
         </Card>{" "}
         <br />
-        <Options parent={this.state} />{" "}
+        <VoucherCard />
+        <Options parent={this.state} /> <br />
       </div>
     );
   }

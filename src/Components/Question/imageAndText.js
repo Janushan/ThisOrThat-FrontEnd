@@ -51,6 +51,9 @@ export default class ImageAndTextQuestion extends Component {
             title={StringFormat.capitalise(this.props.parent.title)}
           />{" "}
           <div className="row"> </div> <br />
+          <Grid container>
+            <Typography>Sponsored</Typography>
+          </Grid>
           <div className="options">
             <ImageAndTextQuestionOption
               cardContainerClass="cardContainerButtonLeft"

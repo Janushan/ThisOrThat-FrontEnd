@@ -1,54 +1,116 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  /* Create two equal columns that floats next to each other */
-  .column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  box-sizing: border-box;
+}
+
+.voucherRoot {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  padding: 1.4rem;
+}
+
+.voucherBrandLogo {
+  height: 3.4rem;
+  width: 3.4rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  object-fit: cover;
+  margin-right: 1.5rem;
+}
+.voucherImage {
+  height: 6rem;
+  width: 6rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  object-fit: cover;
+  margin-right: 2rem;
+}
+
+.voucherOffer {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.voucherdiscountTerms {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.voucherLine {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.voucherDescription {
+  font-size: 0.8rem;
+  max-width: 20rem;
+  margin-bottom: 0.8rem;
+}
+.voucherOfferContainer {
+  display: block;
+}
+.voucherCodeButton {
+}
+.voucherCodeButton:hover {
+  background-color: white;
+  color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .holder {
-    display: grid;
-    margin-top: 3%;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  margin-top: 3%;
+  justify-content: center;
+  align-items: center;
 }
-  
-  .voucher {
-    padding: 50px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    color: white;
-    background-color: #60308b;
-    text-align: center;
-  }
 
-  .percenage{
-      padding-right: 30px;
-      padding-bottom: 15px;
-  }
+.voucher {
+  padding: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: white;
+  background-color: #60308b;
+  text-align: center;
+}
 
-  .voucherImage {
-    padding-bottom: 15px;
-  }
-  
-  .website {
-    padding-bottom: 15px;
-  }
+.percenage {
+  padding-right: 30px;
+  padding-bottom: 15px;
+}
 
-  .description {
-    padding-bottom: 15px;
-  }
+.website {
+  padding-bottom: 15px;
+}
 
-  .code{
-    padding-bottom: 15px;
-  }
+.description {
+  padding-bottom: 15px;
+}
+
+.code {
+  padding-bottom: 15px;
+}

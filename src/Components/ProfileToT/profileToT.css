@@ -1,15 +1,16 @@
-.parts{
-    position:absolute;
-    display: grid;
-    grid-template-columns: 50% 50%;
+.parts {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
-.part1,.part2 {
-    margin: 0px 10px 10px 10px;
-    float: left;
-    /* clear: none;  */
+.part1,
+.part2 {
+  margin: 0px 10px 10px 10px;
+  float: left;
+  /* clear: none;  */
 }
 
-.totInProfile{
+.totInProfile {
   width: inherit;
   padding: 10px;
   padding-top: 25px;
@@ -17,4 +18,12 @@
   color: white;
   background-color: #60308b;
   text-align: center;
+}
+
+.resultsContainer {
+  width: 100%;
+}
+.percentage {
+  margin-top: 0.5rem;
+  opacity: 0.7;
 }
