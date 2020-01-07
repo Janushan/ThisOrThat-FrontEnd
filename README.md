@@ -1,3 +1,5 @@
+[Live Site](https://thisorthat-260419.appspot.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -35,3 +37,20 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Deployment
+
+In the Google Cloud Shell, you can run the following to deploy:
+
+### `rm -rf ThisOrThat-FrontEnd/`
+Remove the current version of the frontend project if it exists.
+
+### `git clone https://github.com/Janushan/ThisOrThat-FrontEnd.git`
+Clones the latest version of the repo from Github.
+
+### `cd ThisOrThat-FrontEnd/`
+Changes directory to the frontend project.
+
+### `gcloud app deploy`
+Deploys the application to Google Cloud.<br />
+You can learn more in the [documentation](https://cloud.google.com/sdk/gcloud/reference/app/deploy).
