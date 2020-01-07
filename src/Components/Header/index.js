@@ -150,6 +150,7 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
               onClick={function() {
                 handleClose();
                 changeIsLoggedIn(false);
+                window.location.href = "/login";
               }}
             >
               Log out

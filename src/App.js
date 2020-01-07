@@ -89,8 +89,13 @@ class App extends Component {
       },
       function() {
         this.saveToLocalStorage();
+        console.log("The user id got set to: " + newValue);
       }
     );
+  }
+
+  getUserId = () => {
+    return this.state.userId;
   }
 
   changeIsLoggedIn = (newValue) => {
@@ -181,6 +186,7 @@ class App extends Component {
                         this.state.isLoggedIn ? (
                           <Question
                             setUserId = {this.setUserId}
+                            getUserId = {this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -189,6 +195,7 @@ class App extends Component {
                         ) : (
                           <Question
                             setUserId = {this.setUserId}
+                            getUserId = {this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -223,6 +230,7 @@ class App extends Component {
                         this.state.isLoggedIn ? (
                           <Question
                             setUserId = {this.setUserId}
+                            getUserId = {this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -271,6 +279,7 @@ class App extends Component {
                         this.state.isLoggedIn ? (
                           <Question
                             setUserId = {this.setUserId}
+                            getUserId = {this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
