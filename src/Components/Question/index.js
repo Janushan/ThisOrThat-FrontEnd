@@ -73,7 +73,7 @@ export default class Question extends Component {
 
   updateStateFromAPICall = () => {
     var localUserId = this.props.getUserId();
-    if(localUserId === null) {
+    if (localUserId === null) {
       localUserId = "5e0e5e2c865c4946ea9a2dcf";
     }
     console.log("but we actually use: " + localUserId);
@@ -163,7 +163,7 @@ export default class Question extends Component {
               </Grid>{" "}
             </Grid>{" "}
             <br />
-            <Options parent={this.state} />{" "}
+            <Options parent={this.state} /> <br />{" "}
           </div>{" "}
         </div>
       );
