@@ -10,9 +10,9 @@ import "./voucher.css";
 export default class VoucherCard extends Component {
   state = {
     percentage: "15",
-    logo: "",
+    logo: "https://bit.ly/2s0n8GF",
     terms: "30",
-    image: "",
+    image: "https://bit.ly/2s0n8GF",
     website: "https://pullandbear.co.uk",
     description:
       "Copy your voucher code to get 15% off your next pair of ripped jeans.",
