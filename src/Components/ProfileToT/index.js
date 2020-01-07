@@ -51,7 +51,7 @@ export default class ProfileToT extends Component {
 
   getQuestionDetails(questionId) {
     axios
-      .get("http://thisorthat-260419.appspot.com/api/questions/" + questionId,{withCredentials:true})
+      .get("https://thisorthat-260419.appspot.com/api/questions/" + questionId,{withCredentials:true})
       .then((response) => {
         this.setState({
           title: response.data.questionText,
