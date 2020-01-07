@@ -44,44 +44,41 @@ export default class VoucherCard extends Component {
   };
 
   render() {
+    const {
+      percentage,
+      logo,
+      terms,
+      image,
+      website,
+      description,
+      code
+    } = this.props;
     return (
       <div>
         <Card className="voucherRoot">
           <Grid container alignItems="center">
             <Grid item>
-              <img
-                className="voucherBrandLogo"
-                src="https://bit.ly/2s0n8GF"
-                alt="sad"
-              />
+              <img className="voucherBrandLogo" src={logo} alt="sad" />
             </Grid>
             <Grid item justify="center">
               <Typography variant="h6" className="voucherOffer">
-                {"Get " + this.state.percentage + "% Off"}
+                {"Get " + percentage + "% Off"}
               </Typography>
               <Typography className="voucherdiscountTerms">
-                {"Orders over " +
-                  "£" +
-                  this.state.terms +
-                  " at " +
-                  this.state.website}
+                {"Orders over " + "£" + terms + " at " + website}
               </Typography>
             </Grid>
           </Grid>
           <div className="voucherLine" />
           <Grid container alignItems="center">
             <Grid item>
-              <img
-                className="voucherImage"
-                src="https://bit.ly/2s0n8GF"
-                alt="sad"
-              />
+              <img className="voucherImage" src={image} alt="sad" />
             </Grid>
             <Grid item>
               <Grid container className="voucherOfferContainer">
                 <Grid item>
                   <Typography className="voucherDescription">
-                    {this.state.description}
+                    {description}
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -92,7 +89,7 @@ export default class VoucherCard extends Component {
                       disableFocusRipple={true}
                       onClick={(e) => this.copy(e)}
                     >
-                      <Typography variant="h5">{this.state.code}</Typography>
+                      <Typography variant="h5">{code}</Typography>
                     </Button>
                     <Button onClick={(e) => this.copy(e)}>Copy</Button>
                   </ButtonGroup>
