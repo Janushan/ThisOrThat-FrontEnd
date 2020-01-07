@@ -48,9 +48,18 @@ class App extends Component {
       text2: "...",
       url1: "",
       url2: "",
+      isSponsored: false,
       numberOfVotes: 0,
       seconds: 10,
-      group: true
+      group: true,
+      sponsoredData: {
+        logoURL: "",
+        percentageDiscount: "",
+        discountTerms: "",
+        imageURL: "",
+        voucherCode: "",
+        description: ""
+      }
     }
   };
 
@@ -92,11 +101,11 @@ class App extends Component {
         console.log("The user id got set to: " + newValue);
       }
     );
-  }
+  };
 
   getUserId = () => {
     return this.state.userId;
-  }
+  };
 
   changeIsLoggedIn = (newValue) => {
     this.setState(
@@ -185,8 +194,8 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
-                            setUserId = {this.setUserId}
-                            getUserId = {this.getUserId}
+                            setUserId={this.setUserId}
+                            getUserId={this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -194,8 +203,8 @@ class App extends Component {
                           />
                         ) : (
                           <Question
-                            setUserId = {this.setUserId}
-                            getUserId = {this.getUserId}
+                            setUserId={this.setUserId}
+                            getUserId={this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -229,8 +238,8 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
-                            setUserId = {this.setUserId}
-                            getUserId = {this.getUserId}
+                            setUserId={this.setUserId}
+                            getUserId={this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}
@@ -278,8 +287,8 @@ class App extends Component {
                       render={(props) =>
                         this.state.isLoggedIn ? (
                           <Question
-                            setUserId = {this.setUserId}
-                            getUserId = {this.getUserId}
+                            setUserId={this.setUserId}
+                            getUserId={this.getUserId}
                             getIsLoggedIn={this.getIsLoggedIn}
                             changeIsLoggedIn={this.changeIsLoggedIn}
                             userId={this.state.userId}

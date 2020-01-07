@@ -6,17 +6,20 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
+import VoucherCard from "./card";
 import "./voucher.css";
 
 export default class Voucher extends Component {
   state = {
     percentage: "15",
-    logo: "",
+    logo: "https://bit.ly/2s0n8GF",
     terms: "30",
-    image: "",
-    website: "https://pullandbear.co.uk",
-    description: "Slim-fitted blue jeans",
+    image: "https://bit.ly/2s0n8GF",
+    website: "www.ae.co.uk",
+    description:
+      "Copy your voucher code to get 15% off your next pair of ripped jeans.",
     code: "15OFF",
     open: true,
     pay: "Pay and Publish"
@@ -65,96 +68,82 @@ export default class Voucher extends Component {
     return (
       <div class="row">
         <div class="column">
-          <div className="holder">
+          <Grid container>
             <Card className="voucher" raised>
               <CardHeader title="Create Voucher" />
-              <div className="discounts">
+              <Grid container>
+                <Grid item className="percenage">
+                  <TextField
+                    label="Discount Percentage (%)"
+                    variant="outlined"
+                    name="percentage"
+                    value={this.state.percentage}
+                    onChange={(e) => this.change(e)}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Discount Terms ()"
+                    variant="outlined"
+                    name="terms"
+                    value={this.state.terms}
+                    onChange={(e) => this.change(e)}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid item className="percenage">
+                  <TextField
+                    label="Image URL"
+                    variant="outlined"
+                    name="image"
+                    value={this.state.image}
+                    onChange={(e) => this.change(e)}
+                  />
+                </Grid>
                 <TextField
-                  className="percentage"
-                  label="Discount Percentage (%)"
+                  label="Website URL"
                   variant="outlined"
-                  name="percentage"
-                  value={this.state.percentage}
+                  name="website"
+                  value={this.state.website}
                   onChange={(e) => this.change(e)}
                 />
+              </Grid>
+              <Grid container>
+                <Grid item className="percenage">
+                  <TextField
+                    label="Description"
+                    variant="outlined"
+                    name="description"
+                    value={this.state.description}
+                    onChange={(e) => this.change(e)}
+                  />
+                </Grid>
                 <TextField
-                  className="terms"
-                  label="Discount Terms ()"
+                  className="code"
+                  label="Code"
                   variant="outlined"
-                  name="terms"
-                  value={this.state.terms}
+                  name="code"
+                  value={this.state.code}
                   onChange={(e) => this.change(e)}
                 />
-              </div>
-              <TextField
-                className="voucherImage"
-                label="Image URL"
-                variant="outlined"
-                name="image"
-                value={this.state.image}
-                onChange={(e) => this.change(e)}
-              />
-              <TextField
-                className="website"
-                label="Website URL"
-                variant="outlined"
-                name="website"
-                value={this.state.website}
-                onChange={(e) => this.change(e)}
-              />
-              <TextField
-                className="description"
-                label="Description"
-                variant="outlined"
-                name="description"
-                value={this.state.description}
-                onChange={(e) => this.change(e)}
-              />
-              <TextField
-                className="code"
-                label="Code"
-                variant="outlined"
-                name="code"
-                value={this.state.code}
-                onChange={(e) => this.change(e)}
-              />
-              <Button onClick={(e) => this.open(e)}>{this.state.pay}</Button>
+              </Grid>
+              <Button color="primary" onClick={(e) => this.open(e)}>
+                {this.state.pay}
+              </Button>
             </Card>
-          </div>
+          </Grid>
         </div>
         <div class="column">
-          <Card>
-            <Typography variant="h5" display="block" gutterBottom>
-              {"Get " + this.state.percentage + "% Off"}
-            </Typography>
-            <Typography variant="caption" display="block" gutterBottom>
-              {"On orders over " +
-                this.state.terms +
-                " pounds @ " +
-                this.state.website}
-            </Typography>
-            <img
-              className="voucherImage"
-              src={this.state.image}
-              alt="Preview"
-            />
-            <Typography variant="h5" display="block" gutterBottom>
-              {this.state.description}
-            </Typography>
-            <br />
-            <ButtonGroup size="small" aria-label="small outlined button group">
-              <Button onClick={(e) => this.copy(e)}>
-                <Typography variant="h5" display="block" gutterBottom>
-                  {this.state.code}
-                </Typography>
-              </Button>
-              <Button onClick={(e) => this.copy(e)}>Copy</Button>
-            </ButtonGroup>
-            <Button color="primary"></Button>
-            <Button onClick={(e) => this.save(e)} color="primary">
-              Save Voucher
-            </Button>
-          </Card>
+          <VoucherCard
+            percentage={this.state.percentage}
+            logo={this.state.logo}
+            terms={this.state.terms}
+            image={this.state.image}
+            website={this.state.website}
+            description={this.state.description}
+            code={this.state.code}
+          />
         </div>
       </div>
     );

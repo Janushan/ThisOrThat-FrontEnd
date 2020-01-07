@@ -8,19 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import "./voucher.css";
 
 export default class VoucherCard extends Component {
-  state = {
-    percentage: "15",
-    logo: "https://bit.ly/2s0n8GF",
-    terms: "30",
-    image: "https://bit.ly/2s0n8GF",
-    website: "https://pullandbear.co.uk",
-    description:
-      "Copy your voucher code to get 15% off your next pair of ripped jeans.",
-    code: "15OFF",
-    open: true,
-    pay: "Pay and Publish"
-  };
-
   change = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -58,7 +45,7 @@ export default class VoucherCard extends Component {
         <Card className="voucherRoot">
           <Grid container alignItems="center">
             <Grid item>
-              <img className="voucherBrandLogo" src={logo} alt="sad" />
+              <img className="voucherBrandLogo" src={logo} alt="logo" />
             </Grid>
             <Grid item justify="center">
               <Typography variant="h6" className="voucherOffer">
@@ -72,7 +59,7 @@ export default class VoucherCard extends Component {
           <div className="voucherLine" />
           <Grid container alignItems="center">
             <Grid item>
-              <img className="voucherImage" src={image} alt="sad" />
+              <img className="voucherImage" src={image} alt="product" />
             </Grid>
             <Grid item>
               <Grid container className="voucherOfferContainer">

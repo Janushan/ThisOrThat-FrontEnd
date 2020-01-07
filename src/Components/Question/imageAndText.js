@@ -50,10 +50,14 @@ export default class ImageAndTextQuestion extends Component {
           <CardHeader
             title={StringFormat.capitalise(this.props.parent.title)}
           />{" "}
+          {this.props.parent.isSponsored === true ? (
+            <Grid container justify="center">
+              <Typography className="sponsorTag">Sponsored</Typography>
+            </Grid>
+          ) : (
+            <div></div>
+          )}
           <div className="row"> </div> <br />
-          <Grid container>
-            <Typography>Sponsored</Typography>
-          </Grid>
           <div className="options">
             <ImageAndTextQuestionOption
               cardContainerClass="cardContainerButtonLeft"
