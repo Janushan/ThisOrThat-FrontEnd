@@ -106,7 +106,11 @@ export default function Profile(props) {
         axios({method:'get', url:'https://thisorthat-260419.appspot.com/api/created',withCredentials:true})
         .then((response) => {
             console.log(response);
-            setProfileToTs(response.data);
+            if(response.data.length>=1){
+                setProfileToTs(response.data);
+            }else{
+                setProfileToTs([]);
+            }
         });
     };
 
@@ -115,7 +119,12 @@ export default function Profile(props) {
         axios({method:'get', url:'https://thisorthat-260419.appspot.com/api/saved',withCredentials:true})
         .then((response) => {
             console.log(response);
-            setSavedToTs(response.data);
+            if(response.data.length>=1){
+                setSavedToTs(response.data);
+            }else{
+                setSavedToTs([]);
+            }
+            
         });
     };
 
