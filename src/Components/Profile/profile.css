@@ -55,13 +55,15 @@ ul {
   box-shadow: none;
 }
 
-.PrivateTabIndicator-colorSecondary-259 {
+.PrivateTabIndicator-colorSecondary-257,
+.PrivateTabIndicator-colorSecondary-258,
+.MuiTabs-indicator {
   background-color: white;
 }
-.MuiTab-textColorSecondary.Mui-selected {
+.MuiTab-textColorPrimary.Mui-selected {
   color: white;
 }
-.MuiTab-textColorSecondary {
+.MuiTab-textColorPrimary {
   color: rgba(255, 255, 255, 0.5);
   font-weight: bold;
   letter-spacing: 0.04em;
