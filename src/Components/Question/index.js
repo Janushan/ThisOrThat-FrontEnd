@@ -72,10 +72,14 @@ export default class Question extends Component {
   }
 
   updateStateFromAPICall = () => {
-    console.log("but we actually use: " + this.props.getUserId());
+    var localUserId = this.props.getUserId();
+    if(localUserId === null) {
+      localUserId = "5e0e5e2c865c4946ea9a2dcf";
+    }
+    console.log("but we actually use: " + localUserId);
     this.setState(
       {
-        userId: this.props.getUserId()
+        userId: localUserId
       },
       () => {
         axios
