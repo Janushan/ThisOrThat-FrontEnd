@@ -32,6 +32,13 @@
 .editpProfileButton {
   color: white;
 }
+.editProfileImage {
+  height: 3.4rem;
+  width: 3.4rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  object-fit: cover;
+}
 
 ul {
   padding-left: 0;
