@@ -38,6 +38,7 @@ export default class Question extends Component {
         console.log("response:");
         console.log(response);
         var userId = response.data.id;
+        console.log("The userId is: " + userId);
         this.props.setUserId(userId);
         // alert(this.props.getIsLoggedIn);
         // alert("ME WAS SUCCESSFUL");
@@ -71,9 +72,10 @@ export default class Question extends Component {
   }
 
   updateStateFromAPICall = () => {
+    console.log("but we actually use: " + this.props.getUserId());
     this.setState(
       {
-        userId: this.props.userId
+        userId: this.props.getUserId()
       },
       () => {
         axios
