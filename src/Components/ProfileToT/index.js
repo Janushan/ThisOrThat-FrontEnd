@@ -26,6 +26,14 @@ export default class ProfileToT extends Component {
     url2: "",
     isSponsored: false,
 
+    percentage: "",
+    logo: "",
+    terms: "",
+    image: "",
+    website: "",
+    description: "",
+    code: "",
+
     option1Votes: 8,
     option2Votes: 5,
     totalVotes: 13
@@ -65,6 +73,15 @@ export default class ProfileToT extends Component {
           text2: response.data.option2.text,
           option1Votes: parseFloat(response.data.option1.numberOfVotes),
           option2Votes: parseFloat(response.data.option2.numberOfVotes),
+
+          percentage: response.data.sponsoredData.percentage,
+          logo: response.data.sponsoredData.logo,
+          terms: response.data.sponsoredData.terms,
+          image: response.data.sponsoredData.image,
+          website: response.data.sponsoredData.website,
+          description: response.data.sponsoredData.description,
+          code: response.data.sponsoredData.code,
+
           totalVotes: parseFloat(
             response.data.option1.numberOfVotes +
               response.data.option2.numberOfVotes
@@ -141,7 +158,19 @@ export default class ProfileToT extends Component {
           </Grid>{" "}
         </Card>{" "}
         <br />
-        <VoucherCard />
+        {this.state.isSponsored === true ? (
+          <VoucherCard
+            percentage={this.state.percentage}
+            logo={this.state.logo}
+            terms={this.state.terms}
+            image={this.state.image}
+            website={this.state.website}
+            description={this.state.description}
+            code={this.state.code}
+          />
+        ) : (
+          <div></div>
+        )}
         <Options parent={this.state} /> <br />
       </div>
     );
