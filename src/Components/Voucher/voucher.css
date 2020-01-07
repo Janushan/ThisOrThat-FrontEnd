@@ -4,6 +4,7 @@
 
 .voucherRoot {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   border-radius: 0.8rem;
   padding: 1.4rem;
 }
@@ -43,6 +44,17 @@
 
 .voucherDescription {
   font-size: 0.8rem;
+  max-width: 20rem;
+  margin-bottom: 0.8rem;
+}
+.voucherOfferContainer {
+  display: block;
+}
+.voucherCodeButton {
+}
+.voucherCodeButton:hover {
+  background-color: white;
+  color: black;
 }
 
 * {

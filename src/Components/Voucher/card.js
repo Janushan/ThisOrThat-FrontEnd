@@ -69,7 +69,7 @@ export default class VoucherCard extends Component {
             </Grid>
           </Grid>
           <div className="voucherLine" />
-          <Grid container>
+          <Grid container alignItems="center">
             <Grid item>
               <img
                 className="voucherImage"
@@ -78,18 +78,20 @@ export default class VoucherCard extends Component {
               />
             </Grid>
             <Grid item>
-              <Grid container justify="center">
+              <Grid container className="voucherOfferContainer">
                 <Grid item>
                   <Typography className="voucherDescription">
                     {this.state.description}
                   </Typography>
                 </Grid>
-                <Grid item direction="column">
-                  <ButtonGroup
-                    size="small"
-                    aria-label="small outlined button group"
-                  >
-                    <Button onClick={(e) => this.copy(e)}>
+                <Grid item>
+                  <ButtonGroup size="small">
+                    <Button
+                      className="voucherCodeButton"
+                      disableRipple={true}
+                      disableFocusRipple={true}
+                      onClick={(e) => this.copy(e)}
+                    >
                       <Typography variant="h5">{this.state.code}</Typography>
                     </Button>
                     <Button onClick={(e) => this.copy(e)}>Copy</Button>
