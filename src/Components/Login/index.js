@@ -43,8 +43,6 @@ export default class Login extends Component {
     });
   };
 
-  
-
   onSubmit = (e) => {
     e.preventDefault();
     var alertString = "";
@@ -53,16 +51,24 @@ export default class Login extends Component {
       this.setState({ errorMessage: alertString });
       this.setState({ open1: true });
     } else {
-      axios.post("https://thisorthat-260419.appspot.com/api/login/email", {
-          email: this.state.email,
-          password: this.state.password
-        },{withCredentials:true})
+      axios
+        .post(
+          "https://thisorthat-260419.appspot.com/api/login/email",
+          {
+            email: this.state.email,
+            password: this.state.password
+          },
+          { withCredentials: true }
+        )
         .then((response) => {
           console.log(response);
           this.setState({ validated: response.data });
           if (response.status === 201) {
-            axios({method: 'get', url:"https://thisorthat-260419.appspot.com/api/me", withCredentials:true})
-            .then((response2) => {
+            axios({
+              method: "get",
+              url: "https://thisorthat-260419.appspot.com/api/me",
+              withCredentials: true
+            }).then((response2) => {
               console.log(response2);
               this.props.changeIsLoggedIn(true);
               // if(this.state.email=="sooklal82@gmail.com"){
@@ -159,10 +165,8 @@ export default class Login extends Component {
         <Dialog
           open={this.state.open1}
           onClose={this.handleClose.bind(this, 1)}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+          <DialogTitle>{""}</DialogTitle>
           <DialogContent>{this.state.errorMessage}</DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose.bind(this, 1)} color="primary">

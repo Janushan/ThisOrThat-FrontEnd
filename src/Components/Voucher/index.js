@@ -16,7 +16,8 @@ export default class Voucher extends Component {
     percentage: "15",
     logo: "https://bit.ly/2s0n8GF",
     terms: "30",
-    image: "https://bit.ly/2s0n8GF",
+    image:
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
     website: "www.ae.co.uk",
     description:
       "Copy your voucher code to get 15% off your next pair of ripped jeans.",

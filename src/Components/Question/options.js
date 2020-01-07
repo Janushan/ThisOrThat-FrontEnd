@@ -38,7 +38,8 @@ export default class Options extends Component {
           this.props.parent.questionId +
           "/save",
         {
-          headers: {}, withCredentials:true
+          headers: {},
+          withCredentials: true
         }
       )
       .then((response) => {
@@ -82,7 +83,7 @@ export default class Options extends Component {
         method: "share",
         quote: "The most fun way make decisions",
         hashtag: "#thisorthat",
-        href: "https://hip-graph-263913.appspot.com/api/"
+        href: "https://thisorthat-260419.appspot.com/"
       },
       function(response) {}
     );

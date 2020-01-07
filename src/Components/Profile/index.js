@@ -33,7 +33,6 @@ function TabPanel(props) {
       component="div"
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
@@ -197,7 +196,6 @@ export default function Profile(props) {
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
-            aria-label="full width tabs example"
           >
             <Tab label="Your ToTs" {...a11yProps(0)} />
             <Tab label="Saved" {...a11yProps(1)} />
@@ -260,7 +258,7 @@ export default function Profile(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Update Profile"}</DialogTitle>
+        <DialogTitle>{"Update Profile"}</DialogTitle>
         <DialogContent>
           <Typography>Profile Picture</Typography>
           <br />

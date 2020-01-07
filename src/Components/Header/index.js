@@ -124,7 +124,6 @@ export default function Header({ isLoggedIn, changeIsLoggedIn }) {
             <MoreIcon />
           </IconButton>
           <Menu
-            id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
               vertical: "top",

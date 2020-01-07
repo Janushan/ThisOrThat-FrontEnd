@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-import './styles.css';
+import "./styles.css";
 
 export default class Signup extends Component {
   state = {
@@ -40,14 +40,13 @@ export default class Signup extends Component {
     });
   };
 
-  handleChange = event => {
-    this.setState({value:event.target.value});
-    if(event.target.value=="Personal"){
-      this.setState({brand:0});
-    }else{
-      this.setState({brand:1});
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+    if (event.target.value == "Personal") {
+      this.setState({ brand: 0 });
+    } else {
+      this.setState({ brand: 1 });
     }
-    
   };
 
   handleClose = (openIndex) => {
@@ -101,20 +100,21 @@ export default class Signup extends Component {
       }
     }
     console.log(this.state.brand);
-    if(alertString==="" && (this.state.usernameError===false)){
-        axios.post('https://thisorthat-260419.appspot.com/api/signup/email', {
+    if (alertString === "" && this.state.usernameError === false) {
+      axios
+        .post("https://thisorthat-260419.appspot.com/api/signup/email", {
           name: this.state.userName,
           email: this.state.email,
           password: this.state.password,
           brand_account: this.state.brand
         })
-        .then(response => {
-         window.location.href = "/login";
-         console.log("success");
-        })
-    }else{
-      this.setState({errorMessage:alertString});
-      this.setState({open1:true});
+        .then((response) => {
+          window.location.href = "/login";
+          console.log("success");
+        });
+    } else {
+      this.setState({ errorMessage: alertString });
+      this.setState({ open1: true });
     }
   };
 
@@ -206,13 +206,28 @@ export default class Signup extends Component {
                   )
                 }}
               />
-              <br/>
-              <br/>
-              <RadioGroup aria-label="gender" name="gender1" value={this.state.value} onChange={e => this.handleChange(e)}>
-                <FormControlLabel value="Personal" control={<Radio />} label="Personal" />
-                <FormControlLabel value="Business" control={<Radio />} label="Business" />
+              <br />
+              <br />
+              <RadioGroup
+                value={this.state.value}
+                onChange={(e) => this.handleChange(e)}
+              >
+                <FormControlLabel
+                  value="Personal"
+                  control={<Radio />}
+                  label="Personal"
+                />
+                <FormControlLabel
+                  value="Business"
+                  control={<Radio />}
+                  label="Business"
+                />
               </RadioGroup>
-              <Button variant="contained" color="primary" onClick={e => this.onSubmit(e)} >
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={(e) => this.onSubmit(e)}
+              >
                 Submit
               </Button>
               <br />
@@ -231,10 +246,8 @@ export default class Signup extends Component {
         <Dialog
           open={this.state.open1}
           onClose={this.handleClose.bind(this, 1)}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+          <DialogTitle>{""}</DialogTitle>
           <DialogContent>{this.state.errorMessage}</DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose.bind(this, 1)} color="primary">
