@@ -216,8 +216,16 @@ export default function Profile(props) {
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
+                        <Created
+                            title="Location"
+                            option1="Fordham"
+                            option2="NewJersey"
+                            votes1="1"
+                            votes2="1"
+                            totalVotes="2"
+                        />
                         <ul className="listOfSavedToTs">
-                            {savedToTs.map(info => (
+                            {/* {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
                                     <Created
                                         title={info.questionText}
@@ -228,7 +236,7 @@ export default function Profile(props) {
                                         totalVotes={info.option1.numberOfVotes+info.option2.numberOfVotes}
                                     />
                                 </Card>
-                            ))}
+                            ))} */}
                             {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
                         </ul>
                     </TabPanel>
