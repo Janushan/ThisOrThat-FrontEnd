@@ -21,7 +21,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import CreateIcon from "@material-ui/icons/Create";
 import IconButton from "@material-ui/core/IconButton";
-
+import Created from '../Created';
 import "./profile.css";
 import { TextField } from "@material-ui/core";
 
@@ -75,6 +75,7 @@ export default function Profile(props) {
     const [profilename, setProfileName]= useState("Profile");
     const [profileIcon, setProfileIcon]= useState("https://image.flaticon.com/icons/svg/1738/1738760.svg");
     const [userId, setUserId]=useState(localStorage.getItem('userId'));
+    const [user, setUser]= useState([]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -87,13 +88,22 @@ export default function Profile(props) {
     useEffect(() => {
         created();
         saved();
+        getUser();
         // getToTs();
     }, []);
 
+    const getUser = async () => {
+        axios({method: 'get', url:"https://thisorthat-260419.appspot.com/api/me", withCredentials:true})
+            .then((response) => {
+              console.log(response);
+              setUser(response.data);
+              setName(response.data.name);
+            });
+    };
+    
     const created = async () => {
-        console.log(userId);
         console.log('https://thisorthat-260419.appspot.com/api/created');
-        axios.get({method:'get', url:'https://thisorthat-260419.appspot.com/api/created',withCredentials:true})
+        axios({method:'get', url:'https://thisorthat-260419.appspot.com/api/created',withCredentials:true})
         .then((response) => {
             console.log(response);
             setProfileToTs(response.data);
@@ -101,32 +111,13 @@ export default function Profile(props) {
     };
 
     const saved = async () => {
-        axios.get({method:'get', url:'https://thisorthat-260419.appspot.com/api/saved',withCredentials:true})
+        console.log('https://thisorthat-260419.appspot.com/api/saved');
+        axios({method:'get', url:'https://thisorthat-260419.appspot.com/api/saved',withCredentials:true})
         .then((response) => {
             console.log(response);
             setSavedToTs(response.data);
         });
     };
-
-    // const getToTs = async () => {
-    //     console.log('ID'+ userId+ "<>");
-    //     const fetchProfileToTs = async () => {
-    //         const result = await axios.get(
-    //           'https://thisorthat-260419.appspot.com/api/users/'+userId+'/created');
-    //         console.log(result);
-    //         setProfileToTs(result.data);
-    //     };
-    //     const fetchSavedToTs = async () => {
-    //         const result = await axios.get(
-    //           'https://thisorthat-260419.appspot.com/api/'+userId+'/saved');
-    //         console.log(result);
-    //         setSavedToTs(result.data);
-    //     };
-    //     fetchProfileToTs();
-    //     fetchSavedToTs();
-    //     console.log(profileToTs);
-    //     console.log(savedToTs);
-    // };
 
     const onClick= (e) =>  {
         setProfile(true);
@@ -154,15 +145,30 @@ export default function Profile(props) {
 
     return (
         <div className="profilePage">
-            <Button className="profileCard" onClick={e => onClick(e)}> 
-                {/* <Avatar>  
-                    <AccountCircleIcon/> 
-                </Avatar> */}
-                <img className="profileIcon" src={profileIcon}/>
-                <Typography variant="h3"  display="block" gutterbottom>
-                    {profilename}
-                </Typography>
-            </Button>
+            <Grid
+            container
+            alignContent="space-between"
+            className="profileCard"
+            direction="row"
+            >
+            <Grid item justify="center">
+                <Grid container>
+                <Avatar>
+                    <AccountCircleIcon />
+                </Avatar>
+                <Typography className="profileName">{name}</Typography>
+                </Grid>
+            </Grid>
+            <Grid item>
+                <IconButton
+                secondary
+                className="editpProfileButton"
+                onClick={(e) => onClick(e)}
+                >
+                <CreateIcon />
+                </IconButton>
+            </Grid>
+            </Grid>
             <br/>
             <div className={classes.root}>
                 <AppBar position="static" color="default">
@@ -187,23 +193,27 @@ export default function Profile(props) {
                         <ul className="listOfMyToTs">
                             {profileToTs.map(info => (
                                 <Card className="myToTs" raised>
-                                    <ProfileToT
+                                    <Created
                                         title={info.questionText}
+                                        option1={info.option1.text}
+                                        option2={info.option2.text}
                                         votes1={info.option1.numberOfVotes}
                                         votes2={info.option2.numberOfVotes}
                                         totalVotes={info.option1.numberOfVotes+info.option2.numberOfVotes}
                                     />
                                 </Card>
                             ))}
-                            <ProfileToT getQuestionState={props.getQuestionState} />
+                            {/* <ProfileToT getQuestionState={props.getQuestionState} /> */}
                         </ul>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
                         <ul className="listOfSavedToTs">
                             {savedToTs.map(info => (
                                 <Card className="savedToTs" raised>
-                                    <ProfileToT
+                                    <Created
                                         title={info.questionText}
+                                        option1={info.option1.text}
+                                        option2={info.option2.text}
                                         votes1={info.option1.numberOfVotes}
                                         votes2={info.option2.numberOfVotes}
                                         totalVotes={info.option1.numberOfVotes+info.option2.numberOfVotes}
